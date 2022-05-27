@@ -16,6 +16,9 @@
 		5497D01328412F68003E2B43 /* TallyGoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01228412F68003E2B43 /* TallyGoalsTests.swift */; };
 		5497D01D28412F68003E2B43 /* TallyGoalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */; };
 		5497D01F28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */; };
+		5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02C28412FAE003E2B43 /* ComposableArchitecture */; };
+		5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02F28412FC8003E2B43 /* SwiftWind */; };
+		5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D03228412FD8003E2B43 /* SwiftUItilities */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */,
+				5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */,
+				5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +155,11 @@
 			dependencies = (
 			);
 			name = TallyGoals;
+			packageProductDependencies = (
+				5497D02C28412FAE003E2B43 /* ComposableArchitecture */,
+				5497D02F28412FC8003E2B43 /* SwiftWind */,
+				5497D03228412FD8003E2B43 /* SwiftUItilities */,
+			);
 			productName = TallyGoals;
 			productReference = 5497CFF928412F66003E2B43 /* TallyGoals.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +232,11 @@
 				Base,
 			);
 			mainGroup = 5497CFF028412F66003E2B43;
+			packageReferences = (
+				5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */,
+				5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */,
+			);
 			productRefGroup = 5497CFFA28412F66003E2B43 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -593,6 +609,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+		5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/crisrojas/SwiftWind";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+		5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/crisrojas/SwiftUItilities";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5497D02C28412FAE003E2B43 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		5497D02F28412FC8003E2B43 /* SwiftWind */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */;
+			productName = SwiftWind;
+		};
+		5497D03228412FD8003E2B43 /* SwiftUItilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */;
+			productName = SwiftUItilities;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5497D00728412F68003E2B43 /* TallyGoals.xcdatamodeld */ = {
