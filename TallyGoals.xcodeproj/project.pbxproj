@@ -20,6 +20,23 @@
 		5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02F28412FC8003E2B43 /* SwiftWind */; };
 		5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D03228412FD8003E2B43 /* SwiftUItilities */; };
 		5497D0352841396D003E2B43 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D0342841396D003E2B43 /* Main.swift */; };
+		5497D0372841399B003E2B43 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D0362841399B003E2B43 /* Entry.swift */; };
+		5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D038284139AC003E2B43 /* BehaviourRepository.swift */; };
+		5497D03B284139E0003E2B43 /* BehaviourState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D03A284139E0003E2B43 /* BehaviourState.swift */; };
+		5497D03D284139F1003E2B43 /* Behaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D03C284139F1003E2B43 /* Behaviour.swift */; };
+		5497D04A28413A1F003E2B43 /* BehaviourGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D03F28413A1E003E2B43 /* BehaviourGrid.swift */; };
+		5497D04B28413A1F003E2B43 /* AddScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04028413A1E003E2B43 /* AddScreen.swift */; };
+		5497D04C28413A1F003E2B43 /* GoalsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04128413A1E003E2B43 /* GoalsScreen.swift */; };
+		5497D04D28413A1F003E2B43 /* ArchivedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04228413A1E003E2B43 /* ArchivedScreen.swift */; };
+		5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04328413A1E003E2B43 /* FavoriteScreen.swift */; };
+		5497D05028413A1F003E2B43 /* BehaviourCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04528413A1E003E2B43 /* BehaviourCard.swift */; };
+		5497D05128413A1F003E2B43 /* BehaviourEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04628413A1E003E2B43 /* BehaviourEdit.swift */; };
+		5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04728413A1E003E2B43 /* Tabbar.swift */; };
+		5497D05328413A1F003E2B43 /* BehaviourCaroussel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04828413A1E003E2B43 /* BehaviourCaroussel.swift */; };
+		5497D05428413A1F003E2B43 /* ListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04928413A1F003E2B43 /* ListScreen.swift */; };
+		5497D05628413A3F003E2B43 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05528413A3F003E2B43 /* ListRow.swift */; };
+		5497D05828413A5D003E2B43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05728413A5D003E2B43 /* Extensions.swift */; };
+		5497D065284147FD003E2B43 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05C28414713003E2B43 /* Container.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +70,23 @@
 		5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITests.swift; sourceTree = "<group>"; };
 		5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5497D0342841396D003E2B43 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		5497D0362841399B003E2B43 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		5497D038284139AC003E2B43 /* BehaviourRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourRepository.swift; sourceTree = "<group>"; };
+		5497D03A284139E0003E2B43 /* BehaviourState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourState.swift; sourceTree = "<group>"; };
+		5497D03C284139F1003E2B43 /* Behaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Behaviour.swift; sourceTree = "<group>"; };
+		5497D03F28413A1E003E2B43 /* BehaviourGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourGrid.swift; sourceTree = "<group>"; };
+		5497D04028413A1E003E2B43 /* AddScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddScreen.swift; sourceTree = "<group>"; };
+		5497D04128413A1E003E2B43 /* GoalsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalsScreen.swift; sourceTree = "<group>"; };
+		5497D04228413A1E003E2B43 /* ArchivedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivedScreen.swift; sourceTree = "<group>"; };
+		5497D04328413A1E003E2B43 /* FavoriteScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteScreen.swift; sourceTree = "<group>"; };
+		5497D04528413A1E003E2B43 /* BehaviourCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourCard.swift; sourceTree = "<group>"; };
+		5497D04628413A1E003E2B43 /* BehaviourEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourEdit.swift; sourceTree = "<group>"; };
+		5497D04728413A1E003E2B43 /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		5497D04828413A1E003E2B43 /* BehaviourCaroussel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourCaroussel.swift; sourceTree = "<group>"; };
+		5497D04928413A1F003E2B43 /* ListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListScreen.swift; sourceTree = "<group>"; };
+		5497D05528413A3F003E2B43 /* ListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
+		5497D05728413A5D003E2B43 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5497D05C28414713003E2B43 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,13 +140,16 @@
 		5497CFFB28412F66003E2B43 /* TallyGoals */ = {
 			isa = PBXGroup;
 			children = (
-				5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */,
-				5497CFFE28412F66003E2B43 /* ContentView.swift */,
-				5497D00028412F68003E2B43 /* Assets.xcassets */,
-				5497D00528412F68003E2B43 /* Persistence.swift */,
-				5497D0342841396D003E2B43 /* Main.swift */,
-				5497D00728412F68003E2B43 /* TallyGoals.xcdatamodeld */,
+				5497D06028414743003E2B43 /* Data */,
+				5497D05B2841470D003E2B43 /* DI */,
+				5497D05D28414717003E2B43 /* Domain */,
+				5497D0622841476D003E2B43 /* Extensions */,
 				5497D00228412F68003E2B43 /* Preview Content */,
+				5497D05F2841472F003E2B43 /* Redux */,
+				5497D0632841477A003E2B43 /* Resources */,
+				5497D03E28413A17003E2B43 /* Screens */,
+				5497D00728412F68003E2B43 /* TallyGoals.xcdatamodeld */,
+				5497D06128414765003E2B43 /* UI */,
 			);
 			path = TallyGoals;
 			sourceTree = "<group>";
@@ -140,6 +177,92 @@
 				5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */,
 			);
 			path = TallyGoalsUITests;
+			sourceTree = "<group>";
+		};
+		5497D03E28413A17003E2B43 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5497D04028413A1E003E2B43 /* AddScreen.swift */,
+				5497D04228413A1E003E2B43 /* ArchivedScreen.swift */,
+				5497D04528413A1E003E2B43 /* BehaviourCard.swift */,
+				5497D04828413A1E003E2B43 /* BehaviourCaroussel.swift */,
+				5497D04628413A1E003E2B43 /* BehaviourEdit.swift */,
+				5497D03F28413A1E003E2B43 /* BehaviourGrid.swift */,
+				5497CFFE28412F66003E2B43 /* ContentView.swift */,
+				5497D04328413A1E003E2B43 /* FavoriteScreen.swift */,
+				5497D04128413A1E003E2B43 /* GoalsScreen.swift */,
+				5497D04928413A1F003E2B43 /* ListScreen.swift */,
+				5497D04728413A1E003E2B43 /* Tabbar.swift */,
+				5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		5497D05B2841470D003E2B43 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				5497D05C28414713003E2B43 /* Container.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		5497D05D28414717003E2B43 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				5497D05E28414719003E2B43 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		5497D05E28414719003E2B43 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5497D0362841399B003E2B43 /* Entry.swift */,
+				5497D03C284139F1003E2B43 /* Behaviour.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5497D05F2841472F003E2B43 /* Redux */ = {
+			isa = PBXGroup;
+			children = (
+				5497D03A284139E0003E2B43 /* BehaviourState.swift */,
+				5497D0342841396D003E2B43 /* Main.swift */,
+			);
+			path = Redux;
+			sourceTree = "<group>";
+		};
+		5497D06028414743003E2B43 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5497D00528412F68003E2B43 /* Persistence.swift */,
+				5497D038284139AC003E2B43 /* BehaviourRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5497D06128414765003E2B43 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5497D05528413A3F003E2B43 /* ListRow.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5497D0622841476D003E2B43 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5497D05728413A5D003E2B43 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5497D0632841477A003E2B43 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5497D00028412F68003E2B43 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,11 +405,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5497D03D284139F1003E2B43 /* Behaviour.swift in Sources */,
+				5497D04A28413A1F003E2B43 /* BehaviourGrid.swift in Sources */,
+				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,
+				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
+				5497D05628413A3F003E2B43 /* ListRow.swift in Sources */,
+				5497D0372841399B003E2B43 /* Entry.swift in Sources */,
 				5497D0352841396D003E2B43 /* Main.swift in Sources */,
+				5497D04D28413A1F003E2B43 /* ArchivedScreen.swift in Sources */,
 				5497D00628412F68003E2B43 /* Persistence.swift in Sources */,
+				5497D065284147FD003E2B43 /* Container.swift in Sources */,
+				5497D04C28413A1F003E2B43 /* GoalsScreen.swift in Sources */,
 				5497CFFF28412F66003E2B43 /* ContentView.swift in Sources */,
+				5497D03B284139E0003E2B43 /* BehaviourState.swift in Sources */,
+				5497D05328413A1F003E2B43 /* BehaviourCaroussel.swift in Sources */,
+				5497D05828413A5D003E2B43 /* Extensions.swift in Sources */,
 				5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */,
+				5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */,
+				5497D05428413A1F003E2B43 /* ListScreen.swift in Sources */,
+				5497D05028413A1F003E2B43 /* BehaviourCard.swift in Sources */,
 				5497D00928412F68003E2B43 /* TallyGoals.xcdatamodeld in Sources */,
+				5497D05128413A1F003E2B43 /* BehaviourEdit.swift in Sources */,
+				5497D04B28413A1F003E2B43 /* AddScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
