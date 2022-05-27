@@ -19,6 +19,7 @@
 		5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02C28412FAE003E2B43 /* ComposableArchitecture */; };
 		5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02F28412FC8003E2B43 /* SwiftWind */; };
 		5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D03228412FD8003E2B43 /* SwiftUItilities */; };
+		5497D0352841396D003E2B43 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D0342841396D003E2B43 /* Main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		5497D01828412F68003E2B43 /* TallyGoalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallyGoalsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITests.swift; sourceTree = "<group>"; };
 		5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5497D0342841396D003E2B43 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				5497CFFE28412F66003E2B43 /* ContentView.swift */,
 				5497D00028412F68003E2B43 /* Assets.xcassets */,
 				5497D00528412F68003E2B43 /* Persistence.swift */,
+				5497D0342841396D003E2B43 /* Main.swift */,
 				5497D00728412F68003E2B43 /* TallyGoals.xcdatamodeld */,
 				5497D00228412F68003E2B43 /* Preview Content */,
 			);
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5497D0352841396D003E2B43 /* Main.swift in Sources */,
 				5497D00628412F68003E2B43 /* Persistence.swift in Sources */,
 				5497CFFF28412F66003E2B43 /* ContentView.swift in Sources */,
 				5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */,
