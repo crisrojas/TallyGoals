@@ -11,7 +11,6 @@
         <relationship name="goals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="behaviour" inverseEntity="GoalEntity"/>
     </entity>
     <entity name="EntryEntity" representedClassName="EntryEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="behaviour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BehaviourEntity" inverseName="entries" inverseEntity="BehaviourEntity"/>
     </entity>
@@ -24,7 +23,7 @@
     </entity>
     <elements>
         <element name="BehaviourEntity" positionX="-63" positionY="-9" width="128" height="149"/>
-        <element name="EntryEntity" positionX="-36" positionY="54" width="128" height="74"/>
+        <element name="EntryEntity" positionX="-36" positionY="54" width="128" height="59"/>
         <element name="GoalEntity" positionX="-54" positionY="45" width="128" height="59"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
     </elements>

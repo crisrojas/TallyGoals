@@ -143,21 +143,23 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
       .map { _ in AppAction.readBehaviours }
     
   case .deleteEntry(let id):
-    let lastIndex = state.entries.lastIndex(where: { $0.behaviourId == id })
+//    let lastIndex = state.entries.lastIndex(where: { $0.behaviourId == id })
+//
+//    if let lastIndex = lastIndex {
+//      state.entries.remove(at: lastIndex)
+//    }
+//    return .none
     
-    if let lastIndex = lastIndex {
-      state.entries.remove(at: lastIndex)
-    }
-    return .none
+    return env.behavioursRepository
+    .deleteLastEntry(for: id)
+    .catchToEffect()
+    .map { _ in AppAction.readBehaviours }
     
   case .addEntry(let behaviourId):
-    let entry = Entry(
-      id: UUID(),
-      behaviourId: behaviourId,
-      date: Date()
-    )
-    state.entries.append(entry)
-    return .none
+    return env.behavioursRepository
+    .createEntity(for: behaviourId)
+    .catchToEffect()
+    .map { _ in AppAction.readBehaviours }
     
   case .startEditingPinned:
     state.isEditingPinned = true

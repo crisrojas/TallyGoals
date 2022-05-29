@@ -1,6 +1,7 @@
 import Combine
 import ComposableArchitecture
 import CoreData
+import AVFAudio
 
 final class BehaviourRepository {
   
@@ -55,8 +56,8 @@ final class BehaviourRepository {
             let behaviours = result.map { entity in
               Behaviour(
                 id: entity.objectID,
-                emoji: entity.emoji!,
-                name: entity.name!,
+                emoji: entity.emoji ?? "error",
+                name: entity.name ?? "error",
                 pinned: entity.pinned,
                 archived: entity.archived,
                 favorite: entity.favorite,
@@ -192,34 +193,71 @@ final class BehaviourRepository {
     .eraseToEffect()
   }
   
+  // @todo: The method doesn't work the first time usded
   func createEntity(for behaviourId: NSManagedObjectID) -> Effect<Void, Error> {
     Deferred { [context] in
       Future<Void, Error> { [context] promise in
         context.perform {
           do {
             
-            let request: NSFetchRequest<BehaviourEntity> = BehaviourEntity.fetchRequest()
-            
-            let result: [BehaviourEntity] = try context.fetch(request)
-            
-            let behaviour = result.filter { behaviour in
-              behaviour.objectID == behaviourId
-            }.first
+            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             
             guard let behaviour = behaviour else {
               // @todo throw error
               print("Error while trying to retrieve behaviour")
               return
             }
-            //let object = try context.existingObject(with: behaviourId)
+            
             let entry = EntryEntity(context: context)
             entry.date = Date()
-            entry.behaviour = behaviour
+            behaviour.addToEntries(entry)
             try context.save()
+            
             promise(.success(()))
           } catch {
             promise(.failure(error))
           }
+        }
+      }
+    }
+    .eraseToEffect()
+  }
+  
+  func deleteLastEntry(for behaviourId: NSManagedObjectID) -> Effect<Void, Error> {
+    Deferred { [context] in
+      Future<Void, Error> { [context] promise in
+        context.perform {
+          
+          do {
+            
+            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
+            
+            guard let behaviour = behaviour else {
+              // @todo throw error
+              return
+            }
+           
+            
+            let fetchRequest: NSFetchRequest<EntryEntity>
+            fetchRequest = EntryEntity.fetchRequest()
+            let allEntries = try context.fetch(fetchRequest)
+            
+            let behaviourEntries = allEntries.filter { entry in
+              entry.behaviour == behaviour
+            }
+            
+            if let last = behaviourEntries.last {
+              context.delete(last)
+            }
+            
+            
+            try context.save()
+            
+            promise(.success(()))
+          } catch {
+            promise(.failure(error))
+          }
+          
         }
       }
     }

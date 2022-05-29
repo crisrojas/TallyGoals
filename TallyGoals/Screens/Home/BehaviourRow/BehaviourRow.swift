@@ -12,7 +12,6 @@ import ComposableArchitecture
 
 struct BehaviourRow: View {
   
-  @State var count: Int = 0
   @State var offset: CGFloat = .zero
   
   @State var showEditScreen = false
@@ -50,7 +49,7 @@ struct BehaviourRow: View {
       Text(model.emoji)
         .font(.caption2)
       
-      Text(count.string)
+      Text(model.count.string)
         .font(.system(.largeTitle, design: .rounded))
         .fontWeight(.bold)
         .modifier(ShakeEffect(animatableData: CGFloat(self.isCountShaking ? 1 : 0)))
@@ -126,18 +125,22 @@ extension BehaviourRow {
   
   func increase() {
     vibrate()
-    withAnimation { count += 1 }
+    withAnimation {
+      viewStore.send(.addEntry(behaviour: model.id))
+    }
   }
   
   func decrease() {
-    guard count > 0 else {
+    guard model.count > 0 else {
       vibrate(.error)
       withAnimation { shakeCount() }
       return
     }
     
     vibrate()
-    withAnimation { count -= 1 }
+    withAnimation {
+      viewStore.send(.deleteEntry(behaviour: model.id))
+    }
   }
   
   func shakeCount() {
