@@ -4,7 +4,7 @@ import SwiftUI
 struct BehaviourEditScreen: View {
   
   @Environment(\.presentationMode) var presentationMode
-  let store: AppStore
+  let viewStore: AppViewStore
   let item: Behaviour
   
   @State var emoji: String
@@ -12,7 +12,7 @@ struct BehaviourEditScreen: View {
   @State var count: Int = .zero
   
   var body: some View {
-    WithViewStore(store) { viewStore in
+//    WithViewStore(store) { viewStore in
       VStack {
         Form { 
           
@@ -70,9 +70,7 @@ struct BehaviourEditScreen: View {
             emoji == item.emoji && name == item.name
           )
       }
-      
-      
-    }
+//    }
   }
   
   func pop() {

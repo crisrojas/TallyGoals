@@ -18,28 +18,43 @@ struct ListScreen: View {
           progressView(viewStore: viewStore)
         case .success(let model):
           
-          VStack {
+          DefaultVStack {
             
-            if model.pinnedFilter.isNotEmpty {
+            DefaultVStack {
+              Text("Pinned")
+                .font(.system(.subheadline, design: .rounded))
+                .fontWeight(.bold)
+                .alignX(.leading)
+              
               BehaviourGrid(
                 model: model.pinnedFilter,
                 store: store
               )
-                .horizontal(24)
-                .top(24)
+              .top(.s4)
             }
+            .top(.s6)
+            .horizontal(.horizontal)
+            .displayIf(model.pinnedFilter.isNotEmpty)
+            
+            Text("List")
+              .font(.system(.subheadline, design: .rounded))
+              .fontWeight(.bold)
+              .alignX(.leading)
+              .horizontal(.horizontal)
+              .displayIf(model.pinnedFilter.isNotEmpty)
+              .top(.s6)
             
             LazyVStack(spacing: 0) {
               ForEach(model.defaultFilter) { item in
-                //Row(model: item, store: store)
-                
-                NewRow(model: item, color: .blue)
-                
+                BehaviourRow(
+                  model: item,
+                  viewStore: viewStore
+                )
               }
             }
-            .background(Color(UIColor.systemBackground))
-            .top(8)
-            .bottom(24)
+            .background(Color.behaviourRowBackground)
+            .top(model.pinnedFilter.isEmpty ? .zero : .s4)
+            .bottom(.s6)
           }
           .scrollify()
           
@@ -49,10 +64,10 @@ struct ListScreen: View {
           Text(message)
         }
       }
-      .toolbar { 
+      .toolbar {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
           
-          if viewStore.state.isEditingPinned {
+          if viewStore.state.isEditingMode {
             Text("DONE")
               .font(.caption2)
               .fontWeight(.black)
@@ -63,24 +78,38 @@ struct ListScreen: View {
                 Color.blue100.cornerRadius(16)
               )
               .onTap {
-                viewStore.send(.stopEditingPinned)
+                viewStore.send(
+                  .toggleEditingMode(value: false)
+                )
               }
           } else {
+            Image(systemName: "pencil")
+              .onTap {
+                withAnimation {
+                  viewStore.send( .toggleEditingMode(value: true)
+                  )
+                }
+              }
+            
             Image(systemName: "plus")
-              .onTap { 
+              .onTap {
                 AddScreen(store: store)
               }
+            
           }
         }
       }
-      .onTapGesture {
-        print("tapped list screen")
-        NotificationCenter.collapseRowList()
-      }
+            .onTapGesture {
+              print("tapped list screen")
+              NotificationCenter.collapseRowList()
+            }
       
     }
   }
-  
+}
+
+// MARK: - @todo: Legacify
+extension ListScreen {
   func progressView
   (viewStore: AppViewStore) -> some View {
     ProgressView()
@@ -92,24 +121,24 @@ struct ListScreen: View {
   func successView
   (model: [Behaviour], viewStore: AppViewStore) -> some View {
     
-    List { 
-      Section { 
+    List {
+      Section {
         ForEach(model.defaultFilter) { item in
           ListRow(
-            store: store, 
+            store: store,
             item: item
           )
             .buttonStyle(PlainButtonStyle())
             .swipeActions(edge: .trailing) {
               trailingSwipeActions(
-                viewStore: viewStore, 
-                id: item.id 
+                viewStore: viewStore,
+                id: item.id
               )
             }
             .swipeActions(edge: .leading) {
               Label("Pin", systemImage: "pin")
                 .onTap {
-                  withAnimation { 
+                  withAnimation {
                     viewStore.send(
                       .updatePinned(
                         id: item.id,
@@ -121,50 +150,17 @@ struct ListScreen: View {
                 .tint(item.pinned ? .gray : .indigo)
             }
         }
-      } header: { 
+      } header: {
         BehaviourGrid(
           model: model.pinnedFilter,
           store: store
         )
       }
     }
-    .listStyle(GroupedListStyle()) 
-  }
-  
-  
-  @ViewBuilder
-  func rowBackground(pinned: Bool) -> some View {
-    
-    if pinned {
-      Color.indigo
-        .opacity(0.3)
-    } else {
-      Color.gray
-        .opacity(0.15)
-    }
+    .listStyle(GroupedListStyle())
   }
 }
 
-extension Array where Element == Behaviour {
-  
-  var defaultFilter: Self {
-    self
-      .filter { !$0.archived }
-      .filter { !$0.pinned }
-      .sorted(by: { $0.name < $1.name })
-      .sorted(by: { $0.emoji < $1.emoji })
-    //.sorted(by: { $0.pinned && !$1.pinned })
-  }
-  
-  var pinnedFilter: Self {
-    self
-      .filter { !$0.archived }
-      .filter { $0.pinned }
-      .sorted(by: { $0.name < $1.name })
-      .sorted(by: { $0.emoji < $1.emoji })
-    
-  }
-}
 
 // MARK: - UI components
 private extension ListScreen {
@@ -178,7 +174,7 @@ private extension ListScreen {
   (viewStore: AppViewStore, id: NSManagedObjectID)-> some View {
     
     Label("Archive", systemImage: "archivebox")
-      .onTap { 
+      .onTap {
         withAnimation(.default) {
           viewStore.send(.updateArchive(
             id: id,
@@ -193,16 +189,6 @@ private extension ListScreen {
     } label: {
       Label("Delete", systemImage: "trash.fill")
     }
-    
-    
-    //Label("Favorite", systemImage: "star.fill")
-    //.onTap { 
-    //viewStore.send(.updateFavorite(
-    //id: id,
-    //favorite: true
-    //))
-    //}
-    //.tint(.yellow)
   }
   
   func getCount

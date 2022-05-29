@@ -109,7 +109,7 @@ struct Tabbar: View {
   
   var body: some View {
     
-    TabView {
+//    TabView {
       
       //FavoritesScreen(store: store)
       //.navigationify()
@@ -119,8 +119,8 @@ struct Tabbar: View {
       
       
       ListScreen(store: store)
-        .navigationTitle("All")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Tallies")
+//        .navigationBarTitleDisplayMode(.inline)
         .navigationify()
         .tabItem { 
           Label("All", systemImage: "list.bullet")
@@ -132,29 +132,29 @@ struct Tabbar: View {
       //Label("Goals", systemImage: "flag")
       //}
       
-      Tab()
-        .navigationTitle("Sequences")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationify()
-        .tabItem {
-          Label("Sequences", systemImage: "list.bullet")
-        }
-      
-      
-      GoalsScreen(store: store)
-        .navigationTitle("Goals")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationify()
-        .tabItem { 
-          Label("Goals", systemImage: "flag")
-        }
-      
-      ArchivedScreen(store: store)
-        .navigationify()
-        .tabItem {
-          Label("Archived", systemImage: "archivebox")
-        }
-    }
+//      Tab()
+//        .navigationTitle("Sequences")
+//        .navigationBarTitleDisplayMode(.inline)
+//        .navigationify()
+//        .tabItem {
+//          Label("Sequences", systemImage: "list.bullet")
+//        }
+//
+//
+//      GoalsScreen(store: store)
+//        .navigationTitle("Goals")
+//        .navigationBarTitleDisplayMode(.inline)
+//        .navigationify()
+//        .tabItem {
+//          Label("Goals", systemImage: "flag")
+//        }
+//
+//      ArchivedScreen(store: store)
+//        .navigationify()
+//        .tabItem {
+//          Label("Archived", systemImage: "archivebox")
+//        }
+//    }
   }
 }
 

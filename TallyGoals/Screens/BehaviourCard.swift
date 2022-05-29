@@ -2,6 +2,7 @@ import ComposableArchitecture
 import CoreData
 import SwiftUI
 import SwiftUItilities
+import SwiftWind
 
 struct BehaviourCard: View {
   
@@ -22,7 +23,7 @@ struct BehaviourCard: View {
             Badge(number: getCount(
               behaviourId: model.id, 
               viewStore: viewStore
-            ))
+            ), color: model.color)
               .x(10)
               .y(-10)
             ,
@@ -45,7 +46,7 @@ struct BehaviourCard: View {
           .height(40)
         
       }
-      .background(editLink)
+//      .background(editLink)
       .contextMenu {
         Label("Edit", systemImage: "pencil")
           .onTap {
@@ -59,21 +60,21 @@ struct BehaviourCard: View {
     }
   }
   
-  var editLink: some View {
-    EmptyNavigationLink(
-      destination: behaviourEditScreen,
-      isActive: $showEdit
-    )
-  }
+//  var editLink: some View {
+//    EmptyNavigationLink(
+//      destination: behaviourEditScreen,
+//      isActive: $showEdit
+//    )
+//  }
   
-  var behaviourEditScreen: some View {
-    BehaviourEditScreen(
-      store: store,
-      item: model, 
-      emoji: model.emoji, 
-      name: model.name
-    )
-  }
+//  var behaviourEditScreen: some View {
+//    BehaviourEditScreen(
+//      store: store,
+//      item: model,
+//      emoji: model.emoji,
+//      name: model.name
+//    )
+//  }
   
   func getCount
   (behaviourId: NSManagedObjectID, viewStore: AppViewStore) -> Int {
@@ -85,17 +86,34 @@ struct BehaviourCard: View {
 }
 
 struct Badge: View {
+  
   let number: Int
+  let color: WindColor
+  let small: Bool
+  let dark: Bool
+  
+  init(number: Int, color: WindColor, small: Bool = false, dark: Bool = true) {
+    self.number = number
+    self.color = color
+    self.small = small
+    self.dark = dark
+  }
+  
   var body: some View {
     Circle()
-      .foregroundColor(.blue500)
-      .size(20)
-      .shadow(radius: 4)
+      .foregroundColor(dark ? color.c500 : color.c100)
+      .size(small ? .s4 : .s5)
+      .shadow(
+        color: small ? color.c200 : color.c300,
+        radius: small ? .px : .s1,
+        x:  small ? .px : .s05,
+        y:  small ? .px : .s05
+      )
       .overlay(
         Text(number.string)
-          .font(.caption)
+          .font(small ? .caption2 : .caption)
           .fontWeight(.bold)
-          .foregroundColor(.blue50)
+          .foregroundColor(dark ? color.c50 : color.c500)
       )
   }
 }

@@ -9,10 +9,12 @@ struct AppState: Equatable {
   
   var adding: Bool = true
   var isEditingPinned: Bool = false
+  var isEditingMode: Bool = false
   //var behaviours: [Behaviour] = []
   var entries: [Entry] = []
   var goals: [Goal] = []
   var behaviourState: BehaviourState = .idle
+  var swipingBehaviourId: NSManagedObjectID?
 }
 
 enum AppAction {
@@ -51,6 +53,9 @@ enum AppAction {
   
   case startEditingPinned
   case stopEditingPinned
+  
+  case toggleEditingMode(value: Bool)
+  case startSwipe(id: NSManagedObjectID?)
 }
 
 struct AppEnvironment {
@@ -165,6 +170,13 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .toggleAdding(let value):
     state.adding = value
     return .none
+    
+  case .toggleEditingMode(let value):
+    state.isEditingMode = value
+    return .none
+    
+  case .startSwipe(let id):
+    state.swipingBehaviourId = id
+    return .none
   }
 }
-

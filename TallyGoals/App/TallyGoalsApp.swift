@@ -12,6 +12,10 @@ import SwiftUI
 struct TallyGoalsApp: App {
   let persistenceController = PersistenceController.shared
   
+  init() {
+    UIBarButtonItem.hideBackButtonLabel()
+  }
+  
   var body: some Scene {
     WindowGroup {
       Tabbar(store: container.store)

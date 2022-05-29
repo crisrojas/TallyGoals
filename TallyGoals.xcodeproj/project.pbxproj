@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		541990202843AE010066A5CE /* BehaviorRowActionsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5419901F2843AE010066A5CE /* BehaviorRowActionsModifier.swift */; };
+		541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990222843AEB50066A5CE /* SwipeActionsView.swift */; };
+		541990262843AF050066A5CE /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990252843AF050066A5CE /* CGFloat.swift */; };
+		541990282843AF210066A5CE /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990272843AF210066A5CE /* ShakeEffect.swift */; };
+		5419902A2843AF3E0066A5CE /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990292843AF3E0066A5CE /* Color.swift */; };
+		5419902C2843B1110066A5CE /* ArrayFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5419902B2843B1110066A5CE /* ArrayFilters.swift */; };
+		5419902E2843B1690066A5CE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5419902D2843B1680066A5CE /* README.md */; };
 		5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */; };
-		5497CFFF28412F66003E2B43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497CFFE28412F66003E2B43 /* ContentView.swift */; };
 		5497D00128412F68003E2B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00028412F68003E2B43 /* Assets.xcassets */; };
 		5497D00428412F68003E2B43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00328412F68003E2B43 /* Preview Assets.xcassets */; };
 		5497D00628412F68003E2B43 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D00528412F68003E2B43 /* Persistence.swift */; };
@@ -37,6 +43,7 @@
 		5497D05628413A3F003E2B43 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05528413A3F003E2B43 /* ListRow.swift */; };
 		5497D05828413A5D003E2B43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05728413A5D003E2B43 /* Extensions.swift */; };
 		5497D065284147FD003E2B43 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05C28414713003E2B43 /* Container.swift */; };
+		5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D06728414D44003E2B43 /* BehaviourRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +64,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5419901F2843AE010066A5CE /* BehaviorRowActionsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorRowActionsModifier.swift; sourceTree = "<group>"; };
+		541990222843AEB50066A5CE /* SwipeActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionsView.swift; sourceTree = "<group>"; };
+		541990252843AF050066A5CE /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		541990272843AF210066A5CE /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
+		541990292843AF3E0066A5CE /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5419902B2843B1110066A5CE /* ArrayFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFilters.swift; sourceTree = "<group>"; };
+		5419902D2843B1680066A5CE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5497CFF928412F66003E2B43 /* TallyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TallyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsApp.swift; sourceTree = "<group>"; };
-		5497CFFE28412F66003E2B43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5497D00028412F68003E2B43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5497D00328412F68003E2B43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5497D00528412F68003E2B43 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -87,6 +100,7 @@
 		5497D05528413A3F003E2B43 /* ListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		5497D05728413A5D003E2B43 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5497D05C28414713003E2B43 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		5497D06728414D44003E2B43 /* BehaviourRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +131,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5419901E2843ADEC0066A5CE /* BehaviourRow */ = {
+			isa = PBXGroup;
+			children = (
+				5497D06728414D44003E2B43 /* BehaviourRow.swift */,
+				5419901F2843AE010066A5CE /* BehaviorRowActionsModifier.swift */,
+			);
+			path = BehaviourRow;
+			sourceTree = "<group>";
+		};
+		541990212843AE910066A5CE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5419901E2843ADEC0066A5CE /* BehaviourRow */,
+				5497D04928413A1F003E2B43 /* ListScreen.swift */,
+				5419902B2843B1110066A5CE /* ArrayFilters.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		541990242843AEF50066A5CE /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				541990252843AF050066A5CE /* CGFloat.swift */,
+				541990292843AF3E0066A5CE /* Color.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		5497CFF028412F66003E2B43 = {
 			isa = PBXGroup;
 			children = (
+				5419902D2843B1680066A5CE /* README.md */,
 				5497CFFB28412F66003E2B43 /* TallyGoals */,
 				5497D01128412F68003E2B43 /* TallyGoalsTests */,
 				5497D01B28412F68003E2B43 /* TallyGoalsUITests */,
@@ -140,6 +183,7 @@
 		5497CFFB28412F66003E2B43 /* TallyGoals */ = {
 			isa = PBXGroup;
 			children = (
+				5497D06628414CB0003E2B43 /* App */,
 				5497D06028414743003E2B43 /* Data */,
 				5497D05B2841470D003E2B43 /* DI */,
 				5497D05D28414717003E2B43 /* Domain */,
@@ -182,18 +226,16 @@
 		5497D03E28413A17003E2B43 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				541990212843AE910066A5CE /* Home */,
 				5497D04028413A1E003E2B43 /* AddScreen.swift */,
 				5497D04228413A1E003E2B43 /* ArchivedScreen.swift */,
 				5497D04528413A1E003E2B43 /* BehaviourCard.swift */,
 				5497D04828413A1E003E2B43 /* BehaviourCaroussel.swift */,
 				5497D04628413A1E003E2B43 /* BehaviourEdit.swift */,
 				5497D03F28413A1E003E2B43 /* BehaviourGrid.swift */,
-				5497CFFE28412F66003E2B43 /* ContentView.swift */,
 				5497D04328413A1E003E2B43 /* FavoriteScreen.swift */,
 				5497D04128413A1E003E2B43 /* GoalsScreen.swift */,
-				5497D04928413A1F003E2B43 /* ListScreen.swift */,
 				5497D04728413A1E003E2B43 /* Tabbar.swift */,
-				5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -245,6 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				5497D05528413A3F003E2B43 /* ListRow.swift */,
+				541990222843AEB50066A5CE /* SwipeActionsView.swift */,
+				541990272843AF210066A5CE /* ShakeEffect.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -252,6 +296,7 @@
 		5497D0622841476D003E2B43 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				541990242843AEF50066A5CE /* Constants */,
 				5497D05728413A5D003E2B43 /* Extensions.swift */,
 			);
 			path = Extensions;
@@ -263,6 +308,14 @@
 				5497D00028412F68003E2B43 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5497D06628414CB0003E2B43 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5419902E2843B1690066A5CE /* README.md in Resources */,
 				5497D00428412F68003E2B43 /* Preview Assets.xcassets in Resources */,
 				5497D00128412F68003E2B43 /* Assets.xcassets in Resources */,
 			);
@@ -405,9 +459,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				541990262843AF050066A5CE /* CGFloat.swift in Sources */,
 				5497D03D284139F1003E2B43 /* Behaviour.swift in Sources */,
 				5497D04A28413A1F003E2B43 /* BehaviourGrid.swift in Sources */,
 				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,
+				541990202843AE010066A5CE /* BehaviorRowActionsModifier.swift in Sources */,
 				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
 				5497D05628413A3F003E2B43 /* ListRow.swift in Sources */,
 				5497D0372841399B003E2B43 /* Entry.swift in Sources */,
@@ -416,17 +472,21 @@
 				5497D00628412F68003E2B43 /* Persistence.swift in Sources */,
 				5497D065284147FD003E2B43 /* Container.swift in Sources */,
 				5497D04C28413A1F003E2B43 /* GoalsScreen.swift in Sources */,
-				5497CFFF28412F66003E2B43 /* ContentView.swift in Sources */,
 				5497D03B284139E0003E2B43 /* BehaviourState.swift in Sources */,
 				5497D05328413A1F003E2B43 /* BehaviourCaroussel.swift in Sources */,
 				5497D05828413A5D003E2B43 /* Extensions.swift in Sources */,
 				5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */,
+				5419902A2843AF3E0066A5CE /* Color.swift in Sources */,
 				5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */,
+				5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */,
 				5497D05428413A1F003E2B43 /* ListScreen.swift in Sources */,
+				5419902C2843B1110066A5CE /* ArrayFilters.swift in Sources */,
 				5497D05028413A1F003E2B43 /* BehaviourCard.swift in Sources */,
 				5497D00928412F68003E2B43 /* TallyGoals.xcdatamodeld in Sources */,
+				541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */,
 				5497D05128413A1F003E2B43 /* BehaviourEdit.swift in Sources */,
 				5497D04B28413A1F003E2B43 /* AddScreen.swift in Sources */,
+				541990282843AF210066A5CE /* ShakeEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +664,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -633,7 +693,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
