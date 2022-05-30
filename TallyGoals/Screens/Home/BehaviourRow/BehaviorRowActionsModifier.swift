@@ -34,10 +34,13 @@ struct BehaviorRowActionsModifier: ViewModifier {
           resetOffset()
         }
       }
-      .gesture(
+    
+    // wip:
+    // Fixing gesture inconsistencies when scroll is triggered
+    // https://stackoverflow.com/questions/57933593/how-to-only-disable-scroll-in-scrollview-but-not-content-view
+      .simultaneousGesture(
         DragGesture()
           .onChanged { value in
-            
             
             viewStore.send(.startSwipe(id: model.id))
             let width = value.translation.width
@@ -67,6 +70,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
             offset = width
           }
           .onEnded { value in
+            
             let width = value.translation.width
             
             /// Reset state values

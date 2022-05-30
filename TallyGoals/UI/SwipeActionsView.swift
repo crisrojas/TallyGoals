@@ -40,7 +40,8 @@ struct SwipeActionView: View {
   
   var body: some View {
     backgroundColor
-      .width(width)
+    // wip: fixing runtime frame error
+      .width(width > 0 ? width : .s10)
       .buttonStyle(.plain)
       .onTap {
         withAnimation {
