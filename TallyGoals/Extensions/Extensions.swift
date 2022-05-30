@@ -1,5 +1,16 @@
 import SwiftUI
 
+extension Text {
+  
+  @ViewBuilder
+  static func unwrap(_ optional: String?) -> some View {
+    if let safeValue = optional {
+      Text(safeValue)
+    } else {
+      EmptyView()
+    }
+  }
+}
 extension View {
   
   // MARK: - Move to swiftuitilities

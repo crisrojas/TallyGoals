@@ -17,8 +17,8 @@ struct BehaviorRowActionsModifier: ViewModifier {
   let model: Behaviour
   let viewStore: AppViewStore
  
-  @State var trailingActionDynamicWidth = CGFloat.s10
-  @State var leadingActionDynamicWidth = CGFloat.s10
+  @State var trailingActionDynamicWidth = CGFloat.swipeActionWidth
+  @State var leadingActionDynamicWidth = CGFloat.swipeActionWidth
   @State var shouldVibrate: Bool = true
   @State var willLaunchLeadingAction = false
   @State var willLaunchTrailingAction = false
@@ -45,14 +45,14 @@ struct BehaviorRowActionsModifier: ViewModifier {
             viewStore.send(.startSwipe(id: model.id))
             let width = value.translation.width
             
-            if width > .s20 {
-              let delta = width - .s20
-              leadingActionDynamicWidth = .s10 + delta
+            if width > .swipeActionTotalWidth {
+              let delta = width - .swipeActionTotalWidth
+              leadingActionDynamicWidth = .swipeActionWidth + delta
             }
             
-            if width < .s20 {
-              let delta = abs(width) - .s20
-              trailingActionDynamicWidth = .s10 + delta
+            if width < .swipeActionTotalWidth {
+              let delta = abs(width) - .swipeActionTotalWidth
+              trailingActionDynamicWidth = .swipeActionWidth + delta
             }
             
             if width > .s36 && shouldVibrate {
@@ -75,25 +75,28 @@ struct BehaviorRowActionsModifier: ViewModifier {
             
             /// Reset state values
             withAnimation {
-              trailingActionDynamicWidth = .s10
-              leadingActionDynamicWidth = .s10
+              trailingActionDynamicWidth = .swipeActionWidth
+              leadingActionDynamicWidth = .swipeActionWidth
               shouldVibrate = true
               willLaunchLeadingAction = false
               willLaunchTrailingAction = false
             }
             
-            if width > 1 && width < .s40 {
-              withAnimation { offset = .s20 }
-            } else if width < -1 && width > -.s40 {
-              withAnimation { offset = -.s20 }
-            } else if width >= .s40 {
+            if width > 1 && width < .swipeActionsThreshold {
+              withAnimation { offset = .swipeActionTotalWidth }
+            } else if width < -1 && width > -.swipeActionsThreshold {
+              withAnimation { offset = -.swipeActionTotalWidth }
+            } else if width >= .swipeActionsThreshold {
               resetOffset()
               showEditingScreen = true
               isEditing = false
-            } else if width <= -.s40 {
+            } else if width <= -.swipeActionsThreshold {
               
               // @todo: ask before deleting
-              viewStore.send(.deleteBehaviour(id: model.id))
+              resetOffset {
+                viewStore.send(.deleteBehaviour(id: model.id))
+              }
+             
             } else {
               resetOffset()
             }
@@ -125,8 +128,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
             offset: $offset,
             color: .yellow,
             systemSymbol: "pin",
-            position: .leading,
-            width: .s10
+            position: .leading
           ) {
             viewStore.send(
               .updatePinned(id: model.id, pinned: true)
@@ -142,8 +144,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
           offset: $offset,
           color: .orange,
           systemSymbol: "archivebox",
-          position: .trailing,
-          width: .s10
+          position: .trailing
         ) {
           viewStore.send(.updateArchive(id: model.id, archive: true))
         }
@@ -162,8 +163,11 @@ struct BehaviorRowActionsModifier: ViewModifier {
     )
   }
   
-  func resetOffset() {
-    withAnimation { offset = 0 }
+  func resetOffset(completion: (() -> Void)? = nil) {
+    withAnimation {
+      offset = 0
+    }
+    completion?()
   }
   
   var editingScreen: some View {

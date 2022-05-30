@@ -25,7 +25,7 @@ struct SwipeActionView: View {
     color: WindColor,
     systemSymbol: String,
     position: ActionPosition,
-    width: CGFloat = .s10,
+    width: CGFloat = .swipeActionWidth,
     launching: Bool = false,
     action: @escaping () -> ()
   ) {
@@ -68,7 +68,7 @@ struct SwipeActionView: View {
   
   var tintColor: Color {
     if .isDarkMode {
-      return color.c500
+      return color.c600
     } else {
       return color.c100
     }
@@ -84,11 +84,10 @@ extension SwipeActionView {
     
     
     var launchingOffset: CGFloat {
-      let const = CGFloat.s2h
       
       switch self {
-      case .trailing: return const
-      case .leading: return -const
+      case .trailing: return .swipeActionLaunchingOffset
+      case .leading: return -.swipeActionLaunchingOffset
       }
     }
     

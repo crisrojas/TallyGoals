@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40CC9B7A2844FF5F007464B8 /* SwipeCellSUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40CC9B792844FF5F007464B8 /* SwipeCellSUI */; };
 		541990202843AE010066A5CE /* BehaviorRowActionsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5419901F2843AE010066A5CE /* BehaviorRowActionsModifier.swift */; };
 		541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990222843AEB50066A5CE /* SwipeActionsView.swift */; };
 		541990262843AF050066A5CE /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990252843AF050066A5CE /* CGFloat.swift */; };
@@ -109,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */,
+				40CC9B7A2844FF5F007464B8 /* SwipeCellSUI in Frameworks */,
 				5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */,
 				5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */,
 			);
@@ -338,6 +340,7 @@
 				5497D02C28412FAE003E2B43 /* ComposableArchitecture */,
 				5497D02F28412FC8003E2B43 /* SwiftWind */,
 				5497D03228412FD8003E2B43 /* SwiftUItilities */,
+				40CC9B792844FF5F007464B8 /* SwipeCellSUI */,
 			);
 			productName = TallyGoals;
 			productReference = 5497CFF928412F66003E2B43 /* TallyGoals.app */;
@@ -415,6 +418,7 @@
 				5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */,
 				5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */,
+				40CC9B782844FF5F007464B8 /* XCRemoteSwiftPackageReference "SwipeCellSUI" */,
 			);
 			productRefGroup = 5497CFFA28412F66003E2B43 /* Products */;
 			projectDirPath = "";
@@ -815,6 +819,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		40CC9B782844FF5F007464B8 /* XCRemoteSwiftPackageReference "SwipeCellSUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DominikButz/SwipeCellSUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -842,6 +854,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		40CC9B792844FF5F007464B8 /* SwipeCellSUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 40CC9B782844FF5F007464B8 /* XCRemoteSwiftPackageReference "SwipeCellSUI" */;
+			productName = SwipeCellSUI;
+		};
 		5497D02C28412FAE003E2B43 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;

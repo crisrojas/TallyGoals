@@ -8,6 +8,7 @@ struct ListScreen: View {
   
   let store: Store<AppState, AppAction>
   
+  @State var currentUserInteractionCellID: String? = nil
   var body: some View {
     
     WithViewStore(store) { viewStore in
@@ -18,14 +19,16 @@ struct ListScreen: View {
           progressView(viewStore: viewStore)
         case .success(let model):
           
+//          successView(model: model, viewStore: viewStore)
+          
           DefaultVStack {
-            
+
             DefaultVStack {
               Text("Pinned")
                 .font(.system(.subheadline, design: .rounded))
                 .fontWeight(.bold)
                 .alignX(.leading)
-              
+
               BehaviourGrid(
                 model: model.pinnedFilter,
                 store: store
@@ -35,7 +38,7 @@ struct ListScreen: View {
             .top(.s6)
             .horizontal(.horizontal)
             .displayIf(model.pinnedFilter.isNotEmpty)
-            
+
             Text("List")
               .font(.system(.subheadline, design: .rounded))
               .fontWeight(.bold)
@@ -43,12 +46,13 @@ struct ListScreen: View {
               .horizontal(.horizontal)
               .displayIf(model.pinnedFilter.isNotEmpty)
               .top(.s6)
-            
+
             LazyVStack(spacing: 0) {
               ForEach(model.defaultFilter) { item in
                 BehaviourRow(
                   model: item,
-                  viewStore: viewStore
+                  viewStore: viewStore,
+                  currentUserInteractionCellID: $currentUserInteractionCellID
                 )
               }
             }
@@ -128,7 +132,7 @@ extension ListScreen {
             store: store,
             item: item
           )
-            .buttonStyle(PlainButtonStyle())
+//            .buttonStyle(PlainButtonStyle())
             .swipeActions(edge: .trailing) {
               trailingSwipeActions(
                 viewStore: viewStore,
