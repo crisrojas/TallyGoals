@@ -10,11 +10,37 @@ import SwiftUItilities
 import SwiftWind
 import SwipeCellSUI
 import ComposableArchitecture
+import StoreKit
+
+extension Array {
+  var count: CGFloat {
+    self.count.cgFloat
+  }
+}
 
 // @todo: take a look at this article for better notification handling
 // https://www.hackingwithswift.com/books/ios-swiftui/adding-options-with-swipe-actions
 
-struct SwipeAction: Identifiable {
+final class SwipeManager: ObservableObject {
+  
+  @Published var swipingId: UUID?
+  @Published var rowIsOpened: Bool = false
+  
+  var cancellables = Set<AnyCancellable>()
+  
+  static let shared = SwipeManager()
+  private init() { }
+  
+  func collapse() {
+    rowIsOpened = false
+  }
+}
+
+struct SwipeAction: Identifiable, Equatable {
+  
+  static func == (lhs: SwipeAction, rhs: SwipeAction) -> Bool {
+    lhs.id == rhs.id
+  }
 
   let id: UUID = UUID()
   let label: String?
@@ -22,28 +48,77 @@ struct SwipeAction: Identifiable {
   let action: () -> Void
   let backgroundColor: Color
   let tintColor: Color
-  
 }
 
+struct SwipeActionView: View {
+  
+  @State var width: CGFloat
+  let action: SwipeAction
+  let callback: () -> Void
+  private var iconOffset: CGFloat { (.actionWidth - width) / 2 }
+ 
+  var body: some View {
+    return action.backgroundColor
+      .overlay(
+        Image(systemName: action.systemSymbol)
+          .bindWidth(to: $width)
+          .x(-iconOffset)
+        ,
+        alignment: .trailing
+      )
+      .onTap(perform: callback)
+      .buttonStyle(.plain)
+  }
+}
+
+extension CGFloat {
+  static let actionWidth = CGFloat.s1 * 18
+}
+
+import Combine
 struct SwipeActionModifier: ViewModifier {
   
-//  @Binding var offset: CGFloat
   @State var offset = CGFloat.zero
+  
+  private let id = UUID()
   let leading: [SwipeAction]
   let trailing: [SwipeAction]
+ 
+  /// Sends current item id to the manager
+  /// This allows to collapse all the non-current row actions
+  func sink() {
+    SwipeManager.shared.$swipingId.dropFirst().sink { swipingId in
+      guard let swipingId = swipingId else {
+        resetOffset()
+//        SwipeManager.shared.collapse()
+        return
+      }
+      if id != swipingId {
+        resetOffset()
+      }
+    }
+    .store(in: &SwipeManager.shared.cancellables)
+    
+    SwipeManager.shared.$rowIsOpened.dropFirst().sink { isOpened in
+      if !isOpened {
+        resetOffset()
+      }
+    }
+    .store(in: &SwipeManager.shared.cancellables)
+  }
   
   func body(content: Content) -> some View {
+    
     content
-//      .background(.black)
+      .onAppear(perform: sink)
+      .background(content)
       .x(offset)
       .background(actions)
-     
       .simultaneousGesture(
         DragGesture()
           .onChanged(onChangedEvent)
           .onEnded(onEndedEvent)
       )
-//      .onTapGesture(perform: resetOffset)
   }
   
   var actions: some View {
@@ -54,33 +129,47 @@ struct SwipeActionModifier: ViewModifier {
     }
   }
   
-  var leadingActions: some View {
-    ForEach(leading.indices) { index in
-        let action = leading[index]
-        actionView(action, index: index)
-      }
-      .alignX(.leading)
-      .displayIf(leading.isNotEmpty)
+  var totalLeadingWidth: CGFloat {
+      .actionWidth * leading.count
   }
   
-  let actionWidth = CGFloat.s16
+  var leadingActions: some View {
+   ZStack(alignment: .leading) {
+      ForEach(leading.reversed().indices) { index in
+        let action = leading.reversed()[index]
+        let realIndex = leading.firstIndex(of: action)!
+        let factor = (realIndex + 1).cgFloat
+        let width = .actionWidth * factor
+        let dynamicWidth = offset / leading.count * factor
+        let maxWidth = dynamicWidth < width ? dynamicWidth : width
+        let shouldExpand = offset > totalLeadingWidth && realIndex == 0
+        
+        let callback = {
+          action.action()
+          resetOffset()
+        }
+        
+        SwipeActionView(width: maxWidth, action: action, callback: callback)
+          .width(shouldExpand ? totalLeadingWidth : maxWidth)
+      }
+    }
+    .alignX(.leading)
+    .displayIf(leading.isNotEmpty)
+  }
   
-  func actionView(_ action: SwipeAction, index: Int) -> some View {
-    let swipingTranslation = -actionWidth + offset
-    let translation = swipingTranslation < 0 ? swipingTranslation : 0
+  func actionView(_ action: SwipeAction, width: CGFloat) -> some View {
+    let iconWidth = CGFloat.s4
+    let iconOffset = (.actionWidth - iconWidth) / 2
     return action.backgroundColor
       .overlay(
-        VStack {
-          Image(systemName: action.systemSymbol)
-          if let label = action.label {
-            Text(label)
-              .font(.caption2)
-          }
-        }
-        .foregroundColor(action.tintColor)
+        Image(systemName: action.systemSymbol)
+          .resizable()
+        // @todo: Use width binding to make the calculation, this breaks icons like "minus"
+          .size(iconWidth)
+          .x(-iconOffset)
+        ,
+        alignment: .trailing
       )
-      .width(actionWidth)
-      .x(translation)
   }
   
   var trailingActions: some View {
@@ -92,19 +181,72 @@ struct SwipeActionModifier: ViewModifier {
   }
   
   func resetOffset() {
-    withAnimation { offset = .zero }
+    // .timingCurve(0.5, 0.5, 0.8, 0.7
+    withAnimation(.easeOut(duration: 0.45)) { offset = .zero }
   }
+  
+  var isOpened: Bool { offset >= totalLeadingWidth }
+  
+  @State private var shouldHapticFeedback: Bool = true
+  @State private var shouldSendId: Bool = true
   
   func onChangedEvent(_ value: DragGesture.Value) {
     
     let width = value.translation.width
-    withAnimation { offset = width }
+    if shouldSendId {
+    SwipeManager.shared.swipingId = id
+      shouldSendId = false
+    }
+    guard !isOpened else {
+//      print("isOpened")
+      if offset > totalLeadingWidth && shouldHapticFeedback {
+      NotificationFeedback.shared.notificationOccurred(.success)
+        shouldHapticFeedback = false
+      }
+      let maxAddOffset = width < .s2 ? width : .s2
+      withAnimation { offset = totalLeadingWidth + maxAddOffset }
+      
+      
+      return
+    }
+    
+    withAnimation {
+//      print("Modifiying offset...")
+      offset = width
+    }
   }
   
   func onEndedEvent(_ value: DragGesture.Value) {
     
     let width = value.translation.width
-    resetOffset()
+    
+    shouldHapticFeedback = true
+    shouldSendId = true
+   
+    
+    guard leading.isNotEmpty else {
+     return
+    }
+    
+    
+    if isOpened && (offset + width) > totalLeadingWidth {
+      leading.first?.action()
+    }
+    
+      if width > .s28 && width < totalLeadingWidth {
+        withAnimation {
+          offset = totalLeadingWidth
+          SwipeManager.shared.rowIsOpened = true
+        }
+      } else if width > totalLeadingWidth {
+        leading.first?.action()
+        resetOffset()
+        SwipeManager.shared.rowIsOpened = false
+      } else {
+        resetOffset()
+        SwipeManager.shared.rowIsOpened = false
+      }
+
   }
 }
 
@@ -112,13 +254,13 @@ extension View {
 
   func swipeActions(
 //    offset: Binding<CGFloat>,
+//    id: Binding<UUID>,
     leading: [SwipeAction] = [],
     trailing: [SwipeAction] = []
   ) -> some View {
     
     self.modifier(
       SwipeActionModifier(
-//        offset: offset,
         leading: leading,
         trailing: trailing
       )
@@ -144,128 +286,16 @@ struct BehaviourRow: View {
   var body: some View {
     
     row()
-//      .background(.black)
-     
-//      .background(dynamicBackground)
-    
-    // longpress inside a list https://stackoverflow.com/questions/69187017/how-to-implement-long-press-gesture-on-items-within-a-list-using-swiftui
-//      .simultaneusLongGesture(perform: toggleDecreaseMode)
-//      .highPriorityTapGesture(perform: highPriorityAction)
-      .swipeActions(leading: leadingActions)
-//      .swipeCell(
-//        id: "\(model.id)",
-////        cellWidth: T##CGFloat,
-//        leadingSideGroup: leftGroup(),
-//        trailingSideGroup: rightGroup(),
-//        currentUserInteractionCellID: $currentUserInteractionCellID
-////        settings: T##SwipeCellSettings
-//      )
-//      .navigationLink(editScreen, $showEditScreen)
-//      .behaviourRowSwipeActions(
-//        offset: $offset,
-//        isEditing: $isDecreaseMode,
-//        viewStore: viewStore,
-//        background: dynamicBackground,
-//        model: model
-//      )
+      .background(dynamicBackground)
+      .simultaneusLongGesture(perform: toggleDecreaseMode)
+      .highPriorityTapGesture(perform: highPriorityAction)
+
       /// @todo: use TCA state
       .onReceive(NotificationCenter.collapseRowNotification) { _ in
         stopDecreaseMode()
         resetOffsetIfNeeded()
       }
   }
-  
-  var leadingActions: [SwipeAction] {
-    [
-      SwipeAction(
-        label: "Action 1",
-        systemSymbol: "pencil",
-        action: {},
-        backgroundColor: .red,
-        tintColor: .white),
-      SwipeAction(
-        label: "Action 2",
-        systemSymbol: "minus",
-        action: {},
-        backgroundColor: .yellow,
-        tintColor: .white),
-    ]
-  }
-  
-  func leftGroup()->[SwipeCellActionItem] {
-          return [ SwipeCellActionItem(buttonView: {
-              
-              self.pinView(swipeOut: false)
-              
-          }, swipeOutButtonView: {
-              self.pinView(swipeOut: true)
-          }, buttonWidth: 80, backgroundColor: .yellow, swipeOutAction: true, swipeOutHapticFeedbackType: .success, swipeOutIsDestructive: false)
-          {
-              print("pin action!")
-              self.isPinned.toggle()
-          }]
-      }
-
-      
-      func pinView(swipeOut: Bool)-> AnyView {
-
-              Group {
-                  Spacer()
-                  VStack(spacing: 2) {
-                      Image(systemName: self.isPinned ? "pin.slash": "pin").font(.system(size: 24)).foregroundColor(.white)
-                      Text(self.isPinned ? "Unpin": "Pin").fixedSize().font(.system(size: 14)).foregroundColor(.white)
-                  }.frame(maxHeight: 80).padding(.horizontal, swipeOut ? 20 : 5)
-                  if swipeOut == false {
-                      Spacer()
-                  }
-              }.animation(.default).castToAnyView()
-
-      }
-
-      func rightGroup()->[SwipeCellActionItem] {
-
-          let items =  [
-              SwipeCellActionItem(buttonView: {
-      
-                      VStack(spacing: 2)  {
-                      Image(systemName: "person.crop.circle.badge.plus").font(.system(size: 22)).foregroundColor(.white)
-                          Text("Share").fixedSize().font(.system(size: 12)).foregroundColor(.white)
-                      }.frame(maxHeight: 80).castToAnyView()
-
-              }, backgroundColor: .blue)
-              {
-                  print("share action!")
-              },
-              SwipeCellActionItem(buttonView: {
-                      VStack(spacing: 2)  {
-                      Image(systemName: "folder.fill").font(.system(size: 22)).foregroundColor(.white)
-                          Text("Move").fixedSize().font(.system(size: 12)).foregroundColor(.white)
-                      }.frame(maxHeight: 80).castToAnyView()
-            
-              }, backgroundColor: .purple, actionCallback: {
-                  print("folder action")
-              }),
-              
-              SwipeCellActionItem(buttonView: {
-                  self.trashView(swipeOut: false)
-              }, swipeOutButtonView: {
-                  self.trashView(swipeOut: true)
-              }, backgroundColor: .red, swipeOutAction: true, swipeOutHapticFeedbackType: .warning, swipeOutIsDestructive: true) {
-                viewStore.send(.deleteBehaviour(id: model.id))
-              }
-            ]
-          
-          return items
-      }
-      
-      func trashView(swipeOut: Bool)->AnyView {
-              VStack(spacing: 3)  {
-                  Image(systemName: "trash").font(.system(size: swipeOut ? 28 : 22)).foregroundColor(.white)
-                  Text("Delete").fixedSize().font(.system(size: swipeOut ? 16 : 12)).foregroundColor(.white)
-              }.frame(maxHeight: 80).animation(.default).castToAnyView()
-          
-      }
-      
   
   func row() -> some View {
     HStack(spacing: 0) {
@@ -381,6 +411,11 @@ extension BehaviourRow {
     
     guard offset == 0 else {
       resetOffsetIfNeeded()
+      return
+    }
+    
+    guard !SwipeManager.shared.rowIsOpened else {
+      SwipeManager.shared.collapse()
       return
     }
     

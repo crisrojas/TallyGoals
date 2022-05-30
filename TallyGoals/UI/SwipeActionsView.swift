@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftWind
 
-struct SwipeActionView: View {
+struct SwipeActionViewBis: View {
   
   @Binding var offset: CGFloat
   
@@ -25,7 +25,7 @@ struct SwipeActionView: View {
     color: WindColor,
     systemSymbol: String,
     position: ActionPosition,
-    width: CGFloat = .swipeActionWidth,
+    width: CGFloat = .actionWidth,
     launching: Bool = false,
     action: @escaping () -> ()
   ) {
@@ -76,7 +76,7 @@ struct SwipeActionView: View {
 }
 
 // MARK:- SubModels
-extension SwipeActionView {
+extension SwipeActionViewBis {
   
   enum ActionPosition {
     case trailing
@@ -86,8 +86,8 @@ extension SwipeActionView {
     var launchingOffset: CGFloat {
       
       switch self {
-      case .trailing: return .swipeActionLaunchingOffset
-      case .leading: return -.swipeActionLaunchingOffset
+      case .trailing: return .actionWidth
+      case .leading: return -.actionWidth
       }
     }
     

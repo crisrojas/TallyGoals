@@ -38,6 +38,38 @@ struct ListScreen: View {
             .top(.s6)
             .horizontal(.horizontal)
             .displayIf(model.pinnedFilter.isNotEmpty)
+            
+//            List(model.defaultFilter3) { item in
+//              BehaviourRow(
+//                model: item,
+//                viewStore: viewStore,
+//                currentUserInteractionCellID: $currentUserInteractionCellID
+//              )
+//
+//                .swipeActions(edge: .leading) {
+//                  Label("Pin", systemImage: "pin")
+//                    .onTap {}
+//                    .tint(WindColor.red.c100)
+//
+//                  Label("Pin", systemImage: "pencil")
+//                    .onTap {}
+//                    .tint(.yellow)
+//
+//                  Label("Pin", systemImage: "minus")
+//                    .onTap {}
+//                    .tint(.green)
+//                }
+//                .swipeActions(edge: .trailing) {
+//                  Label("Pin", systemImage: "pin")
+//                    .onTap {}
+//                    .tint(WindColor.red.c100)
+//
+//                  Label("Pin", systemImage: "pencil")
+//                    .onTap {}
+//                    .tint(.yellow)
+//                }
+//            }
+//            .listStyle(GroupedListStyle())
 
             Text("List")
               .font(.system(.subheadline, design: .rounded))
@@ -54,6 +86,7 @@ struct ListScreen: View {
                   viewStore: viewStore,
                   currentUserInteractionCellID: $currentUserInteractionCellID
                 )
+                .swipeActions(leading: leadingActions)
               }
             }
             .background(Color.behaviourRowBackground)
@@ -95,7 +128,7 @@ struct ListScreen: View {
                 }
               }
             
-            Image(systemName: "plus")
+            Image(systemName: "minus")
               .onTap {
                 AddScreen(store: store)
               }
@@ -109,6 +142,32 @@ struct ListScreen: View {
             }
       
     }
+  }
+  
+  
+  
+  
+  var leadingActions: [SwipeAction] {
+    [
+      SwipeAction(
+        label: "Action 1",
+        systemSymbol: "pin.fill",
+        action: { print("pin") },
+        backgroundColor: .red100,
+        tintColor: .white),
+      SwipeAction(
+        label: "Action 2",
+        systemSymbol: "pencil",
+        action: { print("edit") },
+        backgroundColor: .yellow,
+        tintColor: .white),
+      SwipeAction(
+        label: "Action 2",
+        systemSymbol: "minus",
+        action: { print("decrease") },
+        backgroundColor: .green,
+        tintColor: .white),
+    ]
   }
 }
 

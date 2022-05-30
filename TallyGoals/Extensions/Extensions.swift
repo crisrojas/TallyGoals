@@ -150,6 +150,10 @@ extension Int {
   var string: String {
     "\(self)"
   }
+  
+  var cgFloat: CGFloat {
+    CGFloat(self)
+  }
 }
 
 extension Int: Identifiable {

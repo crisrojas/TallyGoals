@@ -18,6 +18,15 @@ extension Array where Element == Behaviour {
     //.sorted(by: { $0.pinned && !$1.pinned })
   }
   
+  var defaultFilter3: Self {
+    var array: Self = []
+    
+    for i in 0...2 {
+      array.append(self[i])
+    }
+    return array
+  }
+  
   var pinnedFilter: Self {
     self
       .filter { !$0.archived }

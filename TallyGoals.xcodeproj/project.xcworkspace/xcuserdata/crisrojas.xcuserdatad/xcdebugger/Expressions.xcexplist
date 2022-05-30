@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #1 in BehaviourRepository.createEntity(for:):BehaviourRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BehaviourRow.highPriorityAction():BehaviourRow.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "!SwipeManager.shared.isCollapsed">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in BehaviourRepository.createEntity(for:):BehaviourRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SwipeManager.setSwipingId(_:):BehaviourRow.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

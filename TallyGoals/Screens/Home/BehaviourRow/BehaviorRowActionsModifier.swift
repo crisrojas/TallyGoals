@@ -112,7 +112,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
         
         // MARK: - Leading
         Group {
-          SwipeActionView(
+          SwipeActionViewBis(
             offset: $offset,
             color: .green,
             systemSymbol: "pencil",
@@ -124,7 +124,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
             showEditingScreen = true
           }
           
-          SwipeActionView(
+          SwipeActionViewBis(
             offset: $offset,
             color: .yellow,
             systemSymbol: "pin",
@@ -140,7 +140,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
         Spacer()
         
         // MARK: - Trailing
-        SwipeActionView(
+        SwipeActionViewBis(
           offset: $offset,
           color: .orange,
           systemSymbol: "archivebox",
@@ -149,7 +149,7 @@ struct BehaviorRowActionsModifier: ViewModifier {
           viewStore.send(.updateArchive(id: model.id, archive: true))
         }
         
-        SwipeActionView(
+        SwipeActionViewBis(
           offset: $offset,
           color: .red,
           systemSymbol: "trash",
