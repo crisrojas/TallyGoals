@@ -395,7 +395,6 @@ struct SparkSwipeActionModifier: ViewModifier {
       shouldHapticFeedback = false
     }
     
-    
     withAnimation {
       offset = horizontalTranslation
     }
@@ -408,8 +407,6 @@ struct SparkSwipeActionModifier: ViewModifier {
       currentTrailingIndex = abs(Int(factor * trailing.count))
       print(currentTrailingIndex)
     }
-    
-    
   }
   
   func handleDragEnd(_ value: DragGesture.Value) {

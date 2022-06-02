@@ -15,24 +15,18 @@ struct BehaviourGrid: View {
   let model: [Behaviour]
   let store: AppStore
   
+  
   private let columns = [
-    GridItem(.flexible(), spacing: 0),
-    GridItem(.flexible(), spacing: 0),
-    GridItem(.flexible(), spacing: 0)
+    GridItem(.flexible(), spacing: .pinnedCellSpacing),
+    GridItem(.flexible(), spacing: .pinnedCellSpacing),
+    GridItem(.flexible(), spacing: .pinnedCellSpacing)
   ]
   
   var body: some View {
     WithViewStore(store) { viewStore in
-      LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
+      LazyVGrid(columns: columns, alignment: .leading, spacing: .pinnedCellSpacing) {
         ForEach(model) { item in
           BehaviourCardBis(model: item, viewStore: viewStore)
-//          CardView(
-//            model: item,
-//            store: store
-//          )
-         
-   
-//          .height(.s10)
         }
       }
       .onReceive(NotificationCenter.collapseRowNotification) { _ in
@@ -47,16 +41,14 @@ struct BehaviourGrid: View {
 
 struct BehaviourCardBis: View {
   
+  @State var showEditingScreen = false
+  
   let model: Behaviour
   let viewStore: AppViewStore
-  @State var count: Int = .zero
-  @State var isEditing = false
-  @State var showEditingScreen = false
-  @State var offset: CGFloat = .zero
-  
+
   var body: some View {
       background
-//      .cornerRadius(.s5)
+      .cornerRadius(.s4)
       .aspectRatio(1, contentMode: .fill)
       .overlay(
         Text(model.emoji)
@@ -66,38 +58,24 @@ struct BehaviourCardBis: View {
       )
       .overlay(chevronIcon, alignment: .topLeading)
       .overlay(labelStack, alignment: .bottomLeading)
-      .simultaneusLongGesture(perform: toggleEditing)
-      .highPriorityTapGesture(perform: highPriorityAction)
+      .onTapGesture(perform: increase)
+      .contextMenu { contextMenuContent }
       .navigationLink(editScreen, $showEditingScreen)
-      .onReceive(NotificationCenter.collapseRowNotification) { _ in
-        withAnimation {
-         isEditing = false
-        }
-      }
-    
-    .background(background)
-    .overlay(editingView)
-    .gesture(
-      DragGesture()
-        .onEnded { value in
-         let width = value.translation.width
-          
-          if width < -10 {
-            isEditingView = true
-          }
-          
-          if width > 10 {
-            isEditingView = false
-          }
-        }
-    )
   }
+  
+  @ViewBuilder
+  var contextMenuContent: some View {
+    Label("Unpin", systemImage: "pin").onTap(perform: unpin)
+    Label("Decrease", systemImage: "minus.circle").onTap(perform: decrease).displayIf(model.count > 0)
+    Label("Edit", systemImage: "pencil").onTap(perform: goToEditScreen)
+    Label("Archive", systemImage: "archivebox").onTap(perform: archive)
     
-  @State var isEditingView = false
-    var editingView: some View {
-      WindColor.gray.c600.opacity(0.8)
-      .displayIf(isEditingView)
+    Button(role: .destructive) {
+      delete()
+    } label: {
+      Label("Delete", systemImage: "trash").onTap {}
     }
+  }
   
   var chevronIcon: some View {
     Image(systemName: "chevron.right")
@@ -108,7 +86,7 @@ struct BehaviourCardBis: View {
   
   var labelStack: some View {
     DefaultVStack {
-      Text(count.string)
+      Text(model.count.string)
         .fontWeight(.bold)
         .font(.system(.title2, design: .rounded))
       Text(model.name)
@@ -117,7 +95,6 @@ struct BehaviourCardBis: View {
         .lineLimit(2)
     }
     .foregroundColor(WindColor.zinc.c700)
-    
     .padding(.s3)
   }
   
@@ -132,46 +109,36 @@ struct BehaviourCardBis: View {
   
   @ViewBuilder
   var background: some View {
-    if isEditing {
-      VerticalLinearGradient(colors: [
-        WindColor.red.c100,
-        WindColor.red.c200
-      ])
-    } else {
-      VerticalLinearGradient(colors: [
-        WindColor.zinc.c100,
-        WindColor.zinc.c200
-      ])
-    }
+    VerticalLinearGradient(colors: [
+      WindColor.zinc.c100,
+      WindColor.zinc.c200
+    ])
   }
   
-  func toggleEditing() {
-    guard !viewStore.state.isEditingMode else { return }
-    isEditing.toggle()
+  func delete() {
+    viewStore.send(.deleteBehaviour(id: model.id))
   }
   
-  func highPriorityAction() {
-    
-    guard !viewStore.state.isEditingMode else {
-      showEditingScreen = true
-      viewStore.send(.toggleEditingMode(value: false))
-      return
-    }
-    
-    if isEditing {
-      decrease()
-    } else {
-      increase()
-    }
+  func goToEditScreen() {
+    showEditingScreen = true
+  }
+  
+  func archive() {
+    viewStore.send(.updateArchive(id: model.id, archive: true))
+  }
+  
+  func unpin() {
+    viewStore.send(.updatePinned(id: model.id, pinned: false))
   }
   
   func decrease() {
-    guard count > 0 else { return }
-    count -= 1
+    vibrate()
+    viewStore.send(.deleteEntry(behaviour: model.id))
   }
   
   func increase() {
-    count += 1
+    vibrate()
+    viewStore.send(.addEntry(behaviour: model.id))
   }
 }
 

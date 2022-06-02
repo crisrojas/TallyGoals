@@ -85,15 +85,8 @@ struct ListScreen: View {
                 )
               }
           } else {
-            Image(systemName: "pencil")
-              .onTap {
-                withAnimation {
-                  viewStore.send( .toggleEditingMode(value: true)
-                  )
-                }
-              }
             
-            Image(systemName: "minus")
+            Image(systemName: "plus")
               .onTap {
                 AddScreen(store: store)
               }
