@@ -10,7 +10,7 @@ import SwiftWind
 
 extension Color {
   static let behaviourRowBackground = Color(uiColor: .systemBackground)
-  static let itemEditingColor: WindColor = .orange
+  static let rowPressedColor: WindColor = .sky
   
   // @todo: delete?
   static var defaultBackground = Color(UIColor.secondarySystemBackground)

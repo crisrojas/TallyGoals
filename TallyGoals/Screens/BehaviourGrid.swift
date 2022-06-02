@@ -20,6 +20,7 @@ struct BehaviourGrid: View {
     GridItem(.flexible(), spacing: 0),
     GridItem(.flexible(), spacing: 0)
   ]
+  
   var body: some View {
     WithViewStore(store) { viewStore in
       LazyVGrid(columns: columns, alignment: .leading, spacing: 0) {
@@ -36,7 +37,7 @@ struct BehaviourGrid: View {
       }
       .onReceive(NotificationCenter.collapseRowNotification) { _ in
         print("Editing shouwld be false")
-//        withAnimation { 
+//        withAnimation {
 //          viewStore.send(.stopEditingPinned)
 //        }
       } 

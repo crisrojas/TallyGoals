@@ -8,7 +8,6 @@ struct ListScreen: View {
   
   let store: Store<AppState, AppAction>
   
-  @State var currentUserInteractionCellID: String? = nil
   var body: some View {
     
     WithViewStore(store) { viewStore in
@@ -39,38 +38,6 @@ struct ListScreen: View {
             .horizontal(.horizontal)
             .displayIf(model.pinnedFilter.isNotEmpty)
             
-//            List(model.defaultFilter3) { item in
-//              BehaviourRow(
-//                model: item,
-//                viewStore: viewStore,
-//                currentUserInteractionCellID: $currentUserInteractionCellID
-//              )
-//
-//                .swipeActions(edge: .leading) {
-//                  Label("Pin", systemImage: "pin")
-//                    .onTap {}
-//                    .tint(WindColor.red.c100)
-//
-//                  Label("Pin", systemImage: "pencil")
-//                    .onTap {}
-//                    .tint(.yellow)
-//
-//                  Label("Pin", systemImage: "minus")
-//                    .onTap {}
-//                    .tint(.green)
-//                }
-//                .swipeActions(edge: .trailing) {
-//                  Label("Pin", systemImage: "pin")
-//                    .onTap {}
-//                    .tint(WindColor.red.c100)
-//
-//                  Label("Pin", systemImage: "pencil")
-//                    .onTap {}
-//                    .tint(.yellow)
-//                }
-//            }
-//            .listStyle(GroupedListStyle())
-
             Text("List")
               .font(.system(.subheadline, design: .rounded))
               .fontWeight(.bold)
@@ -83,10 +50,8 @@ struct ListScreen: View {
               ForEach(model.defaultFilter) { item in
                 BehaviourRow(
                   model: item,
-                  viewStore: viewStore,
-                  currentUserInteractionCellID: $currentUserInteractionCellID
+                  viewStore: viewStore
                 )
-                .swipeActions(leading: leadingActions)
               }
             }
             .background(Color.behaviourRowBackground)
@@ -142,32 +107,6 @@ struct ListScreen: View {
             }
       
     }
-  }
-  
-  
-  
-  
-  var leadingActions: [SwipeAction] {
-    [
-      SwipeAction(
-        label: "Action 1",
-        systemSymbol: "pin.fill",
-        action: { print("pin") },
-        backgroundColor: .red100,
-        tintColor: .white),
-      SwipeAction(
-        label: "Action 2",
-        systemSymbol: "pencil",
-        action: { print("edit") },
-        backgroundColor: .yellow,
-        tintColor: .white),
-      SwipeAction(
-        label: "Action 2",
-        systemSymbol: "minus",
-        action: { print("decrease") },
-        backgroundColor: .green,
-        tintColor: .white),
-    ]
   }
 }
 

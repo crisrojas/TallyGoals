@@ -106,13 +106,15 @@ extension View {
 
 extension View {
   func vibrate(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType = .success) {
-    NotificationFeedback.shared.notificationOccurred(feedbackType)
+    UIImpactFeedbackGenerator.shared.impactOccurred()
+//    NotificationFeedback.shared.notificationOccurred(feedbackType)
   }
 }
 
 extension ViewModifier {
   func vibrate(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType = .success) {
-    NotificationFeedback.shared.notificationOccurred(feedbackType)
+    UIImpactFeedbackGenerator.shared.impactOccurred()
+//    NotificationFeedback.shared.notificationOccurred(feedbackType)
   }
 }
 
@@ -167,6 +169,20 @@ extension Array {
     !self.isEmpty
   }
 }
+
+extension Array {
+  var count: CGFloat {
+    self.count.cgFloat
+  }
+}
+
+extension Array {
+  func getOrNil(index: Int) -> Element? {
+    guard self.indices.contains(index) else { return nil }
+    return self[index]
+  }
+}
+
 
 extension NotificationCenter {
   static func collapseRowList() {
