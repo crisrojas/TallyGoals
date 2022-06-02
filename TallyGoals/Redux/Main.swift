@@ -15,6 +15,8 @@ struct AppState: Equatable {
   var goals: [Goal] = []
   var behaviourState: BehaviourState = .idle
   var swipingBehaviourId: NSManagedObjectID?
+  
+  var pinnedIndex = Int.zero
 }
 
 enum AppAction {
@@ -56,6 +58,8 @@ enum AppAction {
   
   case toggleEditingMode(value: Bool)
   case startSwipe(id: NSManagedObjectID?)
+  
+  case updatePinnedPage(index: Int)
 }
 
 struct AppEnvironment {
@@ -179,6 +183,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     
   case .startSwipe(let id):
     state.swipingBehaviourId = id
+    return .none
+    
+  case .updatePinnedPage(let index):
+    state.pinnedIndex = index
     return .none
   }
 }

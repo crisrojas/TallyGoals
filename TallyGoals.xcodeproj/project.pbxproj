@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40CC9B7A2844FF5F007464B8 /* SwipeCellSUI in Frameworks */ = {isa = PBXBuildFile; productRef = 40CC9B792844FF5F007464B8 /* SwipeCellSUI */; };
 		541990202843AE010066A5CE /* BehaviorRowActionsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5419901F2843AE010066A5CE /* BehaviorRowActionsModifier.swift */; };
 		541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990222843AEB50066A5CE /* SwipeActionsView.swift */; };
 		541990262843AF050066A5CE /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990252843AF050066A5CE /* CGFloat.swift */; };
@@ -16,6 +15,7 @@
 		5419902C2843B1110066A5CE /* ArrayFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5419902B2843B1110066A5CE /* ArrayFilters.swift */; };
 		5419902E2843B1690066A5CE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5419902D2843B1680066A5CE /* README.md */; };
 		5448F9642848F10400A7116A /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F9632848F10400A7116A /* SwipeActions.swift */; };
+		5448F967284937AE00A7116A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5448F966284937AE00A7116A /* Algorithms */; };
 		5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */; };
 		5497D00128412F68003E2B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00028412F68003E2B43 /* Assets.xcassets */; };
 		5497D00428412F68003E2B43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00328412F68003E2B43 /* Preview Assets.xcassets */; };
@@ -112,8 +112,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */,
-				40CC9B7A2844FF5F007464B8 /* SwipeCellSUI in Frameworks */,
 				5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */,
+				5448F967284937AE00A7116A /* Algorithms in Frameworks */,
 				5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,7 +343,7 @@
 				5497D02C28412FAE003E2B43 /* ComposableArchitecture */,
 				5497D02F28412FC8003E2B43 /* SwiftWind */,
 				5497D03228412FD8003E2B43 /* SwiftUItilities */,
-				40CC9B792844FF5F007464B8 /* SwipeCellSUI */,
+				5448F966284937AE00A7116A /* Algorithms */,
 			);
 			productName = TallyGoals;
 			productReference = 5497CFF928412F66003E2B43 /* TallyGoals.app */;
@@ -421,7 +421,7 @@
 				5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */,
 				5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */,
-				40CC9B782844FF5F007464B8 /* XCRemoteSwiftPackageReference "SwipeCellSUI" */,
+				5448F965284937AE00A7116A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 5497CFFA28412F66003E2B43 /* Products */;
 			projectDirPath = "";
@@ -823,12 +823,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		40CC9B782844FF5F007464B8 /* XCRemoteSwiftPackageReference "SwipeCellSUI" */ = {
+		5448F965284937AE00A7116A /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/DominikButz/SwipeCellSUI";
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				minimumVersion = 1.0.0;
 			};
 		};
 		5497D02B28412FAE003E2B43 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
@@ -858,10 +858,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		40CC9B792844FF5F007464B8 /* SwipeCellSUI */ = {
+		5448F966284937AE00A7116A /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 40CC9B782844FF5F007464B8 /* XCRemoteSwiftPackageReference "SwipeCellSUI" */;
-			productName = SwipeCellSUI;
+			package = 5448F965284937AE00A7116A /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 		5497D02C28412FAE003E2B43 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

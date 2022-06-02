@@ -191,7 +191,7 @@ struct PersistenceController {
         name: "Dominadas",
         archived: false,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 20
       ),
       MockBehaviour(

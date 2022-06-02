@@ -1,3 +1,4 @@
+import Algorithms
 import ComposableArchitecture
 import SwiftUI
 import SwiftUItilities
@@ -12,30 +13,81 @@ struct VerticalLinearGradient: View {
 
 struct BehaviourGrid: View {
   
+  @State private var page: Int = .zero
+  @State private var cellHeight: CGFloat = .zero
+  
   let model: [Behaviour]
   let store: AppStore
   
-  
+
   private let columns = [
     GridItem(.flexible(), spacing: .pinnedCellSpacing),
     GridItem(.flexible(), spacing: .pinnedCellSpacing),
     GridItem(.flexible(), spacing: .pinnedCellSpacing)
   ]
   
+  private var tabViewHeight: CGFloat {
+    let numberOfRows: CGFloat = 2
+    return cellHeight * numberOfRows + .pinnedCellSpacing
+  }
+  
+  private var chunkedModel: [[Behaviour]] {
+    model.chunks(ofCount: 6).map(Array.init)
+  }
+  
+  /// Needed for placing the tabView index
+  private let bottomSpacing: CGFloat = .s16
+  private var gridOffset: CGFloat {
+    -(bottomSpacing / 2)
+  }
+  
+  private var totalHeight: CGFloat {
+    tabViewHeight + bottomSpacing
+  }
+
   var body: some View {
     WithViewStore(store) { viewStore in
-      LazyVGrid(columns: columns, alignment: .leading, spacing: .pinnedCellSpacing) {
-        ForEach(model) { item in
-          BehaviourCardBis(model: item, viewStore: viewStore)
+      
+      TabView {
+     
+       
+        ForEach(0...chunkedModel.count - 1) { index in
+          let chunk = chunkedModel[index]
+          grid(model: chunk, viewStore: viewStore)
+          .horizontal(.horizontal)
         }
+        .y(gridOffset)
       }
-      .onReceive(NotificationCenter.collapseRowNotification) { _ in
-        print("Editing shouwld be false")
-//        withAnimation {
-//          viewStore.send(.stopEditingPinned)
-//        }
-      } 
+      .height(totalHeight)
+      .tabViewStyle(.page)
+      .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
+  }
+  
+  func grid(model: [Behaviour], viewStore: AppViewStore) -> some View {
+    LazyVGrid(columns: columns, alignment: .leading, spacing: .pinnedCellSpacing) {
+      ForEach(model) { item in
+        BehaviourCardBis(model: item, viewStore: viewStore)
+          .bindHeight(to: $cellHeight)
+      }
+      
+      fills(delta: 6 - model.count)
+    }
+  }
+ 
+  @ViewBuilder
+  func fills(delta: Int) -> some View {
+    if delta > 0 {
+     
+      ForEach(1...delta) { _ in
+        emptyCell
+      }
+    }
+  }
+  
+  var emptyCell: some View {
+    Color.clear
+    .aspectRatio(1, contentMode: .fill)
   }
 }
 

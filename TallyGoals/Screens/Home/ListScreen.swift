@@ -1,3 +1,4 @@
+import Algorithms
 import ComposableArchitecture
 import CoreData
 import SwiftUI
@@ -27,6 +28,7 @@ struct ListScreen: View {
                 .font(.system(.subheadline, design: .rounded))
                 .fontWeight(.bold)
                 .alignX(.leading)
+              .horizontal(.horizontal)
 
               BehaviourGrid(
                 model: model.pinnedFilter,
@@ -35,7 +37,6 @@ struct ListScreen: View {
               .top(.s4)
             }
             .top(.s6)
-            .horizontal(.horizontal)
             .displayIf(model.pinnedFilter.isNotEmpty)
             
             Text("List")
