@@ -183,7 +183,7 @@ struct PersistenceController {
         name: "Flexiones",
         archived: false,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 19
       ),
       MockBehaviour(

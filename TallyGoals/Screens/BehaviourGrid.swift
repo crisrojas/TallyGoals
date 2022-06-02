@@ -48,7 +48,7 @@ struct BehaviourGrid: View {
   var body: some View {
     WithViewStore(store) { viewStore in
       
-      TabView {
+      TabView(selection: $page) {
      
        
         ForEach(0...chunkedModel.count - 1) { index in
@@ -56,11 +56,26 @@ struct BehaviourGrid: View {
           grid(model: chunk, viewStore: viewStore)
           .horizontal(.horizontal)
         }
-        .y(gridOffset)
       }
-      .height(totalHeight)
-      .tabViewStyle(.page)
-      .indexViewStyle(.page(backgroundDisplayMode: .always))
+      .height(tabViewHeight)
+      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+      .overlay(
+        HStack {
+          ForEach(0...chunkedModel.count - 1) { index in
+            let isSelected = page == index
+            Circle()
+              .size(.s2)
+              // @todo: light theme color
+              .foregroundColor(isSelected ? .white : WindColor.neutral.c400)
+            
+          }
+        }
+        .xy(-.horizontal)
+        .y(-.s2)
+        .displayIf(chunkedModel.count > 1)
+        
+        , alignment: .topTrailing
+      )
     }
   }
   
