@@ -8,7 +8,7 @@ import SwiftWind
 struct HomeScreen: View {
   
   let store: Store<AppState, AppAction>
-  
+  @State var emoji = ""
   var body: some View {
     
     WithViewStore(store) { viewStore in
@@ -19,6 +19,8 @@ struct HomeScreen: View {
           progressView(viewStore: viewStore)
         case .success(let model):
           DefaultVStack {
+           
+//            EmojiField("", text: $emoji)
 
             DefaultVStack {
 //              Text("Pinned")
@@ -61,6 +63,7 @@ struct HomeScreen: View {
             .animation(.easeInOut, value: model.defaultFilter)
           }
           .scrollify()
+          .onTapDismissKeyboard()
           
         case .empty:
           emptyView

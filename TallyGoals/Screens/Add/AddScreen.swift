@@ -16,7 +16,8 @@ struct AddScreen: View {
       
       Form {
         
-        EmojiField("Emoji", text: $emoji)
+//        EmojiField("Emoji", text: $emoji)
+        EmojiTextField("Emoji", text: $emoji)
         TextField("Name",   text: $name)
         TextField("Goal",   text: $goal)
         TextField("Color",  text: $color)
@@ -38,6 +39,7 @@ struct AddScreen: View {
       }
       
     }
+    .onTapDismissKeyboard()
   }
   
   func pop() {

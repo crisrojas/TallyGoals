@@ -19,5 +19,13 @@
       <ContextState
          contextName = "SwipeManager.setSwipingId(_:):BehaviourRow.swift">
       </ContextState>
+      <ContextState
+         contextName = "closure #1 in EmojiField.body.getter:EmojiField.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Array(arrayLiteral: newValue)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>
