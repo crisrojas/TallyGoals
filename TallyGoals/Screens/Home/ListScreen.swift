@@ -24,11 +24,11 @@ struct ListScreen: View {
           DefaultVStack {
 
             DefaultVStack {
-              Text("Pinned")
-                .font(.system(.subheadline, design: .rounded))
-                .fontWeight(.bold)
-                .alignX(.leading)
-              .horizontal(.horizontal)
+//              Text("Pinned")
+//                .font(.system(.subheadline, design: .rounded))
+//                .fontWeight(.bold)
+//                .alignX(.leading)
+//              .horizontal(.horizontal)
 
               BehaviourGrid(
                 model: model.pinnedFilter,
@@ -39,16 +39,16 @@ struct ListScreen: View {
             .top(.s6)
             .displayIf(model.pinnedFilter.isNotEmpty)
             
-            Text("List")
-              .font(.system(.subheadline, design: .rounded))
-              .fontWeight(.bold)
-              .alignX(.leading)
-              .horizontal(.horizontal)
-              .displayIf(
-                model.pinnedFilter.isNotEmpty &&
-                model.defaultFilter.isNotEmpty
-              )
-              .top(.s6)
+//            Text("List")
+//              .font(.system(.subheadline, design: .rounded))
+//              .fontWeight(.bold)
+//              .alignX(.leading)
+//              .horizontal(.horizontal)
+//              .displayIf(
+//                model.pinnedFilter.isNotEmpty &&
+//                model.defaultFilter.isNotEmpty
+//              )
+//              .top(.s6)
 
             LazyVStack(spacing: 0) {
               ForEach(model.defaultFilter) { item in

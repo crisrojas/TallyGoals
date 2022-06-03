@@ -183,7 +183,7 @@ struct PersistenceController {
         name: "Flexiones",
         archived: false,
         favorite: false,
-        pinned: true,
+        pinned: false,
         color: 19
       ),
       MockBehaviour(
@@ -191,7 +191,7 @@ struct PersistenceController {
         name: "Dominadas",
         archived: false,
         favorite: false,
-        pinned: true,
+        pinned: false,
         color: 20
       ),
       MockBehaviour(
@@ -199,7 +199,7 @@ struct PersistenceController {
         name: "Abdominales",
         archived: false,
         favorite: false,
-        pinned: true,
+        pinned: false,
         color: 21
       ),
       MockBehaviour(
@@ -207,7 +207,7 @@ struct PersistenceController {
         name: "Respirar antes de actuar",
         archived: false,
         favorite: false,
-        pinned: true,
+        pinned: false,
         color: 22
       ),
     ]

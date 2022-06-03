@@ -341,6 +341,7 @@ struct SparkSwipeActionModifier: ViewModifier {
         
         if let label =  item.label {
           Text(label)
+            .opacity(treasholdReached ? 1 : 0)
         }
         
         Image(systemName: item.systemSymbol)
@@ -365,6 +366,7 @@ struct SparkSwipeActionModifier: ViewModifier {
         Image(systemName: item.systemSymbol)
         if let label =  item.label {
           Text(label)
+            .opacity(treasholdReached ? 1 : 0)
         }
       }
       .foregroundColor(item.tintColor)
