@@ -180,7 +180,7 @@ struct Tabbar: View {
       //}
       
       
-      ListScreen(store: store)
+      HomeScreen(store: store)
         .navigationTitle("Tallies")
 //        .navigationBarTitleDisplayMode(.inline)
         .navigationify()

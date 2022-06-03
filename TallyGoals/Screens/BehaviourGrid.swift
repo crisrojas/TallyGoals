@@ -49,7 +49,7 @@ struct BehaviourGrid: View {
       }
       .height(tabViewHeight)
       .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-      .overlay(indexView, alignment: .topTrailing)
+      .overlay(indexView, alignment: .bottomTrailing)
     
       } else {
         grid(
@@ -68,8 +68,8 @@ struct BehaviourGrid: View {
         currentIndex: page,
         maxIndex: chunkedModel.count - 1
       )
-      .xy(-.horizontal)
-      .y(-.s4)
+      .x(-.horizontal)
+      .y(.s4)
       .displayIf(chunkedModel.count > 1)
   }
   

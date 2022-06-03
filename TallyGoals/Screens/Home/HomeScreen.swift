@@ -5,7 +5,7 @@ import SwiftUI
 import SwiftUItilities
 import SwiftWind
 
-struct ListScreen: View {
+struct HomeScreen: View {
   
   let store: Store<AppState, AppAction>
   
@@ -34,7 +34,7 @@ struct ListScreen: View {
                 model: model.pinnedFilter,
                 store: store
               )
-              .top(.s4)
+//              .top(.s4)
             }
             .top(.s6)
             .displayIf(model.pinnedFilter.isNotEmpty)
@@ -109,7 +109,7 @@ struct ListScreen: View {
 }
 
 // MARK: - @todo: Legacify
-extension ListScreen {
+extension HomeScreen {
   func progressView
   (viewStore: AppViewStore) -> some View {
     ProgressView()
@@ -163,7 +163,7 @@ extension ListScreen {
 
 
 // MARK: - UI components
-private extension ListScreen {
+private extension HomeScreen {
   
   var emptyView: some View {
     Text("No items")
