@@ -44,7 +44,10 @@ struct ListScreen: View {
               .fontWeight(.bold)
               .alignX(.leading)
               .horizontal(.horizontal)
-              .displayIf(model.pinnedFilter.isNotEmpty)
+              .displayIf(
+                model.pinnedFilter.isNotEmpty &&
+                model.defaultFilter.isNotEmpty
+              )
               .top(.s6)
 
             LazyVStack(spacing: 0) {
@@ -58,6 +61,7 @@ struct ListScreen: View {
             .background(Color.behaviourRowBackground)
             .top(model.pinnedFilter.isEmpty ? .zero : .s4)
             .bottom(.s6)
+            .animation(.easeInOut, value: model.defaultFilter)
           }
           .scrollify()
           

@@ -35,16 +35,6 @@ struct BehaviourGrid: View {
     model.chunks(ofCount: 6).map(Array.init)
   }
   
-  /// Needed for placing the tabView index
-  private let bottomSpacing: CGFloat = .s16
-  private var gridOffset: CGFloat {
-    -(bottomSpacing / 2)
-  }
-  
-  private var totalHeight: CGFloat {
-    tabViewHeight + bottomSpacing
-  }
-
   var body: some View {
     WithViewStore(store) { viewStore in
       
@@ -59,24 +49,20 @@ struct BehaviourGrid: View {
       }
       .height(tabViewHeight)
       .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-      .overlay(
-        HStack {
-          ForEach(0...chunkedModel.count - 1) { index in
-            let isSelected = page == index
-            Circle()
-              .size(.s2)
-              // @todo: light theme color
-              .foregroundColor(isSelected ? .white : WindColor.neutral.c400)
-            
-          }
-        }
-        .xy(-.horizontal)
-        .y(-.s2)
-        .displayIf(chunkedModel.count > 1)
-        
-        , alignment: .topTrailing
+      .overlay(indexView, alignment: .topTrailing
       )
+      .animation(.easeInOut, value: chunkedModel)
     }
+  }
+  
+  var indexView: some View {
+      PagerIndexView(
+        currentIndex: page,
+        maxIndex: chunkedModel.count - 1
+      )
+      .xy(-.horizontal)
+      .y(-.s4)
+      .displayIf(chunkedModel.count > 1)
   }
   
   func grid(model: [Behaviour], viewStore: AppViewStore) -> some View {
@@ -161,7 +147,7 @@ struct BehaviourCardBis: View {
         .font(.system(.caption, design: .rounded))
         .lineLimit(2)
     }
-    .foregroundColor(WindColor.zinc.c700)
+    .foregroundColor(.isDarkMode ? .white : WindColor.zinc.c700)
     .padding(.s3)
   }
   
@@ -177,8 +163,8 @@ struct BehaviourCardBis: View {
   @ViewBuilder
   var background: some View {
     VerticalLinearGradient(colors: [
-      WindColor.zinc.c100,
-      WindColor.zinc.c200
+      .isDarkMode ? WindColor.zinc.c600 : WindColor.zinc.c100,
+      .isDarkMode ? WindColor.zinc.c700 : WindColor.zinc.c200
     ])
   }
   

@@ -16,6 +16,7 @@
 		5419902E2843B1690066A5CE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5419902D2843B1680066A5CE /* README.md */; };
 		5448F9642848F10400A7116A /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F9632848F10400A7116A /* SwipeActions.swift */; };
 		5448F967284937AE00A7116A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5448F966284937AE00A7116A /* Algorithms */; };
+		5448F9692849BCC800A7116A /* PagerIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F9682849BCC700A7116A /* PagerIndexView.swift */; };
 		5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */; };
 		5497D00128412F68003E2B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00028412F68003E2B43 /* Assets.xcassets */; };
 		5497D00428412F68003E2B43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00328412F68003E2B43 /* Preview Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		5419902B2843B1110066A5CE /* ArrayFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFilters.swift; sourceTree = "<group>"; };
 		5419902D2843B1680066A5CE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5448F9632848F10400A7116A /* SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActions.swift; sourceTree = "<group>"; };
+		5448F9682849BCC700A7116A /* PagerIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerIndexView.swift; sourceTree = "<group>"; };
 		5497CFF928412F66003E2B43 /* TallyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TallyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsApp.swift; sourceTree = "<group>"; };
 		5497D00028412F68003E2B43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				5497D04528413A1E003E2B43 /* BehaviourCard.swift */,
 				5497D04828413A1E003E2B43 /* BehaviourCaroussel.swift */,
 				5497D04628413A1E003E2B43 /* BehaviourEdit.swift */,
+				5448F9682849BCC700A7116A /* PagerIndexView.swift */,
 				5497D03F28413A1E003E2B43 /* BehaviourGrid.swift */,
 				5497D04328413A1E003E2B43 /* FavoriteScreen.swift */,
 				5497D04128413A1E003E2B43 /* GoalsScreen.swift */,
@@ -467,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				541990262843AF050066A5CE /* CGFloat.swift in Sources */,
+				5448F9692849BCC800A7116A /* PagerIndexView.swift in Sources */,
 				5497D03D284139F1003E2B43 /* Behaviour.swift in Sources */,
 				5497D04A28413A1F003E2B43 /* BehaviourGrid.swift in Sources */,
 				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,

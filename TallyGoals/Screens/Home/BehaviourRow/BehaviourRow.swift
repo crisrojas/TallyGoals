@@ -16,6 +16,7 @@ import StoreKit
 struct BehaviourRow: View {
   
   @State var showEditScreen = false
+  @State var showDeletingAlert = false
   
   /// @todo: this should take only the model.id?
   let model: Behaviour
@@ -28,6 +29,14 @@ struct BehaviourRow: View {
       .navigationLink(editScreen, $showEditScreen)
       .sparkSwipeActions(leading: leadingActions, trailing: trailingActions)
       .onTapGesture(perform: increase)
+      .alert(isPresented: $showDeletingAlert) {
+        Alert(
+          title: Text("Are you sure you want to delete the item?"),
+          message: Text("This action cannot be undone"),
+          primaryButton: .destructive(Text("Delete"), action: delete),
+          secondaryButton: .default(Text("Cancel"))
+        )
+      }
   }
   
   func row() -> some View {
@@ -79,17 +88,18 @@ struct BehaviourRow: View {
   
   var trailingActions: [SwipeAction] {
     [
-      SwipeAction(
-        label: "Archivar",
-        systemSymbol: "archivebox",
-        action: archive,
-        backgroundColor: .orange400
-      ),
+     
       SwipeAction(
         label: "Borrar",
         systemSymbol: "trash",
         action: delete,
         backgroundColor: .red500
+      ),
+      SwipeAction(
+        label: "Archivar",
+        systemSymbol: "archivebox",
+        action: archive,
+        backgroundColor: .orange400
       )
     ]
   }
@@ -151,6 +161,6 @@ extension BehaviourRow {
   }
   
   func delete() {
-    viewStore.send(.deleteBehaviour(id: model.id))
+    showDeletingAlert = true
   }
 }
