@@ -7,4 +7,5 @@
 
 import Foundation
 
+// @todo: use everywhere
 typealias SimpleAction = () -> Void

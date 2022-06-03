@@ -22,7 +22,6 @@ struct AddScreen: View {
         TextField("Color",  text: $color)
       }
       .toolbar { 
-        
         Text("Add")
           .onTap {
             viewStore.send(
@@ -46,22 +45,3 @@ struct AddScreen: View {
   }
 }
 
-struct EmojiField: View {
-  @Binding var text: String
-  let placeholder: String
-  
-  init(
-    _ placeholder: String,
-    text: Binding<String>
-  ) {
-    self._text = text
-    self.placeholder = placeholder
-  }
-  
-  var body: some View {
-    TextField("Emoji", text: $text)
-      .onChange(of: text) { newValue in
-        text = String(newValue.prefix(1))
-      }
-  }
-}

@@ -70,43 +70,20 @@ struct HomeScreen: View {
       }
       .toolbar {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
-          
-          if viewStore.state.isEditingMode {
-            Text("DONE")
-              .font(.caption2)
-              .fontWeight(.black)
-              .foregroundColor(.blue500)
-              .vertical(5)
-              .horizontal(8)
-              .background(
-                Color.blue100.cornerRadius(16)
-              )
-              .onTap {
-                viewStore.send(
-                  .toggleEditingMode(value: false)
-                )
-              }
-          } else {
-            
             Image(systemName: "plus")
               .onTap {
                 AddScreen(store: store)
               }
-            
-          }
         }
       }
-            .onTapGesture {
-              print("tapped list screen")
-              NotificationCenter.collapseRowList()
-            }
-      
     }
   }
 }
 
-// MARK: - @todo: Legacify
-extension HomeScreen {
+
+// MARK: - UI components
+private extension HomeScreen {
+  
   func progressView
   (viewStore: AppViewStore) -> some View {
     ProgressView()
@@ -115,85 +92,8 @@ extension HomeScreen {
       }
   }
   
-  func successView
-  (model: [Behaviour], viewStore: AppViewStore) -> some View {
-    
-    List {
-      Section {
-        ForEach(model.defaultFilter) { item in
-          ListRow(
-            store: store,
-            item: item
-          )
-//            .buttonStyle(PlainButtonStyle())
-            .swipeActions(edge: .trailing) {
-              trailingSwipeActions(
-                viewStore: viewStore,
-                id: item.id
-              )
-            }
-            .swipeActions(edge: .leading) {
-              Label("Pin", systemImage: "pin")
-                .onTap {
-                  withAnimation {
-                    viewStore.send(
-                      .updatePinned(
-                        id: item.id,
-                        pinned: !item.pinned
-                      )
-                    )
-                  }
-                }
-                .tint(item.pinned ? .gray : .indigo)
-            }
-        }
-      } header: {
-        BehaviourGrid(
-          model: model.pinnedFilter,
-          store: store
-        )
-      }
-    }
-    .listStyle(GroupedListStyle())
-  }
-}
-
-
-// MARK: - UI components
-private extension HomeScreen {
-  
   var emptyView: some View {
     Text("No items")
-  }
-  
-  @ViewBuilder
-  func trailingSwipeActions
-  (viewStore: AppViewStore, id: NSManagedObjectID)-> some View {
-    
-    Label("Archive", systemImage: "archivebox")
-      .onTap {
-        withAnimation(.default) {
-          viewStore.send(.updateArchive(
-            id: id,
-            archive: true
-          ))
-        }
-      }
-      .tint(.orange)
-    
-    Button(role: .destructive) {
-      viewStore.send(.deleteBehaviour(id: id))
-    } label: {
-      Label("Delete", systemImage: "trash.fill")
-    }
-  }
-  
-  func getCount
-  (behaviourId: NSManagedObjectID, viewStore: AppViewStore) -> Int {
-    viewStore
-      .entries
-      .filter { $0.behaviourId == behaviourId }
-      .count
   }
 }
 

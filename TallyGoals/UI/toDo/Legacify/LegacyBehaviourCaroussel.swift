@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct BehaviourCaroussel: View {
+struct LegacyBehaviourCaroussel: View {
   
   let model: [Behaviour]
   let store: AppStore
@@ -23,7 +23,7 @@ struct BehaviourCaroussel: View {
           
           ForEach(model) { item in
             
-            BehaviourCard(
+            LegacyBehaviourCard(
               model: item, 
               store: store
             )

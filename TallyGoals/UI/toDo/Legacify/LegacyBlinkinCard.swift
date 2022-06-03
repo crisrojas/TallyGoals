@@ -1,211 +1,13 @@
-import Algorithms
+//
+//  LegacyBlinkinCard.swift
+//  TallyGoals
+//
+//  Created by Cristian Rojas on 03/06/2022.
+//
 import ComposableArchitecture
+import CoreData
 import SwiftUI
-import SwiftUItilities
 import SwiftWind
-
-struct VerticalLinearGradient: View {
-  let colors: [Color]
-  var body: some View {
-    LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
-  }
-}
-
-struct BehaviourGrid: View {
-  
-  @State private var page: Int = .zero
-  @State private var cellHeight: CGFloat = .zero
-  
-  let model: [Behaviour]
-  let store: AppStore
-  
-
-  private let columns = [
-    GridItem(.flexible(), spacing: .pinnedCellSpacing),
-    GridItem(.flexible(), spacing: .pinnedCellSpacing),
-    GridItem(.flexible(), spacing: .pinnedCellSpacing)
-  ]
-  
-  private var tabViewHeight: CGFloat {
-    let numberOfRows: CGFloat = 2
-    return cellHeight * numberOfRows + .pinnedCellSpacing
-  }
-  
-  private var chunkedModel: [[Behaviour]] {
-    model.chunks(ofCount: 6).map(Array.init)
-  }
-  
-  var body: some View {
-    WithViewStore(store) { viewStore in
-      
-      if model.count > 3 {
-      TabView(selection: $page) {
-        ForEach(0...chunkedModel.count - 1) { index in
-          let chunk = chunkedModel[index]
-          grid(model: chunk, viewStore: viewStore)
-          .horizontal(.horizontal)
-        }
-       
-      }
-      .height(tabViewHeight)
-      .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-      .overlay(indexView, alignment: .bottomTrailing)
-    
-      } else {
-        grid(
-          model: model,
-          viewStore: viewStore,
-          addFillers: false
-        )
-        .horizontal(.horizontal)
-      }
-    }
-    .animation(.easeInOut, value: model)
-  }
-  
-  var indexView: some View {
-      PagerIndexView(
-        currentIndex: page,
-        maxIndex: chunkedModel.count - 1
-      )
-      .x(-.horizontal)
-      .y(.s4)
-      .displayIf(chunkedModel.count > 1)
-  }
-  
-  func grid(model: [Behaviour], viewStore: AppViewStore, addFillers: Bool = true) -> some View {
-    LazyVGrid(columns: columns, alignment: .leading, spacing: .pinnedCellSpacing) {
-      ForEach(model) { item in
-        BehaviourCardBis(model: item, viewStore: viewStore)
-          .bindHeight(to: $cellHeight)
-      }
-     
-      if addFillers {
-        fills(delta: 6 - model.count)
-      }
-    }
-  }
- 
-  @ViewBuilder
-  func fills(delta: Int) -> some View {
-    if delta > 0 {
-     
-      ForEach(1...delta) { _ in
-        emptyCell
-      }
-    }
-  }
-  
-  var emptyCell: some View {
-    Color.clear
-    .aspectRatio(1, contentMode: .fill)
-  }
-}
-
-struct BehaviourCardBis: View {
-  
-  @State var showEditingScreen = false
-  @State var showDeletingAlert = false
-  
-  let model: Behaviour
-  let viewStore: AppViewStore
-
-  var body: some View {
-      background
-      .cornerRadius(.s4)
-      .aspectRatio(1, contentMode: .fill)
-      .overlay(
-        Text(model.emoji)
-        .font(.caption)
-        .padding()
-        , alignment: .topTrailing
-      )
-      .overlay(chevronIcon, alignment: .topLeading)
-      .overlay(labelStack, alignment: .bottomLeading)
-      .onTapGesture(perform: increase)
-      .contextMenu { contextMenuContent }
-      .navigationLink(editScreen, $showEditingScreen)
-      .alert(isPresented: $showDeletingAlert) { .deleteAlert(action: delete) }
-  }
-  
-  @ViewBuilder
-  var contextMenuContent: some View {
-    Label("Unpin", systemImage: "pin").onTap(perform: unpin)
-    Label("Decrease", systemImage: "minus.circle").onTap(perform: decrease).displayIf(model.count > 0)
-    Label("Edit", systemImage: "pencil").onTap(perform: goToEditScreen)
-    Label("Archive", systemImage: "archivebox").onTap(perform: archive)
-    
-    Button(role: .destructive) {
-      showDeletingAlert = true
-    } label: {
-      Label("Delete", systemImage: "trash").onTap {}
-    }
-  }
-  
-  var chevronIcon: some View {
-    Image(systemName: "chevron.right")
-    .foregroundColor(WindColor.gray.c400)
-    .padding(.s3)
-    .displayIf(viewStore.state.isEditingMode)
-  }
-  
-  var labelStack: some View {
-    DefaultVStack {
-      Text(model.count.string)
-        .fontWeight(.bold)
-        .font(.system(.title2, design: .rounded))
-      Text(model.name)
-        .fontWeight(.bold)
-        .font(.system(.caption, design: .rounded))
-        .lineLimit(2)
-    }
-    .foregroundColor(.isDarkMode ? .white : WindColor.zinc.c700)
-    .padding(.s3)
-  }
-  
-  var editScreen: some View {
-    BehaviourEditScreen(
-      viewStore: viewStore,
-      item: model,
-      emoji: model.emoji,
-      name: model.name
-    )
-  }
-  
-  @ViewBuilder
-  var background: some View {
-    VerticalLinearGradient(colors: [
-      .isDarkMode ? WindColor.zinc.c600 : WindColor.zinc.c100,
-      .isDarkMode ? WindColor.zinc.c700 : WindColor.zinc.c200
-    ])
-  }
-  
-  func delete() {
-    viewStore.send(.deleteBehaviour(id: model.id))
-  }
-  
-  func goToEditScreen() {
-    showEditingScreen = true
-  }
-  
-  func archive() {
-    viewStore.send(.updateArchive(id: model.id, archive: true))
-  }
-  
-  func unpin() {
-    viewStore.send(.updatePinned(id: model.id, pinned: false))
-  }
-  
-  func decrease() {
-    vibrate()
-    viewStore.send(.deleteEntry(behaviour: model.id))
-  }
-  
-  func increase() {
-    vibrate()
-    viewStore.send(.addEntry(behaviour: model.id))
-  }
-}
 
 struct CardView: View {
   
@@ -247,7 +49,7 @@ struct CardView: View {
                 }
                 .onEnded { _ in
                   
-                  withAnimation { 
+                  withAnimation {
                     viewStore.send(.startEditingPinned)
                   }
                 }
@@ -255,7 +57,7 @@ struct CardView: View {
           
           if viewStore.state.isEditingPinned {
             BlinkinCard(
-              model: model, 
+              model: model,
               store: store
             )
           }
@@ -281,7 +83,7 @@ struct CardView: View {
         .multilineTextAlignment(.center)
         .lineLimit(2)
         .fixedSize(
-          horizontal: false, 
+          horizontal: false,
           vertical: true
         )
     }
@@ -294,7 +96,7 @@ struct CardView: View {
       .overlay(deleteButton, alignment: .topLeading)
       .rotate(isAnimating ? 4 : 0)
       .animation(
-        Animation.linear(duration: 0.1).repeatForever(), 
+        Animation.linear(duration: 0.1).repeatForever(),
         value: isAnimating
       )
       .onAppear {
@@ -348,7 +150,7 @@ struct BlinkinCard: View {
         .overlay(deleteButton, alignment: .topLeading)
         .rotate(isAnimating ? 4 : 0)
         .animation(
-          Animation.linear(duration: 0.1).repeatForever(), 
+          Animation.linear(duration: 0.1).repeatForever(),
           value: isAnimating
         )
 //        .navigationLink(editScreen, $showEditView)
@@ -361,13 +163,13 @@ struct BlinkinCard: View {
         }
         .alert(isPresented: $showDeletingAlert) {
           Alert(
-            title: Text("Are you sure you want to delete the item?"), 
-            message: Text("This action cannot be undone"), 
+            title: Text("Are you sure you want to delete the item?"),
+            message: Text("This action cannot be undone"),
             primaryButton: .destructive(Text("Delete"), action: { viewStore.send(.deleteBehaviour(id: model.id))}),
             secondaryButton: .default(Text("Cancel"))
           )
         }
-        .confirmationDialog("Edit", isPresented: $isPresentingDialog, titleVisibility: .hidden) { 
+        .confirmationDialog("Edit", isPresented: $isPresentingDialog, titleVisibility: .hidden) {
           Button("Delete", role: .destructive) {
             showDeletingAlert = true
           }
@@ -458,10 +260,7 @@ struct Card: View {
   
   
   func badge(_ viewStore: AppViewStore) -> some View {
-    Badge(number: getCount(
-      behaviourId: behaviourId,
-      viewStore: viewStore
-    ), color: WindColor.blue)
+    Badge(number: 0, color: WindColor.blue)
       .x(.s2)
       .y(-.s2)
       .displayIf(showCount)
@@ -474,11 +273,3 @@ extension View {
   }
 }
 
-import CoreData
-func getCount
-(behaviourId: NSManagedObjectID, viewStore: AppViewStore) -> Int {
-  viewStore
-    .entries
-    .filter { $0.behaviourId == behaviourId }
-    .count
-}

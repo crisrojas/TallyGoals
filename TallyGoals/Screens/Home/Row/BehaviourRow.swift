@@ -50,8 +50,10 @@ struct BehaviourRow: View {
     .vertical(.s3)
     .overlay(divider, alignment: .bottomTrailing)
   }
-  
-  
+}
+
+// MARK: - SwipeActions
+private extension BehaviourRow {
   var leadingActions: [SwipeAction] {
     [
       SwipeAction(
@@ -77,7 +79,6 @@ struct BehaviourRow: View {
   
   var trailingActions: [SwipeAction] {
     [
-     
       SwipeAction(
         label: "Borrar",
         systemSymbol: "trash",
@@ -92,11 +93,10 @@ struct BehaviourRow: View {
       )
     ]
   }
-  
 }
 
 // MARK: - UI
-extension BehaviourRow {
+private extension BehaviourRow {
   var editScreen: some View {
     BehaviourEditScreen(
       viewStore: viewStore,
@@ -116,7 +116,7 @@ extension BehaviourRow {
 }
 
 // MARK: - Methods
-extension BehaviourRow {
+private extension BehaviourRow {
   
   func increase() {
     vibrate()

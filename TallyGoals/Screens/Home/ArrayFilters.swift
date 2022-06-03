@@ -15,16 +15,6 @@ extension Array where Element == Behaviour {
       .filter { !$0.pinned }
       .sorted(by: { $0.name < $1.name })
       .sorted(by: { $0.emoji < $1.emoji })
-    //.sorted(by: { $0.pinned && !$1.pinned })
-  }
-  
-  var defaultFilter3: Self {
-    var array: Self = []
-    
-    for i in 0...2 {
-      array.append(self[i])
-    }
-    return array
   }
   
   var pinnedFilter: Self {

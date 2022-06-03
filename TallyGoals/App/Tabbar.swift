@@ -13,66 +13,7 @@ struct BehaviourItem {
 }
 
 
-struct CustomList<Content: View, T: Identifiable>: View {
-  
-  @State var id: UUID?
-  let model: [T]
-  let cell: (UUID?, T) -> Content
-  
-  init(_ model: [T], content: @escaping (UUID?, T) -> Content) {
-    self.model = model
-    self.cell = content
-  }
-  
-  var body: some View {
-    LazyVStack() {
-      ForEach(model) { item in
-        cell(id, item)
-      }
-    }
-  }
-}
 
-extension String: Identifiable {
-  public var id: String { self }
-}
-
-struct Test: View {
-  let array = ["item 1", "item2", "item3"]
-  
-  var body: some View {
-    CustomList(array) { id, item in
-        Text(item)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .swipeActions(leading: leadingActions)
-        
-    }
-  }
-  
-  var leadingActions: [SwipeAction] {
-    [
-      SwipeAction(
-        label: "Action 1",
-        systemSymbol: "pin.fill",
-        action: { print("pin") },
-        backgroundColor: .red100,
-        tintColor: .white),
-      SwipeAction(
-        label: "Action 2",
-        systemSymbol: "pencil",
-        action: { print("edit") },
-        backgroundColor: .yellow,
-        tintColor: .white),
-      SwipeAction(
-        label: "Action 2",
-        systemSymbol: "minus",
-        action: { print("decrease") },
-        backgroundColor: .green,
-        tintColor: .white),
-    ]
-  }
-}
 
 struct Tab: View {
   

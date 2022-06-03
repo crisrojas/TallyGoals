@@ -4,11 +4,12 @@ import SwiftUI
 import SwiftUItilities
 import SwiftWind
 
-struct BehaviourCard: View {
+struct LegacyBehaviourCard: View {
+  
+  @State var showEdit: Bool = false
   
   let model: Behaviour
   let store: AppStore
-  @State var showEdit: Bool = false
   
   var body: some View {
     WithViewStore(store) { viewStore in
