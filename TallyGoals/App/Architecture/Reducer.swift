@@ -1,80 +1,5 @@
 import ComposableArchitecture
 import CoreData
-import SwiftUI
-
-typealias AppStore = Store<AppState, AppAction>
-typealias AppViewStore = ViewStore<AppState, AppAction>
-
-struct AppState: Equatable {
-  
-  var adding: Bool = true
-  var isEditingPinned: Bool = false
-  var isEditingMode: Bool = false
-  //var behaviours: [Behaviour] = []
-  var entries: [Entry] = []
-  var goals: [Goal] = []
-  var behaviourState: BehaviourState = .idle
-  var swipingBehaviourId: NSManagedObjectID?
-  
-  var pinnedIndex = Int.zero
-}
-
-enum AppAction {
-  
-  // MARK: - CRUD Behaviours
-  case createBehaviour(
-    emoji: String,
-    name: String,
-    completion: (() -> Void)?
-  )
-  
-  case readBehaviours
-  case loadBehaviours(result: Result<[Behaviour], Error>)
-  
-  case updateBehaviour(
-    id: NSManagedObjectID,
-    emoji: String,
-    name: String,
-    completion: (() -> Void)?
-  )
-  
-  case archive(id: NSManagedObjectID)
-  case unarchive(id: NSManagedObjectID)
-  
-  case updateFavorite(id: NSManagedObjectID, favorite: Bool)
-  case updateArchive(id: NSManagedObjectID, archive: Bool)
-  case updatePinned(id: NSManagedObjectID, pinned: Bool)
-  
-  case deleteBehaviour(id: NSManagedObjectID)
-  
-  // MARK: CRUD Entries
-  case addEntry(behaviour: NSManagedObjectID)
-  case deleteEntry(behaviour: NSManagedObjectID)
-  
-  case toggleAdding(value: Bool)
-  
-  case startEditingPinned
-  case stopEditingPinned
-  
-  case toggleEditingMode(value: Bool)
-  case startSwipe(id: NSManagedObjectID?)
-  
-  case updatePinnedPage(index: Int)
-}
-
-struct AppEnvironment {
-  let mainQueue: AnySchedulerOf<DispatchQueue>
-  let behavioursRepository: BehaviourRepository
-}
-
-extension AppEnvironment {
-  static var instance: AppEnvironment {
-    .init(
-      mainQueue: .main,
-      behavioursRepository: container.behaviourRepository
-    )
-  }
-}
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
   
@@ -96,7 +21,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .loadBehaviours(let result):
     switch result {
     case .success(let behaviours):
-      withAnimation { state.behaviourState =  .success(behaviours) }
+     state.behaviourState =  .success(behaviours)
     case .failure(let error):
       state.behaviourState = .error(error.localizedDescription)
     }
@@ -147,13 +72,6 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
       .map { _ in AppAction.readBehaviours }
     
   case .deleteEntry(let id):
-//    let lastIndex = state.entries.lastIndex(where: { $0.behaviourId == id })
-//
-//    if let lastIndex = lastIndex {
-//      state.entries.remove(at: lastIndex)
-//    }
-//    return .none
-    
     return env.behavioursRepository
     .deleteLastEntry(for: id)
     .catchToEffect()

@@ -10,10 +10,12 @@ import SwiftUI
 
 @main
 struct TallyGoalsApp: App {
+  
   let persistenceController = PersistenceController.shared
   
   init() {
     UIBarButtonItem.hideBackButtonLabel()
+    UINavigationBar.setupFonts()
   }
   
   var body: some Scene {

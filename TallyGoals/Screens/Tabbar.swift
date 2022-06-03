@@ -166,7 +166,6 @@ struct TestingWind: View {
 }
 struct Tabbar: View {
   
-  //    let persistence = Persistence.previewFull
   let store: Store<AppState, AppAction>
   
   var body: some View {

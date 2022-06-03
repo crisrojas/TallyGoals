@@ -18,9 +18,6 @@ struct HomeScreen: View {
         case .idle, .loading:
           progressView(viewStore: viewStore)
         case .success(let model):
-          
-//          successView(model: model, viewStore: viewStore)
-          
           DefaultVStack {
 
             DefaultVStack {
@@ -28,7 +25,7 @@ struct HomeScreen: View {
 //                .font(.system(.subheadline, design: .rounded))
 //                .fontWeight(.bold)
 //                .alignX(.leading)
-//              .horizontal(.horizontal)
+//            b  .horizontal(.horizontal)
 
               BehaviourGrid(
                 model: model.pinnedFilter,

@@ -8,38 +8,27 @@
 import SwiftUI
 import SwiftUItilities
 import SwiftWind
-import SwipeCellSUI
 import ComposableArchitecture
-import StoreKit
-
 
 struct BehaviourRow: View {
   
   @State var showEditScreen = false
   @State var showDeletingAlert = false
   
-  /// @todo: this should take only the model.id?
   let model: Behaviour
   let viewStore: AppViewStore
   
   var body: some View {
     
-    row()
+    rowCell
       .background(Color.behaviourRowBackground)
       .navigationLink(editScreen, $showEditScreen)
       .sparkSwipeActions(leading: leadingActions, trailing: trailingActions)
       .onTapGesture(perform: increase)
-      .alert(isPresented: $showDeletingAlert) {
-        Alert(
-          title: Text("Are you sure you want to delete the item?"),
-          message: Text("This action cannot be undone"),
-          primaryButton: .destructive(Text("Delete"), action: delete),
-          secondaryButton: .default(Text("Cancel"))
-        )
-      }
+      .alert(isPresented: $showDeletingAlert) { .deleteAlert(action: delete) }
   }
   
-  func row() -> some View {
+  var rowCell: some View {
     HStack(spacing: 0) {
       
       Text(model.emoji)

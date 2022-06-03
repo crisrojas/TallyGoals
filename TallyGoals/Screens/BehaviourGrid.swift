@@ -105,6 +105,7 @@ struct BehaviourGrid: View {
 struct BehaviourCardBis: View {
   
   @State var showEditingScreen = false
+  @State var showDeletingAlert = false
   
   let model: Behaviour
   let viewStore: AppViewStore
@@ -124,6 +125,7 @@ struct BehaviourCardBis: View {
       .onTapGesture(perform: increase)
       .contextMenu { contextMenuContent }
       .navigationLink(editScreen, $showEditingScreen)
+      .alert(isPresented: $showDeletingAlert) { .deleteAlert(action: delete) }
   }
   
   @ViewBuilder
@@ -134,7 +136,7 @@ struct BehaviourCardBis: View {
     Label("Archive", systemImage: "archivebox").onTap(perform: archive)
     
     Button(role: .destructive) {
-      delete()
+      showDeletingAlert = true
     } label: {
       Label("Delete", systemImage: "trash").onTap {}
     }

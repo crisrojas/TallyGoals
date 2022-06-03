@@ -17,6 +17,13 @@
 		5448F9642848F10400A7116A /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F9632848F10400A7116A /* SwipeActions.swift */; };
 		5448F967284937AE00A7116A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 5448F966284937AE00A7116A /* Algorithms */; };
 		5448F9692849BCC800A7116A /* PagerIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F9682849BCC700A7116A /* PagerIndexView.swift */; };
+		5448F96B284A198100A7116A /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F96A284A198100A7116A /* State.swift */; };
+		5448F96D284A19D300A7116A /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F96C284A19D300A7116A /* Actions.swift */; };
+		5448F96F284A19F000A7116A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F96E284A19F000A7116A /* Environment.swift */; };
+		5448F971284A1A1300A7116A /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F970284A1A1300A7116A /* Aliases.swift */; };
+		5448F975284A1B0F00A7116A /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F974284A1B0F00A7116A /* Alerts.swift */; };
+		5448F978284A1B6500A7116A /* SimpleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F977284A1B6500A7116A /* SimpleAction.swift */; };
+		5448F97A284A201100A7116A /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448F979284A201100A7116A /* UINavigationBar.swift */; };
 		5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */; };
 		5497D00128412F68003E2B43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00028412F68003E2B43 /* Assets.xcassets */; };
 		5497D00428412F68003E2B43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00328412F68003E2B43 /* Preview Assets.xcassets */; };
@@ -28,7 +35,7 @@
 		5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02C28412FAE003E2B43 /* ComposableArchitecture */; };
 		5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02F28412FC8003E2B43 /* SwiftWind */; };
 		5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D03228412FD8003E2B43 /* SwiftUItilities */; };
-		5497D0352841396D003E2B43 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D0342841396D003E2B43 /* Main.swift */; };
+		5497D0352841396D003E2B43 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D0342841396D003E2B43 /* Reducer.swift */; };
 		5497D0372841399B003E2B43 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D0362841399B003E2B43 /* Entry.swift */; };
 		5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D038284139AC003E2B43 /* BehaviourRepository.swift */; };
 		5497D03B284139E0003E2B43 /* BehaviourState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D03A284139E0003E2B43 /* BehaviourState.swift */; };
@@ -76,6 +83,13 @@
 		5419902D2843B1680066A5CE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5448F9632848F10400A7116A /* SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActions.swift; sourceTree = "<group>"; };
 		5448F9682849BCC700A7116A /* PagerIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerIndexView.swift; sourceTree = "<group>"; };
+		5448F96A284A198100A7116A /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		5448F96C284A19D300A7116A /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		5448F96E284A19F000A7116A /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		5448F970284A1A1300A7116A /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
+		5448F974284A1B0F00A7116A /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		5448F977284A1B6500A7116A /* SimpleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAction.swift; sourceTree = "<group>"; };
+		5448F979284A201100A7116A /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		5497CFF928412F66003E2B43 /* TallyGoals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TallyGoals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsApp.swift; sourceTree = "<group>"; };
 		5497D00028412F68003E2B43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,7 +101,7 @@
 		5497D01828412F68003E2B43 /* TallyGoalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallyGoalsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITests.swift; sourceTree = "<group>"; };
 		5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5497D0342841396D003E2B43 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		5497D0342841396D003E2B43 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		5497D0362841399B003E2B43 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		5497D038284139AC003E2B43 /* BehaviourRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourRepository.swift; sourceTree = "<group>"; };
 		5497D03A284139E0003E2B43 /* BehaviourState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourState.swift; sourceTree = "<group>"; };
@@ -162,8 +176,17 @@
 			children = (
 				541990252843AF050066A5CE /* CGFloat.swift */,
 				541990292843AF3E0066A5CE /* Color.swift */,
+				5448F974284A1B0F00A7116A /* Alerts.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		5448F973284A1A2800A7116A /* States */ = {
+			isa = PBXGroup;
+			children = (
+				5497D03A284139E0003E2B43 /* BehaviourState.swift */,
+			);
+			path = States;
 			sourceTree = "<group>";
 		};
 		5497CFF028412F66003E2B43 = {
@@ -196,7 +219,6 @@
 				5497D05D28414717003E2B43 /* Domain */,
 				5497D0622841476D003E2B43 /* Extensions */,
 				5497D00228412F68003E2B43 /* Preview Content */,
-				5497D05F2841472F003E2B43 /* Redux */,
 				5497D0632841477A003E2B43 /* Resources */,
 				5497D03E28413A17003E2B43 /* Screens */,
 				5497D00728412F68003E2B43 /* TallyGoals.xcdatamodeld */,
@@ -259,6 +281,7 @@
 		5497D05D28414717003E2B43 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5448F973284A1A2800A7116A /* States */,
 				5497D05E28414719003E2B43 /* Models */,
 			);
 			path = Domain;
@@ -273,13 +296,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5497D05F2841472F003E2B43 /* Redux */ = {
+		5497D05F2841472F003E2B43 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				5497D03A284139E0003E2B43 /* BehaviourState.swift */,
-				5497D0342841396D003E2B43 /* Main.swift */,
+				5448F96C284A19D300A7116A /* Actions.swift */,
+				5448F970284A1A1300A7116A /* Aliases.swift */,
+				5448F96E284A19F000A7116A /* Environment.swift */,
+				5497D0342841396D003E2B43 /* Reducer.swift */,
+				5448F96A284A198100A7116A /* State.swift */,
 			);
-			path = Redux;
+			path = Architecture;
 			sourceTree = "<group>";
 		};
 		5497D06028414743003E2B43 /* Data */ = {
@@ -306,6 +332,8 @@
 			children = (
 				541990242843AEF50066A5CE /* Constants */,
 				5497D05728413A5D003E2B43 /* Extensions.swift */,
+				5448F977284A1B6500A7116A /* SimpleAction.swift */,
+				5448F979284A201100A7116A /* UINavigationBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +349,7 @@
 		5497D06628414CB0003E2B43 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5497D05F2841472F003E2B43 /* Architecture */,
 				5497CFFC28412F66003E2B43 /* TallyGoalsApp.swift */,
 			);
 			path = App;
@@ -471,14 +500,19 @@
 			files = (
 				541990262843AF050066A5CE /* CGFloat.swift in Sources */,
 				5448F9692849BCC800A7116A /* PagerIndexView.swift in Sources */,
+				5448F971284A1A1300A7116A /* Aliases.swift in Sources */,
 				5497D03D284139F1003E2B43 /* Behaviour.swift in Sources */,
 				5497D04A28413A1F003E2B43 /* BehaviourGrid.swift in Sources */,
 				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,
 				541990202843AE010066A5CE /* BehaviorRowActionsModifier.swift in Sources */,
 				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
+				5448F96F284A19F000A7116A /* Environment.swift in Sources */,
 				5497D05628413A3F003E2B43 /* ListRow.swift in Sources */,
+				5448F96B284A198100A7116A /* State.swift in Sources */,
 				5497D0372841399B003E2B43 /* Entry.swift in Sources */,
-				5497D0352841396D003E2B43 /* Main.swift in Sources */,
+				5448F97A284A201100A7116A /* UINavigationBar.swift in Sources */,
+				5497D0352841396D003E2B43 /* Reducer.swift in Sources */,
+				5448F978284A1B6500A7116A /* SimpleAction.swift in Sources */,
 				5497D04D28413A1F003E2B43 /* ArchivedScreen.swift in Sources */,
 				5497D00628412F68003E2B43 /* Persistence.swift in Sources */,
 				5497D065284147FD003E2B43 /* Container.swift in Sources */,
@@ -492,7 +526,9 @@
 				5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */,
 				5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */,
 				5497D05428413A1F003E2B43 /* HomeScreen.swift in Sources */,
+				5448F975284A1B0F00A7116A /* Alerts.swift in Sources */,
 				5419902C2843B1110066A5CE /* ArrayFilters.swift in Sources */,
+				5448F96D284A19D300A7116A /* Actions.swift in Sources */,
 				5497D05028413A1F003E2B43 /* BehaviourCard.swift in Sources */,
 				5497D00928412F68003E2B43 /* TallyGoals.xcdatamodeld in Sources */,
 				541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */,
