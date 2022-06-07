@@ -206,12 +206,12 @@ struct ListRow: View {
   
   @State var showDetail = false
   let store: AppStore
-  let item: Behaviour
+  let item: BehaviourEntity
   let archive: Bool
   
   init(
     store: AppStore,
-    item: Behaviour,
+    item: BehaviourEntity,
     archive: Bool = false
   ) {
     self.store = store
@@ -235,14 +235,14 @@ struct ListRow: View {
         
         //}
         
-        Text(item.emoji)
+        Text(item.emoji!)
           .grayscale(archive ? 1 : 0)
-        Text(item.name)
+        Text(item.name!)
         
         Spacer()
         
         let count = getCount(
-          behaviourId: item.id,
+          behaviourId: item.objectID,
           viewStore: viewStore
         )
         
@@ -254,11 +254,11 @@ struct ListRow: View {
         withAnimation {
           if viewStore.adding {
             viewStore.send(
-              .addEntry( behaviour: item.id)
+              .addEntry( behaviour: item.objectID)
             )
           } else {
             viewStore.send(
-              .deleteEntry(behaviour: item.id)
+              .deleteEntry(behaviour: item.objectID)
             )
           }
         }

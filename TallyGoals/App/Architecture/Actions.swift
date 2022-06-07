@@ -18,7 +18,7 @@ enum AppAction {
   )
   
   case readBehaviours
-  case loadBehaviours(result: Result<[Behaviour], Error>)
+  case loadBehaviours(result: Result<[BehaviourEntity], Error>)
   
   case updateBehaviour(
     id: NSManagedObjectID,

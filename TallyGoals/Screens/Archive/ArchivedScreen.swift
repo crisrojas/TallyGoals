@@ -17,35 +17,35 @@ struct ArchivedScreen: View {
         if model.isEmpty {
           ListEmptyView(symbol: "archivebox")
         } else { 
-          List(model) { item in
-            ListRow(
-              store: store, 
-              item: item,
-              archive: true
-            )
-              .allowsHitTesting(false)
-              .swipeActions {
-                Label("Unarchive", systemImage: "archivebox")
-                  .onTap { 
-                    withAnimation(.default) {
-                      viewStore.send(.updateArchive(
-                        id: item.id,
-                        archive: false
-                      ))
-                    }
-                  }
-                  .tint(.gray)
-                
-                Button(role: .destructive) {
-                  withAnimation { 
-                    viewStore.send(.deleteBehaviour(id: item.id))
-                  }
-                } label: {
-                  Label("Delete", systemImage: "trash.fill")
-                }
-              }
-          }
-          .navigationTitle("Archived")
+//          List(model) { item in
+//            ListRow(
+//              store: store,
+//              item: item,
+//              archive: true
+//            )
+//              .allowsHitTesting(false)
+//              .swipeActions {
+//                Label("Unarchive", systemImage: "archivebox")
+//                  .onTap {
+//                    withAnimation(.default) {
+//                      viewStore.send(.updateArchive(
+//                        id: item.id,
+//                        archive: false
+//                      ))
+//                    }
+//                  }
+//                  .tint(.gray)
+//
+//                Button(role: .destructive) {
+//                  withAnimation {
+//                    viewStore.send(.deleteBehaviour(id: item.id))
+//                  }
+//                } label: {
+//                  Label("Delete", systemImage: "trash.fill")
+//                }
+//              }
+//          }
+//          .navigationTitle("Archived")
         }
       case .empty:
         Text("No items yet")
@@ -55,7 +55,7 @@ struct ArchivedScreen: View {
     }
   } 
   
-  func getArchived(from behaviourList: [Behaviour]) -> [Behaviour] {
+  func getArchived(from behaviourList: [BehaviourEntity]) -> [BehaviourEntity] {
     behaviourList.filter { $0.archived }
   }
 }

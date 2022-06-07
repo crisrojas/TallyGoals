@@ -14,7 +14,7 @@ struct BehaviourCard: View {
   @State var showEditingScreen = false
   @State var showDeletingAlert = false
   
-  let model: Behaviour
+  let model: BehaviourEntity
   let viewStore: AppViewStore
 
   var body: some View {
@@ -22,7 +22,7 @@ struct BehaviourCard: View {
       .cornerRadius(.s4)
       .aspectRatio(1, contentMode: .fill)
       .overlay(
-        Text(model.emoji)
+        Text(model.emoji ?? "") // @todo
         .font(.caption)
         .padding()
         , alignment: .topTrailing
@@ -38,7 +38,7 @@ struct BehaviourCard: View {
   @ViewBuilder
   var contextMenuContent: some View {
     Label("Unpin", systemImage: "pin").onTap(perform: unpin)
-    Label("Decrease", systemImage: "minus.circle").onTap(perform: decrease).displayIf(model.count > 0)
+    Label("Decrease", systemImage: "minus.circle").onTap(perform: decrease).displayIf(model.entries?.count ?? 0 > 0) // @todo
     Label("Edit", systemImage: "pencil").onTap(perform: goToEditScreen)
     Label("Archive", systemImage: "archivebox").onTap(perform: archive)
     
@@ -58,10 +58,10 @@ struct BehaviourCard: View {
   
   var labelStack: some View {
     DefaultVStack {
-      Text(model.count.string)
+      Text(model.entries?.count.string ?? "") // @todo
         .fontWeight(.bold)
         .font(.system(.title2, design: .rounded))
-      Text(model.name)
+      Text(model.name ?? "") // @todo
         .fontWeight(.bold)
         .font(.system(.caption, design: .rounded))
         .lineLimit(2)
@@ -74,8 +74,8 @@ struct BehaviourCard: View {
     BehaviourEditScreen(
       viewStore: viewStore,
       item: model,
-      emoji: model.emoji,
-      name: model.name
+      emoji: model.emoji ?? "", // @todo
+      name: model.name ?? "" // @todo
     )
   }
   
@@ -88,7 +88,7 @@ struct BehaviourCard: View {
   }
   
   func delete() {
-    viewStore.send(.deleteBehaviour(id: model.id))
+    viewStore.send(.deleteBehaviour(id: model.objectID))
   }
   
   func goToEditScreen() {
@@ -96,20 +96,20 @@ struct BehaviourCard: View {
   }
   
   func archive() {
-    viewStore.send(.updateArchive(id: model.id, archive: true))
+    viewStore.send(.updateArchive(id: model.objectID, archive: true))
   }
   
   func unpin() {
-    viewStore.send(.updatePinned(id: model.id, pinned: false))
+    viewStore.send(.updatePinned(id: model.objectID, pinned: false))
   }
   
   func decrease() {
     vibrate()
-    viewStore.send(.deleteEntry(behaviour: model.id))
+    viewStore.send(.deleteEntry(behaviour: model.objectID))
   }
   
   func increase() {
     vibrate()
-    viewStore.send(.addEntry(behaviour: model.id))
+    viewStore.send(.addEntry(behaviour: model.objectID))
   }
 }

@@ -15,7 +15,7 @@ struct BehaviourRow: View {
   @State var showEditScreen = false
   @State var showDeletingAlert = false
   
-  let model: Behaviour
+  let model: BehaviourEntity
   let viewStore: AppViewStore
   
   var body: some View {
@@ -30,16 +30,16 @@ struct BehaviourRow: View {
   
   var rowCell: some View {
     HStack(spacing: 0) {
-      
-      Text(model.emoji)
+       
+      Text(model.emoji ?? "") // @todo
         .font(.caption2)
       
-      Text(model.count.string)
+      Text(model.entries?.count.string ?? "0") // @todo
         .font(.system(.largeTitle, design: .rounded))
         .fontWeight(.bold)
         .horizontal(.s3)
       
-        Text(model.name)
+        Text(model.name ?? "") //@todo
           .fontWeight(.bold)
           .font(.system(.body, design: .rounded))
           .lineLimit(2)
@@ -101,9 +101,9 @@ private extension BehaviourRow {
     BehaviourEditScreen(
       viewStore: viewStore,
       item: model,
-      emoji: model.emoji,
-      name: model.name,
-      count: model.count
+      emoji: model.emoji!,
+      name: model.name!,
+      count: model.entries?.count ?? 0
     )
   }
 
@@ -121,19 +121,19 @@ private extension BehaviourRow {
   func increase() {
     vibrate()
     withAnimation {
-      viewStore.send(.addEntry(behaviour: model.id))
+      viewStore.send(.addEntry(behaviour: model.objectID))
     }
   }
   
   func decrease() {
-    guard model.count > 0 else {
+    guard model.entries?.count ?? 0 > 0 else {
       vibrate(.error)
       return
     }
     
     vibrate()
     withAnimation {
-      viewStore.send(.deleteEntry(behaviour: model.id))
+      viewStore.send(.deleteEntry(behaviour: model.objectID))
     }
   }
   
@@ -142,11 +142,11 @@ private extension BehaviourRow {
   }
   
   func pin() {
-    viewStore.send(.updatePinned(id: model.id, pinned: true))
+    viewStore.send(.updatePinned(id: model.objectID, pinned: true))
   }
   
   func archive() {
-    viewStore.send(.updateArchive(id: model.id, archive: true))
+    viewStore.send(.updateArchive(id: model.objectID, archive: true))
   }
   
   func delete() {

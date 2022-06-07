@@ -9,7 +9,7 @@ struct BehaviourGrid: View {
   @State private var page: Int = .zero
   @State private var cellHeight: CGFloat = .zero
   
-  let model: [Behaviour]
+  let model: [BehaviourEntity]
   let store: AppStore
   
 
@@ -24,7 +24,7 @@ struct BehaviourGrid: View {
     return cellHeight * numberOfRows + .pinnedCellSpacing
   }
   
-  private var chunkedModel: [[Behaviour]] {
+  private var chunkedModel: [[BehaviourEntity]] {
     model.chunks(ofCount: 6).map(Array.init)
   }
   
@@ -66,7 +66,7 @@ struct BehaviourGrid: View {
       .displayIf(chunkedModel.count > 1)
   }
   
-  func grid(model: [Behaviour], viewStore: AppViewStore, addFillers: Bool = true) -> some View {
+  func grid(model: [BehaviourEntity], viewStore: AppViewStore, addFillers: Bool = true) -> some View {
     LazyVGrid(columns: columns, alignment: .leading, spacing: .pinnedCellSpacing) {
       ForEach(model) { item in
         BehaviourCard(model: item, viewStore: viewStore)

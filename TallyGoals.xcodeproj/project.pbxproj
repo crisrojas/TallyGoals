@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401E8033284F601B00A1C1F3 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E8032284F601B00A1C1F3 /* Sequence.swift */; };
 		541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990222843AEB50066A5CE /* SwipeActionsView.swift */; };
 		541990262843AF050066A5CE /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990252843AF050066A5CE /* CGFloat.swift */; };
 		541990282843AF210066A5CE /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990272843AF210066A5CE /* ShakeEffect.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		401E8032284F601B00A1C1F3 /* Sequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		541990222843AEB50066A5CE /* SwipeActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionsView.swift; sourceTree = "<group>"; };
 		541990252843AF050066A5CE /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		541990272843AF210066A5CE /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				5448F99D284A2B0A00A7116A /* Modularize */,
 				5448F98F284A26BB00A7116A /* Legacify */,
+				401E8032284F601B00A1C1F3 /* Sequence.swift */,
 			);
 			path = toDo;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				5448F9642848F10400A7116A /* SwipeActions.swift in Sources */,
 				5497D05828413A5D003E2B43 /* Extensions.swift in Sources */,
 				5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */,
+				401E8033284F601B00A1C1F3 /* Sequence.swift in Sources */,
 				5419902A2843AF3E0066A5CE /* Color.swift in Sources */,
 				5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */,
 				5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */,

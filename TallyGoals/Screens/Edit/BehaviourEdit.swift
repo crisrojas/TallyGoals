@@ -5,7 +5,7 @@ struct BehaviourEditScreen: View {
   
   @Environment(\.presentationMode) var presentationMode
   let viewStore: AppViewStore
-  let item: Behaviour
+  let item: BehaviourEntity
   
   @State var emoji: String
   @State var name: String
@@ -59,7 +59,7 @@ struct BehaviourEditScreen: View {
           .onTap {
             viewStore.send(
               .updateBehaviour(
-                id: item.id, 
+                id: item.objectID, 
                 emoji: emoji,
                 name: name,
                 completion: pop

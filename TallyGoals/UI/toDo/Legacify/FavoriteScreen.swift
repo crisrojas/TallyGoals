@@ -20,7 +20,7 @@ struct FavoritesScreen: View {
         if model.isEmpty {
           ListEmptyView(symbol: "star.fill")
         } else {
-          List(model) { item in
+          List(model, id: \.id) { item in
             ListRow(
               store: store,
               item: item
@@ -28,7 +28,7 @@ struct FavoritesScreen: View {
               .onTap {
                 withAnimation {
                   viewStore.send(
-                    .addEntry(behaviour: item.id)
+                    .addEntry(behaviour: item.objectID)
                   )
                 }
               }
@@ -44,7 +44,7 @@ struct FavoritesScreen: View {
                   .onTap {
                     withAnimation {
                       viewStore.send(.updatePinned(
-                        id: item.id,
+                        id: item.objectID,
                         pinned: !item.pinned
                       )
                       )
@@ -65,11 +65,11 @@ struct FavoritesScreen: View {
   
   @ViewBuilder
   func swipeActionStack
-  (viewStore: AppViewStore, item: Behaviour) -> some View {
+  (viewStore: AppViewStore, item: BehaviourEntity) -> some View {
     Label("Favorite", systemImage: "star")
       .onTap {
         viewStore.send(.updateFavorite(
-          id: item.id,
+          id: item.objectID,
           favorite: false)
         )
       }
@@ -77,7 +77,7 @@ struct FavoritesScreen: View {
     
     Button(role: .destructive) {
       withAnimation {
-        viewStore.send(.deleteBehaviour(id: item.id))
+        viewStore.send(.deleteBehaviour(id: item.objectID))
       }
     } label: {
       Label("Delete", systemImage: "trash.fill")
@@ -85,12 +85,12 @@ struct FavoritesScreen: View {
   }
   
   func getFavorites
-  (from behaviourList: [Behaviour]) -> [Behaviour] {
+  (from behaviourList: [BehaviourEntity]) -> [BehaviourEntity] {
     behaviourList
       .filter { $0.favorite }
       .filter { !$0.archived }
-      .sorted(by: { $0.emoji < $1.emoji })
-      .sorted(by: { $0.name < $1.name })
+      .sorted(by: { $0.emoji! < $1.emoji! })
+      .sorted(by: { $0.name! < $1.name! })
       .sorted(by: { $0.pinned && !$1.pinned })
   }
 }

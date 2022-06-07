@@ -43,29 +43,29 @@ final class BehaviourRepository {
     .eraseToEffect()
   }
   
-  func readBehaviours() -> Effect<[Behaviour], Error> {
-    Effect<[Behaviour], Error>.future { [context] (result: @escaping (Result<[Behaviour], Error>) -> Void) -> Void in
+  func readBehaviours() -> Effect<[BehaviourEntity], Error> {
+    Effect<[BehaviourEntity], Error>.future { [context] (result: @escaping (Result<[BehaviourEntity], Error>) -> Void) -> Void in
       context.performAndWait { () -> Void in
         result(
-          Result<[Behaviour], Error> {
+          Result<[BehaviourEntity], Error> {
             
             let request: NSFetchRequest<BehaviourEntity> = BehaviourEntity.fetchRequest()
             
             let result: [BehaviourEntity] = try context.fetch(request)
             
-            let behaviours = result.map { entity in
-              Behaviour(
-                id: entity.objectID,
-                emoji: entity.emoji ?? "error",
-                name: entity.name ?? "error",
-                pinned: entity.pinned,
-                archived: entity.archived,
-                favorite: entity.favorite,
-                colorId: Int(entity.color),
-                count: entity.entries?.count ?? 0
-              )
-            }
-            return behaviours
+//            let behaviours = result.map { entity in
+//              Behaviour(
+//                id: entity.objectID,
+//                emoji: entity.emoji ?? "error",
+//                name: entity.name ?? "error",
+//                pinned: entity.pinned,
+//                archived: entity.archived,
+//                favorite: entity.favorite,
+//                colorId: Int(entity.color),
+//                count: entity.entries?.count ?? 0
+//              )
+//            }
+            return result
           }
         )
       }
