@@ -87,13 +87,14 @@ class UIEmojiTextField: UITextField {
     }
     
     override var textInputMode: UITextInputMode? {
+      var emojiMode: UITextInputMode?
         for mode in UITextInputMode.activeInputModes {
             if mode.primaryLanguage == "emoji" {
                 self.keyboardType = .default // do not remove this
-                return mode
+                emojiMode = mode
             }
         }
-        return nil
+        return emojiMode
     }
 }
 

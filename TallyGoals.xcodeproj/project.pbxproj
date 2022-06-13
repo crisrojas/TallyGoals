@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5413EA07285791AE0096E821 /* ExploreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5413EA06285791AE0096E821 /* ExploreScreen.swift */; };
 		541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990222843AEB50066A5CE /* SwipeActionsView.swift */; };
 		541990262843AF050066A5CE /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990252843AF050066A5CE /* CGFloat.swift */; };
 		541990282843AF210066A5CE /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541990272843AF210066A5CE /* ShakeEffect.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5413EA06285791AE0096E821 /* ExploreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreScreen.swift; sourceTree = "<group>"; };
 		541990222843AEB50066A5CE /* SwipeActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActionsView.swift; sourceTree = "<group>"; };
 		541990252843AF050066A5CE /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		541990272843AF210066A5CE /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
@@ -169,6 +171,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5413EA032857918A0096E821 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				5413EA06285791AE0096E821 /* ExploreScreen.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
 		5419901E2843ADEC0066A5CE /* Row */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +384,7 @@
 		5497D03E28413A17003E2B43 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5413EA032857918A0096E821 /* Explore */,
 				5448F9A8284A2EAF00A7116A /* Add */,
 				5448F9A6284A2E8600A7116A /* Archive */,
 				5448F9A7284A2E9100A7116A /* Edit */,
@@ -622,6 +633,7 @@
 				5448F993284A27F300A7116A /* Manager.swift in Sources */,
 				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
 				5448F96F284A19F000A7116A /* Environment.swift in Sources */,
+				5413EA07285791AE0096E821 /* ExploreScreen.swift in Sources */,
 				5448F99F284A2B1F00A7116A /* WindColors.swift in Sources */,
 				5448F997284A28C800A7116A /* UIImpactFeedbackGenerator.swift in Sources */,
 				5497D05628413A3F003E2B43 /* ListRow.swift in Sources */,
