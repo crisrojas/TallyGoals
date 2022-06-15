@@ -64,6 +64,8 @@
 		5497D05828413A5D003E2B43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05728413A5D003E2B43 /* Extensions.swift */; };
 		5497D065284147FD003E2B43 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05C28414713003E2B43 /* Container.swift */; };
 		5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D06728414D44003E2B43 /* BehaviourRow.swift */; };
+		54D29DDC2858E34800BFFFDE /* SequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D29DDB2858E34800BFFFDE /* SequenceCard.swift */; };
+		54D29DDF28590C6500BFFFDE /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 54D29DDE28590C6500BFFFDE /* Introspect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +142,7 @@
 		5497D05728413A5D003E2B43 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5497D05C28414713003E2B43 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		5497D06728414D44003E2B43 /* BehaviourRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourRow.swift; sourceTree = "<group>"; };
+		54D29DDB2858E34800BFFFDE /* SequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,7 @@
 			files = (
 				5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */,
 				5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */,
+				54D29DDF28590C6500BFFFDE /* Introspect in Frameworks */,
 				5448F967284937AE00A7116A /* Algorithms in Frameworks */,
 				5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */,
 			);
@@ -263,6 +267,7 @@
 				541990272843AF210066A5CE /* ShakeEffect.swift */,
 				5497D05528413A3F003E2B43 /* ListRow.swift */,
 				5448F9A0284A2C9E00A7116A /* LegacyBlinkinCard.swift */,
+				54D29DDB2858E34800BFFFDE /* SequenceCard.swift */,
 			);
 			path = Legacify;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				5497D02F28412FC8003E2B43 /* SwiftWind */,
 				5497D03228412FD8003E2B43 /* SwiftUItilities */,
 				5448F966284937AE00A7116A /* Algorithms */,
+				54D29DDE28590C6500BFFFDE /* Introspect */,
 			);
 			productName = TallyGoals;
 			productReference = 5497CFF928412F66003E2B43 /* TallyGoals.app */;
@@ -580,6 +586,7 @@
 				5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */,
 				5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */,
 				5448F965284937AE00A7116A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				54D29DDD28590C6500BFFFDE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 5497CFFA28412F66003E2B43 /* Products */;
 			projectDirPath = "";
@@ -624,6 +631,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D29DDC2858E34800BFFFDE /* SequenceCard.swift in Sources */,
 				541990262843AF050066A5CE /* CGFloat.swift in Sources */,
 				5448F9692849BCC800A7116A /* PagerIndexView.swift in Sources */,
 				5448F971284A1A1300A7116A /* Aliases.swift in Sources */,
@@ -1033,6 +1041,14 @@
 				minimumVersion = 0.1.9;
 			};
 		};
+		54D29DDD28590C6500BFFFDE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1055,6 +1071,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */;
 			productName = SwiftUItilities;
+		};
+		54D29DDE28590C6500BFFFDE /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D29DDD28590C6500BFFFDE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 

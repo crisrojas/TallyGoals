@@ -49,4 +49,6 @@ enum AppAction {
   case startSwipe(id: NSManagedObjectID?)
   
   case updatePinnedPage(index: Int)
+  
+  case toggleTabbar
 }

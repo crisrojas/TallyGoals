@@ -47,7 +47,7 @@ struct PersistenceController {
         name: "Comer ceto" ,
         archived: true,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 2
       ),
       MockBehaviour(
@@ -55,7 +55,7 @@ struct PersistenceController {
         name: "Retrasar recompensa",
         archived: false,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 3
       ),
       MockBehaviour(
@@ -79,7 +79,7 @@ struct PersistenceController {
         name: "Planificar el día siguiente",
         archived: false,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 6
       ),
       MockBehaviour(
@@ -87,7 +87,7 @@ struct PersistenceController {
         name: "Ayuno",
         archived: false,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 7
       ),
       MockBehaviour(
@@ -95,7 +95,7 @@ struct PersistenceController {
         name: "Apagar el wifi",
         archived: false,
         favorite: false,
-        pinned: false,
+        pinned: true,
         color: 8
       ),
       MockBehaviour(

@@ -106,5 +106,9 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .updatePinnedPage(let index):
     state.pinnedIndex = index
     return .none
+    
+  case .toggleTabbar:
+    state.tabbarIsHidden = !state.tabbarIsHidden
+    return .none
   }
 }

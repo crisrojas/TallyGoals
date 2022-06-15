@@ -6,6 +6,7 @@
 //
 import ComposableArchitecture
 import CoreData
+import SwiftUI
 
 struct AppState: Equatable {
   
@@ -17,4 +18,6 @@ struct AppState: Equatable {
   var behaviourState: BehaviourState = .idle
   var swipingBehaviourId: NSManagedObjectID?
   var pinnedIndex = Int.zero
+  
+  var tabbarIsHidden = true
 }
