@@ -20,4 +20,10 @@ struct AppState: Equatable {
   var pinnedIndex = Int.zero
   
   var tabbarIsHidden = true
+  
+  var overlay: Overlay?
+}
+
+enum Overlay: Equatable {
+  case exploreDetail(PresetCategory)
 }

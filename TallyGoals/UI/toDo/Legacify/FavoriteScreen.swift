@@ -102,7 +102,8 @@ struct ListEmptyView: View {
   var body: some View {
     Image(systemName: symbol)
       .resizable()
-      .size(50)
+      .width(50)
+      .height(40)
       .foregroundColor(.gray)
       .opacity(0.2)
   }

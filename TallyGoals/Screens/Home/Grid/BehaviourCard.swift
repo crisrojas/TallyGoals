@@ -29,7 +29,8 @@ struct BehaviourCard: View {
       )
       .overlay(chevronIcon, alignment: .topLeading)
       .overlay(labelStack, alignment: .bottomLeading)
-      .onTapGesture(perform: increase)
+      .onTap(perform: increase)
+      .buttonStyle(.plain)
       .contextMenu { contextMenuContent }
       .navigationLink(editScreen, $showEditingScreen)
       .alert(isPresented: $showDeletingAlert) { .deleteAlert(action: delete) }
@@ -65,6 +66,7 @@ struct BehaviourCard: View {
         .fontWeight(.bold)
         .font(.system(.caption, design: .rounded))
         .lineLimit(2)
+        .multilineTextAlignment(.leading)
     }
     .foregroundColor(.isDarkMode ? .white : WindColor.zinc.c700)
     .padding(.s3)
@@ -79,7 +81,6 @@ struct BehaviourCard: View {
     )
   }
   
-  @ViewBuilder
   var background: some View {
     VerticalLinearGradient(colors: [
       .isDarkMode ? WindColor.zinc.c600 : WindColor.zinc.c100,

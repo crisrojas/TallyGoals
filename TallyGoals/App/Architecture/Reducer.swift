@@ -21,6 +21,11 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   case .loadBehaviours(let result):
     switch result {
     case .success(let behaviours):
+      
+    if behaviours.isEmpty {
+      state.behaviourState = .empty
+      return .none
+    }
      state.behaviourState =  .success(behaviours)
     case .failure(let error):
       state.behaviourState = .error(error.localizedDescription)
@@ -109,6 +114,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     
   case .toggleTabbar:
     state.tabbarIsHidden = !state.tabbarIsHidden
+    return .none
+    
+  case .setOverlay(let overlay):
+    state.overlay = overlay
     return .none
   }
 }

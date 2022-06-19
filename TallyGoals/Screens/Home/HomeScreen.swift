@@ -18,52 +18,37 @@ struct HomeScreen: View {
         case .idle, .loading:
           progressView(viewStore: viewStore)
         case .success(let model):
+          
+          
           DefaultVStack {
-           
-//            EmojiField("", text: $emoji)
-
-            DefaultVStack {
-//              Text("Pinned")
-//                .font(.system(.subheadline, design: .rounded))
-//                .fontWeight(.bold)
-//                .alignX(.leading)
-//            b  .horizontal(.horizontal)
-
-              BehaviourGrid(
-                model: model.pinnedFilter,
-                store: store
-              )
-//              .top(.s4)
-            }
+            
+            BehaviourGrid(
+              model: model.pinnedFilter,
+              store: store
+            )
             .top(.s6)
             .displayIf(model.pinnedFilter.isNotEmpty)
             
-//            Text("List")
-//              .font(.system(.subheadline, design: .rounded))
-//              .fontWeight(.bold)
-//              .alignX(.leading)
-//              .horizontal(.horizontal)
-//              .displayIf(
-//                model.pinnedFilter.isNotEmpty &&
-//                model.defaultFilter.isNotEmpty
-//              )
-//              .top(.s6)
-
-            LazyVStack(spacing: 0) {
-              ForEach(model.defaultFilter) { item in
-                BehaviourRow(
-                  model: item,
-                  viewStore: viewStore
-                )
+              LazyVStack(spacing: 0) {
+                ForEach(model.defaultFilter) { item in
+                  BehaviourRow(
+                    model: item,
+                    viewStore: viewStore
+                  )
+                }
               }
-            }
-            .background(Color.behaviourRowBackground)
-            .top(model.pinnedFilter.isEmpty ? .zero : .s4)
-            .bottom(.s6)
-            .animation(.easeInOut, value: model.defaultFilter)
+              .background(Color.behaviourRowBackground)
+              .top(model.pinnedFilter.isEmpty ? .zero : .s4)
+              .bottom(.s6)
+              .animation(.easeInOut, value: model.defaultFilter)
+            
+            
           }
           .scrollify()
           .onTapDismissKeyboard()
+          .overlay(
+            emptyView.displayIf(model.defaultFilter.isEmpty && model.pinnedFilter.count <= 3)
+          )
           
         case .empty:
           emptyView
@@ -73,10 +58,10 @@ struct HomeScreen: View {
       }
       .toolbar {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
-            Image(systemName: "plus")
-              .onTap {
-                AddScreen(store: store)
-              }
+          Image(systemName: "plus")
+            .onTap {
+              AddScreen(store: store)
+            }
         }
       }
     }
@@ -96,7 +81,7 @@ private extension HomeScreen {
   }
   
   var emptyView: some View {
-    Text("No items")
+    ListEmptyView(symbol: "house")
   }
 }
 

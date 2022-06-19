@@ -18,13 +18,13 @@ struct PagerIndexView: View {
       ForEach(0...maxIndex) { index in
         let isSelected = currentIndex == index
         Circle()
-          .size(.s1)
+          .size(isSelected ? .s1h : .s1)
           .foregroundColor(isSelected ? .white : foregroundColor)
           .animation(.easeInOut, value: isSelected)
       }
     }
     .padding(.s1)
-    .background(background.cornerRadius(999))
+//    .background(background.cornerRadius(999))
     .animation(.easeInOut, value: maxIndex)
   }
   

@@ -38,35 +38,52 @@ struct SparkSwipeActionModifier: ViewModifier {
     #endif
   }
   
+  @ViewBuilder
   var leadingGestures: some View {
-    let initOffset = -.s6 + offset
-    let treasholdReached = initOffset > .s3
-    return ZStack {
-      ForEach(0...leading.count - 1) { index in
-        let isCurrent = index == currentLeadingIndex
-        let item = leading[index]
-        item.backgroundColor
-        .opacity(treasholdReached ? 1 : 0)
-        .opacity(isCurrent ? 1 : 0)
-        .animation(.easeInOut(duration: 0.3), value: isCurrent)
+
+    if leading.isEmpty {
+      EmptyView()
+    } else {
+      
+      let initOffset = -.s6 + offset
+      let treasholdReached = initOffset > .s3
+      
+      ZStack {
+        ForEach(0...leading.count - 1) { index in
+          let isCurrent = index == currentLeadingIndex
+          let item = leading[index]
+          item.backgroundColor
+            .opacity(treasholdReached ? 1 : 0)
+            .opacity(isCurrent ? 1 : 0)
+            .animation(.easeInOut(duration: 0.3), value: isCurrent)
+        }
+        .overlay(leadingGestureLabels, alignment: .leading)
       }
-      .overlay(leadingGestureLabels, alignment: .leading)
     }
   }
   
+  @ViewBuilder
   var trailingGestures: some View {
-    let initOffset = .s6 + offset
-    let treasholdReached = initOffset < -.s3
-    return ZStack {
-      ForEach(0...trailing.count - 1) { index in
-        let isCurrent = index == currentTrailingIndex
-        let item = trailing[index]
-        item.backgroundColor
-        .opacity(treasholdReached ? 1 : 0)
-        .opacity(isCurrent ? 1 : 0)
-        .animation(.easeInOut(duration: 0.3), value: isCurrent)
+   
+    if trailing.isEmpty {
+      EmptyView()
+    } else {
+      
+      
+      let initOffset = .s6 + offset
+      let treasholdReached = initOffset < -.s3
+      
+      ZStack {
+        ForEach(0...trailing.count - 1) { index in
+          let isCurrent = index == currentTrailingIndex
+          let item = trailing[index]
+          item.backgroundColor
+          .opacity(treasholdReached ? 1 : 0)
+          .opacity(isCurrent ? 1 : 0)
+          .animation(.easeInOut(duration: 0.3), value: isCurrent)
+        }
+        .overlay(trailingGestureLabels, alignment: .trailing)
       }
-      .overlay(trailingGestureLabels, alignment: .trailing)
     }
   }
   

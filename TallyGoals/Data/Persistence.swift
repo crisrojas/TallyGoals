@@ -212,18 +212,18 @@ struct PersistenceController {
       ),
     ]
     
-    initBehaviours.forEach { behaviour in
-      let entity = BehaviourEntity(context: viewContext)
-      entity.emoji = behaviour.emoji
-      entity.name = behaviour.name
-      entity.archived = behaviour.archived
-      entity.favorite = behaviour.favorite
-      entity.pinned = behaviour.pinned
-      entity.color = Int16(behaviour.color)
-      viewContext.perform {
-        try! viewContext.save()
-      }
-    }
+//    initBehaviours.forEach { behaviour in
+//      let entity = BehaviourEntity(context: viewContext)
+//      entity.emoji = behaviour.emoji
+//      entity.name = behaviour.name
+//      entity.archived = behaviour.archived
+//      entity.favorite = behaviour.favorite
+//      entity.pinned = behaviour.pinned
+//      entity.color = Int16(behaviour.color)
+//      viewContext.perform {
+//        try! viewContext.save()
+//      }
+//    }
     
     return result
   }()

@@ -16,15 +16,24 @@ struct BehaviourRow: View {
   @State var showDeletingAlert = false
   
   let model: Behaviour
+  let archived: Bool
   let viewStore: AppViewStore
+ 
+  init(model: Behaviour, archived: Bool = false, viewStore: AppViewStore) {
+    self.model = model
+    self.viewStore = viewStore
+    self.archived = archived
+  }
+  
   
   var body: some View {
     
     rowCell
       .background(Color.behaviourRowBackground)
       .navigationLink(editScreen, $showEditScreen)
-      .sparkSwipeActions(leading: leadingActions, trailing: trailingActions)
-      .onTapGesture(perform: increase)
+      .sparkSwipeActions(leading: archived ? [] : leadingActions, trailing: trailingActions)
+      .onTap(perform: increase)
+      .buttonStyle(.plain)
       .alert(isPresented: $showDeletingAlert) { .deleteAlert(action: delete) }
   }
   
@@ -33,6 +42,7 @@ struct BehaviourRow: View {
       
       Text(model.emoji)
         .font(.caption2)
+        .grayscale(archived ? 1 : 0)
       
       Text(model.count.string)
         .font(.system(.largeTitle, design: .rounded))
@@ -86,7 +96,7 @@ private extension BehaviourRow {
         backgroundColor: .red500
       ),
       SwipeAction(
-        label: "Archivar",
+        label: archived ? "Desarchivar" : "Archivar",
         systemSymbol: "archivebox",
         action: archive,
         backgroundColor: .orange400
@@ -102,8 +112,7 @@ private extension BehaviourRow {
       viewStore: viewStore,
       item: model,
       emoji: model.emoji,
-      name: model.name,
-      count: model.count
+      name: model.name
     )
   }
 
@@ -121,6 +130,7 @@ private extension BehaviourRow {
   func increase() {
     vibrate()
     withAnimation {
+      guard !archived else { return }
       viewStore.send(.addEntry(behaviour: model.id))
     }
   }
@@ -146,7 +156,7 @@ private extension BehaviourRow {
   }
   
   func archive() {
-    viewStore.send(.updateArchive(id: model.id, archive: true))
+    viewStore.send(.updateArchive(id: model.id, archive: !archived))
   }
   
   func delete() {

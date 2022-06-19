@@ -51,4 +51,6 @@ enum AppAction {
   case updatePinnedPage(index: Int)
   
   case toggleTabbar
+  
+  case setOverlay(overlay: Overlay?)
 }

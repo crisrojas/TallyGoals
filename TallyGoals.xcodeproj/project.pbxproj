@@ -56,7 +56,7 @@
 		5497D04D28413A1F003E2B43 /* ArchivedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04228413A1E003E2B43 /* ArchivedScreen.swift */; };
 		5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04328413A1E003E2B43 /* FavoriteScreen.swift */; };
 		5497D05028413A1F003E2B43 /* LegacyBehaviourCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04528413A1E003E2B43 /* LegacyBehaviourCard.swift */; };
-		5497D05128413A1F003E2B43 /* BehaviourEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04628413A1E003E2B43 /* BehaviourEdit.swift */; };
+		5497D05128413A1F003E2B43 /* BehaviourEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04628413A1E003E2B43 /* BehaviourEditScreen.swift */; };
 		5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04728413A1E003E2B43 /* Tabbar.swift */; };
 		5497D05328413A1F003E2B43 /* LegacyBehaviourCaroussel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04828413A1E003E2B43 /* LegacyBehaviourCaroussel.swift */; };
 		5497D05428413A1F003E2B43 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D04928413A1F003E2B43 /* HomeScreen.swift */; };
@@ -66,6 +66,11 @@
 		5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D06728414D44003E2B43 /* BehaviourRow.swift */; };
 		54D29DDC2858E34800BFFFDE /* SequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D29DDB2858E34800BFFFDE /* SequenceCard.swift */; };
 		54D29DDF28590C6500BFFFDE /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 54D29DDE28590C6500BFFFDE /* Introspect */; };
+		54ED28E9285F5F5900A14F71 /* BindingPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */; };
+		54ED28EB285F5F7700A14F71 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EA285F5F7700A14F71 /* Presets.swift */; };
+		54ED28ED285F5FB500A14F71 /* PresetCategoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */; };
+		54ED28EF285F5FCA00A14F71 /* ExplorePresetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EE285F5FCA00A14F71 /* ExplorePresetCard.swift */; };
+		54ED28F1285F5FE200A14F71 /* PresetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28F0285F5FE200A14F71 /* PresetRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +139,7 @@
 		5497D04228413A1E003E2B43 /* ArchivedScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivedScreen.swift; sourceTree = "<group>"; };
 		5497D04328413A1E003E2B43 /* FavoriteScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteScreen.swift; sourceTree = "<group>"; };
 		5497D04528413A1E003E2B43 /* LegacyBehaviourCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyBehaviourCard.swift; sourceTree = "<group>"; };
-		5497D04628413A1E003E2B43 /* BehaviourEdit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourEdit.swift; sourceTree = "<group>"; };
+		5497D04628413A1E003E2B43 /* BehaviourEditScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourEditScreen.swift; sourceTree = "<group>"; };
 		5497D04728413A1E003E2B43 /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		5497D04828413A1E003E2B43 /* LegacyBehaviourCaroussel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyBehaviourCaroussel.swift; sourceTree = "<group>"; };
 		5497D04928413A1F003E2B43 /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -143,6 +148,11 @@
 		5497D05C28414713003E2B43 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		5497D06728414D44003E2B43 /* BehaviourRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourRow.swift; sourceTree = "<group>"; };
 		54D29DDB2858E34800BFFFDE /* SequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceCard.swift; sourceTree = "<group>"; };
+		54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingPressStyle.swift; sourceTree = "<group>"; };
+		54ED28EA285F5F7700A14F71 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
+		54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCategoryDetailScreen.swift; sourceTree = "<group>"; };
+		54ED28EE285F5FCA00A14F71 /* ExplorePresetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplorePresetCard.swift; sourceTree = "<group>"; };
+		54ED28F0285F5FE200A14F71 /* PresetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +189,9 @@
 			isa = PBXGroup;
 			children = (
 				5413EA06285791AE0096E821 /* ExploreScreen.swift */,
+				54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */,
+				54ED28EE285F5FCA00A14F71 /* ExplorePresetCard.swift */,
+				54ED28F0285F5FE200A14F71 /* PresetRow.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -302,7 +315,7 @@
 		5448F9A7284A2E9100A7116A /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				5497D04628413A1E003E2B43 /* BehaviourEdit.swift */,
+				5497D04628413A1E003E2B43 /* BehaviourEditScreen.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -421,6 +434,7 @@
 			children = (
 				5497D0362841399B003E2B43 /* Entry.swift */,
 				5497D03C284139F1003E2B43 /* Behaviour.swift */,
+				54ED28EA285F5F7700A14F71 /* Presets.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -452,6 +466,7 @@
 				5448F99A284A2AC400A7116A /* EmojiField.swift */,
 				5448F9682849BCC700A7116A /* PagerIndexView.swift */,
 				5448F99C284A2AFF00A7116A /* toDo */,
+				54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -637,6 +652,7 @@
 				5448F971284A1A1300A7116A /* Aliases.swift in Sources */,
 				5497D03D284139F1003E2B43 /* Behaviour.swift in Sources */,
 				5497D04A28413A1F003E2B43 /* BehaviourGrid.swift in Sources */,
+				54ED28EF285F5FCA00A14F71 /* ExplorePresetCard.swift in Sources */,
 				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,
 				5448F993284A27F300A7116A /* Manager.swift in Sources */,
 				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
@@ -648,7 +664,9 @@
 				5448F96B284A198100A7116A /* State.swift in Sources */,
 				5497D0372841399B003E2B43 /* Entry.swift in Sources */,
 				5448F97A284A201100A7116A /* UINavigationBar.swift in Sources */,
+				54ED28ED285F5FB500A14F71 /* PresetCategoryDetailScreen.swift in Sources */,
 				5497D0352841396D003E2B43 /* Reducer.swift in Sources */,
+				54ED28E9285F5F5900A14F71 /* BindingPressStyle.swift in Sources */,
 				5448F978284A1B6500A7116A /* SimpleAction.swift in Sources */,
 				5497D04D28413A1F003E2B43 /* ArchivedScreen.swift in Sources */,
 				5448F995284A284C00A7116A /* SwipeActionModifier.swift in Sources */,
@@ -658,6 +676,7 @@
 				5497D04C28413A1F003E2B43 /* GoalsScreen.swift in Sources */,
 				5497D03B284139E0003E2B43 /* BehaviourState.swift in Sources */,
 				5497D05328413A1F003E2B43 /* LegacyBehaviourCaroussel.swift in Sources */,
+				54ED28EB285F5F7700A14F71 /* Presets.swift in Sources */,
 				5448F9642848F10400A7116A /* SwipeActions.swift in Sources */,
 				5497D05828413A5D003E2B43 /* Extensions.swift in Sources */,
 				5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */,
@@ -675,10 +694,11 @@
 				5497D00928412F68003E2B43 /* TallyGoals.xcdatamodeld in Sources */,
 				541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */,
 				5448F9A5284A2E0A00A7116A /* BehaviourCard.swift in Sources */,
-				5497D05128413A1F003E2B43 /* BehaviourEdit.swift in Sources */,
+				5497D05128413A1F003E2B43 /* BehaviourEditScreen.swift in Sources */,
 				5497D04B28413A1F003E2B43 /* AddScreen.swift in Sources */,
 				541990282843AF210066A5CE /* ShakeEffect.swift in Sources */,
 				5448F991284A279C00A7116A /* SparkSwipeActionModifier.swift in Sources */,
+				54ED28F1285F5FE200A14F71 /* PresetRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

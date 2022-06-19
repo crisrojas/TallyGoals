@@ -12,6 +12,20 @@ extension Text {
   }
 }
 
+extension Text {
+  
+  func roundedFont(_ style: Font.TextStyle) -> Text {
+    self.font(.system(style, design: .rounded))
+  }
+}
+
+extension View {
+  func roundedFont(_ style: Font.TextStyle) -> some View {
+    self.font(.system(style, design: .rounded))
+  }
+}
+
+
 extension String: Identifiable {
   public var id: String { self }
 }

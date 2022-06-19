@@ -17,38 +17,22 @@ struct ArchivedScreen: View {
         if model.isEmpty {
           ListEmptyView(symbol: "archivebox")
         } else { 
-          List(model) { item in
-            ListRow(
-              store: store, 
-              item: item,
-              archive: true
-            )
-              .allowsHitTesting(false)
-              .swipeActions {
-                Label("Unarchive", systemImage: "archivebox")
-                  .onTap { 
-                    withAnimation(.default) {
-                      viewStore.send(.updateArchive(
-                        id: item.id,
-                        archive: false
-                      ))
-                    }
-                  }
-                  .tint(.gray)
-                
-                Button(role: .destructive) {
-                  withAnimation { 
-                    viewStore.send(.deleteBehaviour(id: item.id))
-                  }
-                } label: {
-                  Label("Delete", systemImage: "trash.fill")
-                }
-              }
+          LazyVStack {
+            ForEach(model) { item in
+              BehaviourRow(
+                model: item,
+                archived: true,
+                viewStore: viewStore
+              )
+            }
+            
+            Spacer()
           }
-          .navigationTitle("Archived")
+        
+          .scrollify()
         }
       case .empty:
-        Text("No items yet")
+        ListEmptyView(symbol: "archivebox")
       case .error(let message):
         Text(message)
       }

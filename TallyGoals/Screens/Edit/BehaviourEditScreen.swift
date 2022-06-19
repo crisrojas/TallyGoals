@@ -9,11 +9,10 @@ struct BehaviourEditScreen: View {
   
   @State var emoji: String
   @State var name: String
-  @State var count: Int = .zero
   
   var body: some View {
-//    WithViewStore(store) { viewStore in
       VStack {
+      
         Form { 
           
           Section { 
@@ -22,35 +21,7 @@ struct BehaviourEditScreen: View {
                 emoji = String(newValue.prefix(1))
               }
             TextField("", text: $name)
-          } footer: { 
-            HStack(spacing: 12) {
-              Spacer()
-              Text(count.string)
-                .font(.caption)
-              HStack {
-                Text("-")
-                  .onTap {
-                    guard count > 0 else { return }
-                    count -= 1
-                  }
-                Divider()
-                  .accentColor(Color.blue100)
-                Text("+")
-                  .onTap {
-                    count += 1
-                  }
-              }
-              .height(20)
-              .horizontal(8)
-              .foregroundColor(Color.blue500)
-              .background(Color.blue100.cornerRadius(10))
-            }
           }
-          
-          
-          
-          
-          
         }
         
       }
@@ -70,7 +41,6 @@ struct BehaviourEditScreen: View {
             emoji == item.emoji && name == item.name
           )
       }
-//    }
   }
   
   func pop() {
