@@ -32,10 +32,9 @@ struct BehaviourEditScreen: View {
               .updateBehaviour(
                 id: item.id, 
                 emoji: emoji,
-                name: name,
-                completion: pop
-              )
-            )
+                name: name
+              ))
+            pop()
           }
           .disabled(
             emoji == item.emoji && name == item.name

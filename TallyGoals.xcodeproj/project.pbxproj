@@ -39,9 +39,7 @@
 		5497D00428412F68003E2B43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5497D00328412F68003E2B43 /* Preview Assets.xcassets */; };
 		5497D00628412F68003E2B43 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D00528412F68003E2B43 /* Persistence.swift */; };
 		5497D00928412F68003E2B43 /* TallyGoals.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5497D00728412F68003E2B43 /* TallyGoals.xcdatamodeld */; };
-		5497D01328412F68003E2B43 /* TallyGoalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01228412F68003E2B43 /* TallyGoalsTests.swift */; };
-		5497D01D28412F68003E2B43 /* TallyGoalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */; };
-		5497D01F28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */; };
+		5497D01328412F68003E2B43 /* BehaviourRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D01228412F68003E2B43 /* BehaviourRepository.swift */; };
 		5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02C28412FAE003E2B43 /* ComposableArchitecture */; };
 		5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D02F28412FC8003E2B43 /* SwiftWind */; };
 		5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */ = {isa = PBXBuildFile; productRef = 5497D03228412FD8003E2B43 /* SwiftUItilities */; };
@@ -64,8 +62,8 @@
 		5497D05828413A5D003E2B43 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05728413A5D003E2B43 /* Extensions.swift */; };
 		5497D065284147FD003E2B43 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D05C28414713003E2B43 /* Container.swift */; };
 		5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D06728414D44003E2B43 /* BehaviourRow.swift */; };
+		54CEF5B5286785EA00F86D55 /* OtherStateActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEF5B4286785EA00F86D55 /* OtherStateActionsTests.swift */; };
 		54D29DDC2858E34800BFFFDE /* SequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D29DDB2858E34800BFFFDE /* SequenceCard.swift */; };
-		54D29DDF28590C6500BFFFDE /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 54D29DDE28590C6500BFFFDE /* Introspect */; };
 		54ED28E9285F5F5900A14F71 /* BindingPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */; };
 		54ED28EB285F5F7700A14F71 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EA285F5F7700A14F71 /* Presets.swift */; };
 		54ED28ED285F5FB500A14F71 /* PresetCategoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */; };
@@ -75,13 +73,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		5497D00F28412F68003E2B43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5497CFF128412F66003E2B43 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5497CFF828412F66003E2B43;
-			remoteInfo = TallyGoals;
-		};
-		5497D01928412F68003E2B43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5497CFF128412F66003E2B43 /* Project object */;
 			proxyType = 1;
@@ -124,10 +115,7 @@
 		5497D00528412F68003E2B43 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		5497D00828412F68003E2B43 /* TallyGoals.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TallyGoals.xcdatamodel; sourceTree = "<group>"; };
 		5497D00E28412F68003E2B43 /* TallyGoalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallyGoalsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5497D01228412F68003E2B43 /* TallyGoalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsTests.swift; sourceTree = "<group>"; };
-		5497D01828412F68003E2B43 /* TallyGoalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallyGoalsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITests.swift; sourceTree = "<group>"; };
-		5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGoalsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5497D01228412F68003E2B43 /* BehaviourRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourRepository.swift; sourceTree = "<group>"; };
 		5497D0342841396D003E2B43 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		5497D0362841399B003E2B43 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		5497D038284139AC003E2B43 /* BehaviourRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourRepository.swift; sourceTree = "<group>"; };
@@ -147,6 +135,7 @@
 		5497D05728413A5D003E2B43 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5497D05C28414713003E2B43 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		5497D06728414D44003E2B43 /* BehaviourRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourRow.swift; sourceTree = "<group>"; };
+		54CEF5B4286785EA00F86D55 /* OtherStateActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherStateActionsTests.swift; sourceTree = "<group>"; };
 		54D29DDB2858E34800BFFFDE /* SequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceCard.swift; sourceTree = "<group>"; };
 		54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingPressStyle.swift; sourceTree = "<group>"; };
 		54ED28EA285F5F7700A14F71 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
@@ -162,20 +151,12 @@
 			files = (
 				5497D03028412FC8003E2B43 /* SwiftWind in Frameworks */,
 				5497D02D28412FAE003E2B43 /* ComposableArchitecture in Frameworks */,
-				54D29DDF28590C6500BFFFDE /* Introspect in Frameworks */,
 				5448F967284937AE00A7116A /* Algorithms in Frameworks */,
 				5497D03328412FD8003E2B43 /* SwiftUItilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5497D00B28412F68003E2B43 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5497D01528412F68003E2B43 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,7 +323,6 @@
 				5419902D2843B1680066A5CE /* README.md */,
 				5497CFFB28412F66003E2B43 /* TallyGoals */,
 				5497D01128412F68003E2B43 /* TallyGoalsTests */,
-				5497D01B28412F68003E2B43 /* TallyGoalsUITests */,
 				5497CFFA28412F66003E2B43 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -352,7 +332,6 @@
 			children = (
 				5497CFF928412F66003E2B43 /* TallyGoals.app */,
 				5497D00E28412F68003E2B43 /* TallyGoalsTests.xctest */,
-				5497D01828412F68003E2B43 /* TallyGoalsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,18 +364,10 @@
 		5497D01128412F68003E2B43 /* TallyGoalsTests */ = {
 			isa = PBXGroup;
 			children = (
-				5497D01228412F68003E2B43 /* TallyGoalsTests.swift */,
+				5497D01228412F68003E2B43 /* BehaviourRepository.swift */,
+				54CEF5B4286785EA00F86D55 /* OtherStateActionsTests.swift */,
 			);
 			path = TallyGoalsTests;
-			sourceTree = "<group>";
-		};
-		5497D01B28412F68003E2B43 /* TallyGoalsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5497D01C28412F68003E2B43 /* TallyGoalsUITests.swift */,
-				5497D01E28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift */,
-			);
-			path = TallyGoalsUITests;
 			sourceTree = "<group>";
 		};
 		5497D03E28413A17003E2B43 /* Screens */ = {
@@ -522,7 +493,6 @@
 				5497D02F28412FC8003E2B43 /* SwiftWind */,
 				5497D03228412FD8003E2B43 /* SwiftUItilities */,
 				5448F966284937AE00A7116A /* Algorithms */,
-				54D29DDE28590C6500BFFFDE /* Introspect */,
 			);
 			productName = TallyGoals;
 			productReference = 5497CFF928412F66003E2B43 /* TallyGoals.app */;
@@ -546,24 +516,6 @@
 			productReference = 5497D00E28412F68003E2B43 /* TallyGoalsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		5497D01728412F68003E2B43 /* TallyGoalsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5497D02828412F68003E2B43 /* Build configuration list for PBXNativeTarget "TallyGoalsUITests" */;
-			buildPhases = (
-				5497D01428412F68003E2B43 /* Sources */,
-				5497D01528412F68003E2B43 /* Frameworks */,
-				5497D01628412F68003E2B43 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5497D01A28412F68003E2B43 /* PBXTargetDependency */,
-			);
-			name = TallyGoalsUITests;
-			productName = TallyGoalsUITests;
-			productReference = 5497D01828412F68003E2B43 /* TallyGoalsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -578,10 +530,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 					};
 					5497D00D28412F68003E2B43 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 5497CFF828412F66003E2B43;
-					};
-					5497D01728412F68003E2B43 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 5497CFF828412F66003E2B43;
 					};
@@ -609,7 +557,6 @@
 			targets = (
 				5497CFF828412F66003E2B43 /* TallyGoals */,
 				5497D00D28412F68003E2B43 /* TallyGoalsTests */,
-				5497D01728412F68003E2B43 /* TallyGoalsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -626,13 +573,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5497D00C28412F68003E2B43 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5497D01628412F68003E2B43 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -706,16 +646,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5497D01328412F68003E2B43 /* TallyGoalsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5497D01428412F68003E2B43 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5497D01F28412F68003E2B43 /* TallyGoalsUITestsLaunchTests.swift in Sources */,
-				5497D01D28412F68003E2B43 /* TallyGoalsUITests.swift in Sources */,
+				54CEF5B5286785EA00F86D55 /* OtherStateActionsTests.swift in Sources */,
+				5497D01328412F68003E2B43 /* BehaviourRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,11 +658,6 @@
 			isa = PBXTargetDependency;
 			target = 5497CFF828412F66003E2B43 /* TallyGoals */;
 			targetProxy = 5497D00F28412F68003E2B43 /* PBXContainerItemProxy */;
-		};
-		5497D01A28412F68003E2B43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5497CFF828412F66003E2B43 /* TallyGoals */;
-			targetProxy = 5497D01928412F68003E2B43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -951,42 +878,6 @@
 			};
 			name = Release;
 		};
-		5497D02928412F68003E2B43 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V73WZ9Y4HH;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.sperantia.TallyGoalsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TallyGoals;
-			};
-			name = Debug;
-		};
-		5497D02A28412F68003E2B43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V73WZ9Y4HH;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.sperantia.TallyGoalsUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TallyGoals;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1013,15 +904,6 @@
 			buildConfigurations = (
 				5497D02628412F68003E2B43 /* Debug */,
 				5497D02728412F68003E2B43 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5497D02828412F68003E2B43 /* Build configuration list for PBXNativeTarget "TallyGoalsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5497D02928412F68003E2B43 /* Debug */,
-				5497D02A28412F68003E2B43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1091,11 +973,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */;
 			productName = SwiftUItilities;
-		};
-		54D29DDE28590C6500BFFFDE /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 54D29DDD28590C6500BFFFDE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 

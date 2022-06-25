@@ -8,49 +8,35 @@
 import ComposableArchitecture
 import CoreData
 
-enum AppAction {
-  
+enum AppAction: Equatable {
+
   // MARK: - CRUD Behaviours
   case createBehaviour(
+    id: UUID,
     emoji: String,
-    name: String,
-    completion: (() -> Void)?
+    name: String
   )
   
   case readBehaviours
-  case loadBehaviours(result: Result<[Behaviour], Error>)
+  case makeBehaviourState(_ state: BehaviourState)
   
   case updateBehaviour(
-    id: NSManagedObjectID,
+    id: UUID,
     emoji: String,
-    name: String,
-    completion: (() -> Void)?
+    name: String
   )
   
-  case archive(id: NSManagedObjectID)
-  case unarchive(id: NSManagedObjectID)
+  case updateFavorite(id: UUID, favorite: Bool)
+  case updateArchive(id: UUID, archive: Bool)
+  case updatePinned(id: UUID, pinned: Bool)
   
-  case updateFavorite(id: NSManagedObjectID, favorite: Bool)
-  case updateArchive(id: NSManagedObjectID, archive: Bool)
-  case updatePinned(id: NSManagedObjectID, pinned: Bool)
-  
-  case deleteBehaviour(id: NSManagedObjectID)
+  case deleteBehaviour(id: UUID)
   
   // MARK: CRUD Entries
-  case addEntry(behaviour: NSManagedObjectID)
-  case deleteEntry(behaviour: NSManagedObjectID)
-  
-  case toggleAdding(value: Bool)
-  
-  case startEditingPinned
-  case stopEditingPinned
-  
-  case toggleEditingMode(value: Bool)
-  case startSwipe(id: NSManagedObjectID?)
-  
-  case updatePinnedPage(index: Int)
-  
-  case toggleTabbar
+  case addEntry(behaviour: UUID)
+  case deleteEntry(behaviour: UUID)
   
   case setOverlay(overlay: Overlay?)
 }
+
+// @todo: comments

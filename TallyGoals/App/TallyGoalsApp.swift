@@ -12,9 +12,6 @@ import SwiftUI
 /*
  
  @todo: Translate presets to french
- @todo: Add unit tests
- @todo: Clean project a bit from legacy code (like listrow)
- @todo: Test on iphone SE
  @todo: Test light mode
  */
 
@@ -124,9 +121,9 @@ struct OnboardingScreen: View {
         
         Text("En ce faisant, vous:")
         .roundedFont(.headline)
-        Text("1. Prennez conscience du comportement et des situations et opportunités pour le manifester")
+        Text("1. Prenez conscience du comportement, des situations et des opportunités pour l'adopter")
         .top(.s4)
-        Text("2. Obtenez la recompense de voir le compteur s'incrementer et avec une source de motivation pour continuer a l'adopter")
+        Text("2. Obtenez la satisfaction d'incrementer le compteur")
         .top(.s1)
         
         Text("Compris")
@@ -160,3 +157,4 @@ struct OnboardingScreen: View {
     //      .onTap { showOnboarding = false }
   }
 }
+

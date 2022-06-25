@@ -9,17 +9,8 @@ import CoreData
 import SwiftUI
 
 struct AppState: Equatable {
-  
-  var adding: Bool = true
-  var isEditingPinned: Bool = false
-  var isEditingMode: Bool = false
-  var entries: [Entry] = []
-  var goals: [Goal] = []
+ 
   var behaviourState: BehaviourState = .idle
-  var swipingBehaviourId: NSManagedObjectID?
-  var pinnedIndex = Int.zero
-  
-  var tabbarIsHidden = true
   
   var overlay: Overlay?
 }
@@ -27,3 +18,5 @@ struct AppState: Equatable {
 enum Overlay: Equatable {
   case exploreDetail(PresetCategory)
 }
+
+
