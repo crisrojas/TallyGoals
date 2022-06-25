@@ -17,6 +17,14 @@
          contextName = "closure #1 in closure #1 in closure #1 in BehaviourRepository.createEntity(for:):BehaviourRepository.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in variable initialization expression of appReducer:Reducer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "state">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SwipeManager.setSwipingId(_:):BehaviourRow.swift">
       </ContextState>
       <ContextState

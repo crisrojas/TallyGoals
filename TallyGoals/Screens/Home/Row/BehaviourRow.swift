@@ -31,7 +31,10 @@ struct BehaviourRow: View {
     rowCell
       .background(Color.behaviourRowBackground)
       .navigationLink(editScreen, $showEditScreen)
-      .sparkSwipeActions(leading: archived ? [] : leadingActions, trailing: trailingActions)
+      .sparkSwipeActions(
+        leading: archived ? [] : leadingActions,
+        trailing: trailingActions
+      )
       .onTap(perform: increase)
       .buttonStyle(.plain)
       .alert(isPresented: $showDeletingAlert) { .deleteAlert(action: delete) }
@@ -92,7 +95,7 @@ private extension BehaviourRow {
       SwipeAction(
         label: "Borrar",
         systemSymbol: "trash",
-        action: delete,
+        action: showAlert,
         backgroundColor: .red500
       ),
       SwipeAction(
@@ -160,6 +163,10 @@ private extension BehaviourRow {
   }
   
   func delete() {
+    viewStore.send(.deleteBehaviour(id: model.id))
+  }
+  
+  func showAlert() {
     showDeletingAlert = true
   }
 }

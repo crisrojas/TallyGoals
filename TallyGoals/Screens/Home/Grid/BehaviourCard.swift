@@ -27,7 +27,7 @@ struct BehaviourCard: View {
         .padding()
         , alignment: .topTrailing
       )
-      .overlay(chevronIcon, alignment: .topLeading)
+//      .overlay(chevronIcon, alignment: .topLeading)
       .overlay(labelStack, alignment: .bottomLeading)
       .onTap(perform: increase)
       .buttonStyle(.plain)
@@ -50,12 +50,12 @@ struct BehaviourCard: View {
     }
   }
   
-  var chevronIcon: some View {
-    Image(systemName: "chevron.right")
-    .foregroundColor(WindColor.gray.c400)
-    .padding(.s3)
-    .displayIf(viewStore.state.isEditingMode)
-  }
+//  var chevronIcon: some View {
+//    Image(systemName: "chevron.right")
+//    .foregroundColor(WindColor.gray.c400)
+//    .padding(.s3)
+//    .displayIf(viewStore.state.isEditingMode)
+//  }
   
   var labelStack: some View {
     DefaultVStack {

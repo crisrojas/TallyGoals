@@ -2,25 +2,19 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="BehaviourEntity" representedClassName="BehaviourEntity" syncable="YES" codeGenerationType="class">
         <attribute name="archived" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="emoji" optional="YES" attributeType="String"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="pinned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EntryEntity" inverseName="behaviour" inverseEntity="EntryEntity"/>
-        <relationship name="goals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="behaviour" inverseEntity="GoalEntity"/>
     </entity>
     <entity name="EntryEntity" representedClassName="EntryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="behaviour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BehaviourEntity" inverseName="entries" inverseEntity="BehaviourEntity"/>
     </entity>
-    <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="goal" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="behaviour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BehaviourEntity" inverseName="goals" inverseEntity="BehaviourEntity"/>
-    </entity>
     <elements>
-        <element name="BehaviourEntity" positionX="-63" positionY="-9" width="128" height="149"/>
+        <element name="BehaviourEntity" positionX="-63" positionY="-9" width="128" height="134"/>
         <element name="EntryEntity" positionX="-36" positionY="54" width="128" height="59"/>
-        <element name="GoalEntity" positionX="-54" positionY="45" width="128" height="59"/>
     </elements>
 </model>

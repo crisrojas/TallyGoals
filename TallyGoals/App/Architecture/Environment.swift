@@ -8,14 +8,14 @@
 import ComposableArchitecture
 
 struct AppEnvironment {
-  let mainQueue: AnySchedulerOf<DispatchQueue>
+//  let mainQueue: AnySchedulerOf<DispatchQueue>
   let behavioursRepository: BehaviourRepository
 }
 
 extension AppEnvironment {
   static var instance: AppEnvironment {
     .init(
-      mainQueue: .main,
+//      mainQueue: .main,
       behavioursRepository: container.behaviourRepository
     )
   }

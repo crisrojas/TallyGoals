@@ -68,7 +68,7 @@ struct SwipeActionModifier: ViewModifier {
   
   var leadingActions: some View {
    ZStack(alignment: .leading) {
-      ForEach(leading.reversed().indices) { index in
+     ForEach(leading.reversed().indices, id: \.self) { index in
         let action = leading.reversed()[index]
         let realIndex = leading.firstIndex(of: action)!
         let factor = (realIndex + 1).cgFloat

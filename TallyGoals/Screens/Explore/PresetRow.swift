@@ -24,14 +24,17 @@ struct PresetRow: View {
       .horizontal(.s3)
       .background(background.cornerRadius(.s60))
       .onTap {
-        viewStore.send(.createBehaviour(emoji: emoji, name: model.name, completion: addedCompletion))
+        viewStore.send(
+          .createBehaviour(
+            id: UUID(),
+            emoji: emoji,
+            name: model.name
+          )
+        )
+        added = true
       }
       .disabled(added)
       .animation(.spring(), value: added)
-  }
-  
-  func addedCompletion() {
-    added = true
   }
   
   @ViewBuilder

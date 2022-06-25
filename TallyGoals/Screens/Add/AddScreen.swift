@@ -22,11 +22,11 @@ struct AddScreen: View {
           .onTap {
             viewStore.send(
               .createBehaviour(
+                id: UUID(),
                 emoji: emoji, 
-                name: name,
-                completion: pop
-              )
-            )
+                name: name
+              ))
+            pop()
           }
           .disabled(
             emoji.isEmpty || name.isEmpty
