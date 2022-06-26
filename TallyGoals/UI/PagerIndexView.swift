@@ -18,13 +18,12 @@ struct PagerIndexView: View {
       ForEach(0...maxIndex) { index in
         let isSelected = currentIndex == index
         Circle()
-          .size(isSelected ? .s1h : .s1)
-          .foregroundColor(isSelected ? .white : foregroundColor)
+          .size(.s1)
+          .foregroundColor(foreground(isSelected: isSelected))
           .animation(.easeInOut, value: isSelected)
       }
     }
     .padding(.s1)
-//    .background(background.cornerRadius(999))
     .animation(.easeInOut, value: maxIndex)
   }
   
@@ -37,7 +36,11 @@ struct PagerIndexView: View {
     }
   }
   
-  var foregroundColor: Color {
-      WindColor.neutral.c500
+  func foreground(isSelected: Bool) -> Color {
+    if isSelected {
+      return WindColor.neutral.c500
+    } else {
+      return WindColor.neutral.c200
+    }
   }
 }

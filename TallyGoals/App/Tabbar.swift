@@ -47,10 +47,13 @@ struct Tabbar: View {
     switch viewStore.state.overlay {
     case .exploreDetail(let category):
       PresetCategoryDetailScreen(model: category, viewStore: viewStore)
+    case .error(let title, let message):
+      ErrorView(title: title, message: message, viewStore: viewStore)
     case .none:
       EmptyView()
     }
   }
 }
+
 
 // @todo: change each string

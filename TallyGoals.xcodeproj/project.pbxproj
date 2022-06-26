@@ -64,6 +64,8 @@
 		5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5497D06728414D44003E2B43 /* BehaviourRow.swift */; };
 		54CEF5B5286785EA00F86D55 /* OtherStateActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEF5B4286785EA00F86D55 /* OtherStateActionsTests.swift */; };
 		54D29DDC2858E34800BFFFDE /* SequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D29DDB2858E34800BFFFDE /* SequenceCard.swift */; };
+		54DBA187286878CD00DD50D9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA186286878CD00DD50D9 /* Error.swift */; };
+		54DBA18928687E9300DD50D9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18828687E9300DD50D9 /* ErrorView.swift */; };
 		54ED28E9285F5F5900A14F71 /* BindingPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */; };
 		54ED28EB285F5F7700A14F71 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EA285F5F7700A14F71 /* Presets.swift */; };
 		54ED28ED285F5FB500A14F71 /* PresetCategoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */; };
@@ -137,6 +139,8 @@
 		5497D06728414D44003E2B43 /* BehaviourRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviourRow.swift; sourceTree = "<group>"; };
 		54CEF5B4286785EA00F86D55 /* OtherStateActionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherStateActionsTests.swift; sourceTree = "<group>"; };
 		54D29DDB2858E34800BFFFDE /* SequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceCard.swift; sourceTree = "<group>"; };
+		54DBA186286878CD00DD50D9 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		54DBA18828687E9300DD50D9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingPressStyle.swift; sourceTree = "<group>"; };
 		54ED28EA285F5F7700A14F71 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCategoryDetailScreen.swift; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 				5497D0362841399B003E2B43 /* Entry.swift */,
 				5497D03C284139F1003E2B43 /* Behaviour.swift */,
 				54ED28EA285F5F7700A14F71 /* Presets.swift */,
+				54DBA186286878CD00DD50D9 /* Error.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 				5448F9682849BCC700A7116A /* PagerIndexView.swift */,
 				5448F99C284A2AFF00A7116A /* toDo */,
 				54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */,
+				54DBA18828687E9300DD50D9 /* ErrorView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,
 				5448F993284A27F300A7116A /* Manager.swift in Sources */,
 				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
+				54DBA18928687E9300DD50D9 /* ErrorView.swift in Sources */,
 				5448F96F284A19F000A7116A /* Environment.swift in Sources */,
 				5413EA07285791AE0096E821 /* ExploreScreen.swift in Sources */,
 				5448F99F284A2B1F00A7116A /* WindColors.swift in Sources */,
@@ -619,6 +626,7 @@
 				5448F9642848F10400A7116A /* SwipeActions.swift in Sources */,
 				5497D05828413A5D003E2B43 /* Extensions.swift in Sources */,
 				5497CFFD28412F66003E2B43 /* TallyGoalsApp.swift in Sources */,
+				54DBA187286878CD00DD50D9 /* Error.swift in Sources */,
 				5419902A2843AF3E0066A5CE /* Color.swift in Sources */,
 				5497D04E28413A1F003E2B43 /* FavoriteScreen.swift in Sources */,
 				5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */,

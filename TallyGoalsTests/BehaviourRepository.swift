@@ -10,28 +10,28 @@ import XCTest
 @testable import TallyGoals
 
 
-/*
- 
- Tests for:
- 
- - Behaviour Repository
- - Associated behaviour repository actions with reducer implementation
- */
-
+/// **Behaviour Repository:**
+/// - Tests each action of the architecture related to the Behaviour Repository
+/// - Indirectly test their implementations by the reducer.
+/// - Indirectly test CoreData by using a inMemory viewContext
 class BehaviourRepositoryTests: XCTestCase {
   
   var environment: AppEnvironment!
   
   override func setUpWithError() throws {
+    
+    /// Set environment on each test
     let inMemoryContext = PersistenceController(inMemory: true).container.viewContext
     let repository = BehaviourRepository(context: inMemoryContext)
     environment = AppEnvironment(behavioursRepository: repository)
   }
   
   override func tearDownWithError() throws {
+    /// Reset environment on each test
     environment = nil
   }
   
+  /// When fetching the database on first time, we should get an empty state (no behaviours)
   func testReadBehavioursOnFirstLaunch() {
     
     let store = TestStore(
@@ -40,11 +40,15 @@ class BehaviourRepositoryTests: XCTestCase {
       environment: environment
     )
     
-    
+    /// If we send the readBehaviours action,
+    /// That should mutate behaviourState from 'idle' to loading
     store.send(.readBehaviours) {
       $0.behaviourState = .loading
     }
     
+    /// Then, once the databaseFetched, we should:
+    /// - Receive an makeBehaviourState action
+    /// - Get an empty behaviourState
     store.receive(.makeBehaviourState(.empty)) {
       $0.behaviourState = .empty
     }
@@ -83,11 +87,6 @@ class BehaviourRepositoryTests: XCTestCase {
       $0.behaviourState = expectedBehaviourState
     }
   }
-  
-  private func wait() {
-    _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-  }
-  
   
   func testUpdateFavorite() {
     updateBehaviour(action: .favorite)
@@ -191,8 +190,6 @@ class BehaviourRepositoryTests: XCTestCase {
       $0.behaviourState = expectedFirstState
     }
     
-    
-    
     store.send(.deleteBehaviour(id: behaviour.id))
     
     wait()
@@ -226,7 +223,8 @@ class BehaviourRepositoryTests: XCTestCase {
       name: behaviour.name
     ))
     
-    wait()
+    wait(timeout: 0.05)
+    
     store.receive(.readBehaviours) {
       $0.behaviourState = .loading
     }
@@ -239,7 +237,9 @@ class BehaviourRepositoryTests: XCTestCase {
     expectedState = .success([behaviour])
     
     store.send(.addEntry(behaviour: behaviour.id))
+    
     wait()
+    
     store.receive(.readBehaviours) { $0.behaviourState = .loading}
     store.receive(.makeBehaviourState(expectedState)) {
       $0.behaviourState = expectedState
@@ -311,7 +311,7 @@ class BehaviourRepositoryTests: XCTestCase {
       count: 0
     )
     
-    let expectedFirstState = BehaviourState.success([behaviour])
+    var expectedState = BehaviourState.success([behaviour])
     
     let store = TestStore(
       initialState: AppState(),
@@ -324,52 +324,64 @@ class BehaviourRepositoryTests: XCTestCase {
       emoji: behaviour.emoji,
       name: behaviour.name
     ))
+    
     wait()
+    
     store.receive(.readBehaviours) {
       $0.behaviourState = .loading
     }
-    store.receive(.makeBehaviourState(expectedFirstState)) {
-      $0.behaviourState = expectedFirstState
+    
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
     }
     
     
     switch action {
     case .favorite:
       behaviour.favorite = true
-      let expectedSecondState = BehaviourState.success([behaviour])
+      expectedState = BehaviourState.success([behaviour])
       
       store.send(.updateFavorite(id: behaviour.id, favorite: true))
       wait()
       store.receive(.readBehaviours) {
         $0.behaviourState = .loading
       }
-      store.receive(.makeBehaviourState(expectedSecondState)) {
-        $0.behaviourState = expectedSecondState
+      store.receive(.makeBehaviourState(expectedState)) {
+        $0.behaviourState = expectedState
       }
     case .archive:
       behaviour.archived = true
-      let expectedSecondState = BehaviourState.success([behaviour])
+      expectedState = BehaviourState.success([behaviour])
       
       store.send(.updateArchive(id: behaviour.id, archive: true))
       wait()
       store.receive(.readBehaviours) {
         $0.behaviourState = .loading
       }
-      store.receive(.makeBehaviourState(expectedSecondState)) {
-        $0.behaviourState = expectedSecondState
+      store.receive(.makeBehaviourState(expectedState)) {
+        $0.behaviourState = expectedState
       }
     case .pin:
       behaviour.pinned = true
-      let expectedSecondState = BehaviourState.success([behaviour])
+      expectedState = BehaviourState.success([behaviour])
       
       store.send(.updatePinned(id: behaviour.id, pinned: true))
       wait()
       store.receive(.readBehaviours) {
         $0.behaviourState = .loading
       }
-      store.receive(.makeBehaviourState(expectedSecondState)) {
-        $0.behaviourState = expectedSecondState
+      store.receive(.makeBehaviourState(expectedState)) {
+        $0.behaviourState = expectedState
       }
     }
   }
+  
+  /// If test fail with the following error:
+  /// _"An effect returned for this action is still running. It must complete before the end of the test"_.
+  /// That means, that specific test needs some more time in order to wait for the returned action to finish running,
+  /// If that's the case you could override the default timeout (time to wait) argument by incrementing it a little
+  private func wait(timeout: Double = 0.001) {
+    _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: timeout)
+  }
+  
 }

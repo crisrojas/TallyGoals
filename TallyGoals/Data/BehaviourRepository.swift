@@ -11,75 +11,27 @@ final class BehaviourRepository {
     self.context = context
   }
   
-  func fetchBehaviours() -> Effect<[Behaviour], Error> {
+  func fetchBehaviours() -> Effect<[Behaviour], ErrorCase> {
     Deferred { [context] in
-      Future<[Behaviour], Error> { [context] promise in
-        
-//        context.perform {
+      Future<[Behaviour], ErrorCase> { [context] promise in
           do {
 
             let request: NSFetchRequest<BehaviourEntity> = BehaviourEntity.fetchRequest()
             let result: [BehaviourEntity] = try context.fetch(request)
-
-            let behaviours: [Behaviour?] = result.map { entity in
-              guard
-                let emoji = entity.emoji,
-                let name = entity.name,
-                let id = entity.id
-              else {
-                return nil
-              }
-
-              return Behaviour(
-                id: id,
-                emoji: emoji,
-                name: name,
-                pinned: entity.pinned,
-                archived: entity.archived,
-                favorite: entity.favorite,
-                count: entity.entries?.count ?? 0
-              )
-            }
-
-            promise(.success(behaviours.compactMap { $0 }))
+            let behaviours = try result.mapBehaviorsEntities()
+            promise(.success(behaviours))
 
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
       }
-      
     }
     .eraseToEffect()
   }
   
-  private func mapBehaviorsEntities(_ entities: [BehaviourEntity]) throws -> [Behaviour] {
-    
-    let behaviours: [Behaviour] = try entities.map { entity in
-      guard
-        let emoji = entity.emoji,
-        let name = entity.name,
-        let id = entity.id
-      else {
-        throw CustomError.fetchError
-      }
-
-      return Behaviour(
-        id: id,
-        emoji: emoji,
-        name: name,
-        pinned: entity.pinned,
-        archived: entity.archived,
-        favorite: entity.favorite,
-        count: entity.entries?.count ?? 0
-      )
-    }
-    
-    return behaviours
-  }
-  
-  func createBehaviour(id: UUID, emoji: String, name: String) -> Effect<Void, Error> {
+  func createBehaviour(id: UUID, emoji: String, name: String) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
             let entity = BehaviourEntity(context: context)
@@ -93,7 +45,7 @@ final class BehaviourRepository {
             try context.save()
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -101,9 +53,9 @@ final class BehaviourRepository {
     .eraseToEffect()
   }
   
-  func deleteBehaviour(id: UUID) -> Effect<Void, Error> {
+  func deleteBehaviour(id: UUID) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
             let idPredicate = NSPredicate(format: "id == %@", id as CVarArg)
@@ -112,12 +64,15 @@ final class BehaviourRepository {
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
-            // @todo safe unwrap
-            let object = try context.fetch(behaviourRequest).first!
+            guard let object = try context.fetch(behaviourRequest).first else {
+              promise(.failure(.notFoundEntity))
+              return
+            }
+            
             context.delete(object)
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -127,28 +82,31 @@ final class BehaviourRepository {
   
   func updateBehaviour
   (id: UUID, emoji: String, name: String)
-  -> Effect<Void, Error> {
+  -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
-//            let object = try context.existingObject(with: id)
+            
             let idPredicate = NSPredicate(format: "id == %@", id as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
-            // @todo safe unwrap
-            let object = try context.fetch(behaviourRequest).first!
+            guard let object = try context.fetch(behaviourRequest).first else {
+              promise(.failure(.notFoundEntity))
+              return
+            }
+            
             object.setValue(emoji, forKey: "emoji")
             object.setValue(name, forKey: "name")
             try context.save()
+            
             promise(.success(()))
+            
           } catch {
-            promise(.failure(error))
-            print(error.localizedDescription)
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -157,28 +115,28 @@ final class BehaviourRepository {
   }
   
   func updateArchived
-  (id: UUID, archived: Bool) -> Effect<Void, Error> {
+  (id: UUID, archived: Bool) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
-//            let object = try context.existingObject(with: id)
             let idPredicate = NSPredicate(format: "id == %@", id as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
-            // @todo safe unwrap
-            let object = try context.fetch(behaviourRequest).first!
+            guard let object = try context.fetch(behaviourRequest).first else {
+              promise(.failure(.notFoundEntity))
+              return
+            }
             object.setValue(archived, forKey: "archived")
             object.setValue(false, forKey: "favorite")
             object.setValue(false, forKey: "pinned")
             try context.save()
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -187,29 +145,28 @@ final class BehaviourRepository {
   }
   
   func updateFavorite
-  (id: UUID, favorite: Bool) -> Effect<Void, Error> {
+  (id: UUID, favorite: Bool) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
-//            let object = try context.existingObject(with: id)
             
             let idPredicate = NSPredicate(format: "id == %@", id as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
-            // @todo safe unwrap
-            let object = try context.fetch(behaviourRequest).first!
-           
+            guard let object = try context.fetch(behaviourRequest).first else {
+              promise(.failure(.notFoundEntity))
+              return
+            }
             
             object.setValue(favorite, forKey: "favorite")
             try context.save()
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -218,26 +175,26 @@ final class BehaviourRepository {
   }
   
   func updatePinned
-  (id: UUID, pinned: Bool) -> Effect<Void, Error> {
+  (id: UUID, pinned: Bool) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
-//            let object = try context.existingObject(with: id)
             let idPredicate = NSPredicate(format: "id == %@", id as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
-            // @todo safe unwrap
-            let object = try context.fetch(behaviourRequest).first!
+            guard let object = try context.fetch(behaviourRequest).first else {
+              promise(.failure(.notFoundEntity))
+              return
+            }
             object.setValue(pinned, forKey: "pinned")
             try context.save()
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -245,31 +202,22 @@ final class BehaviourRepository {
     .eraseToEffect()
   }
   
-  // @todo: The method doesn't work the first time usded
-  func createEntity(for behaviourId: UUID) -> Effect<Void, Error> {
+  func createEntity(for behaviourId: UUID) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           do {
-            
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
-            
             let idPredicate = NSPredicate(format: "id == %@", behaviourId as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
-            // @todo safe unwrap
-            let behaviour = try context.fetch(behaviourRequest).first!
+            guard let behaviour = try context.fetch(behaviourRequest).first else {
+              promise(.failure(.notFoundEntity))
+              return
+            }
             
-//            guard let behaviour = behaviour else {
-//              // @todo throw error
-//              print("Error while trying to retrieve behaviour")
-//              return
-//            }
-//
             let entry = EntryEntity(context: context)
             entry.date = Date()
             behaviour.addToEntries(entry)
@@ -277,7 +225,7 @@ final class BehaviourRepository {
             
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
         }
       }
@@ -285,25 +233,23 @@ final class BehaviourRepository {
     .eraseToEffect()
   }
   
-  func deleteLastEntry(for behaviourId: UUID) -> Effect<Void, Error> {
+  func deleteLastEntry(for behaviourId: UUID) -> Effect<Void, ErrorCase> {
     Deferred { [context] in
-      Future<Void, Error> { [context] promise in
+      Future<Void, ErrorCase> { [context] promise in
         context.perform {
           
           do {
             let idPredicate = NSPredicate(format: "id == %@", behaviourId as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
             behaviourRequest.predicate = idPredicate
             
             guard let behaviour = try context.fetch(behaviourRequest).first else {
-              // @todo throw error
+              promise(.failure(.notFoundEntity))
               return
             }
            
-            
             let fetchRequest: NSFetchRequest<EntryEntity>
             fetchRequest = EntryEntity.fetchRequest()
             let allEntries = try context.fetch(fetchRequest)
@@ -316,12 +262,11 @@ final class BehaviourRepository {
               context.delete(last)
             }
             
-            
             try context.save()
             
             promise(.success(()))
           } catch {
-            promise(.failure(error))
+            promise(.failure(.genericDbError(error.localizedDescription)))
           }
           
         }
@@ -331,8 +276,3 @@ final class BehaviourRepository {
   }
 }
 
-
-enum CustomError: Error {
-  case fetchError
-  case unexistentSelf
-}

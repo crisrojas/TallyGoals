@@ -16,17 +16,17 @@ struct BehaviourEditScreen: View {
         Form { 
           
           Section { 
-            TextField("", text: $emoji)
+            TextField("Emoji", text: $emoji)
               .onChange(of: emoji) { newValue in
                 emoji = String(newValue.prefix(1))
               }
-            TextField("", text: $name)
+            TextField("Titre", text: $name)
           }
         }
         
       }
       .toolbar { 
-        Text("Save")
+        Text("Enregistrer")
           .onTap {
             viewStore.send(
               .updateBehaviour(

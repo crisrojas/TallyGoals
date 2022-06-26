@@ -9,7 +9,14 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     return env.behavioursRepository
       .createBehaviour(id: id, emoji: emoji, name: name)
       .catchToEffect()
-      .map { _ in AppAction.readBehaviours }
+      .map { result in
+        switch result {
+        case .success:
+          return .readBehaviours
+        case .failure(let error):
+          return .setOverlay(overlay: .error(title: error.title, message: error.message))
+        }
+      }
     
   case .readBehaviours:
     state.behaviourState = .loading

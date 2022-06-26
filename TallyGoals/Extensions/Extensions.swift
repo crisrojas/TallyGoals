@@ -221,3 +221,31 @@ typealias NotificationFeedback = UINotificationFeedbackGenerator
 extension NotificationFeedback {
   static let shared = UINotificationFeedbackGenerator()
 }
+
+
+extension Array where Element == BehaviourEntity {
+  func mapBehaviorsEntities() throws -> [Behaviour] {
+    
+    let behaviours: [Behaviour] = try self.map { entity in
+      guard
+        let emoji = entity.emoji,
+        let name = entity.name,
+        let id = entity.id
+      else {
+        throw ErrorCase.entityLacksProperty
+      }
+
+      return Behaviour(
+        id: id,
+        emoji: emoji,
+        name: name,
+        pinned: entity.pinned,
+        archived: entity.archived,
+        favorite: entity.favorite,
+        count: entity.entries?.count ?? 0
+      )
+    }
+    
+    return behaviours
+  }
+}

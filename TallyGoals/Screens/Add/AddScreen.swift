@@ -15,10 +15,10 @@ struct AddScreen: View {
       Form {
         
         EmojiTextField("Emoji", text: $emoji)
-        TextField("Name",   text: $name)
+        TextField("Titre",   text: $name)
       }
       .toolbar { 
-        Text("Add")
+        Text("Enregistrer")
           .onTap {
             viewStore.send(
               .createBehaviour(

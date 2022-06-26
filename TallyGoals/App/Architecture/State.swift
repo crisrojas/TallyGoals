@@ -17,6 +17,7 @@ struct AppState: Equatable {
 
 enum Overlay: Equatable {
   case exploreDetail(PresetCategory)
+  case error(title: String, message: String)
 }
 
 

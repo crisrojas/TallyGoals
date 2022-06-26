@@ -70,19 +70,19 @@ private extension BehaviourRow {
   var leadingActions: [SwipeAction] {
     [
       SwipeAction(
-        label: "Anclar",
+        label: "Épingler",
         systemSymbol: "pin.fill",
         action: pin,
         backgroundColor: .blue500
       ),
       SwipeAction(
-        label: "Editar",
+        label: "Éditer",
         systemSymbol: "pencil",
         action: goToEditScreen,
         backgroundColor: .lime600
       ),
       SwipeAction(
-        label: "Reducir una unidad",
+        label: "Réduir d'une unité",
         systemSymbol: "minus.circle",
         action: decrease,
         backgroundColor: .yellow600
@@ -93,13 +93,13 @@ private extension BehaviourRow {
   var trailingActions: [SwipeAction] {
     [
       SwipeAction(
-        label: "Borrar",
+        label: "Effacer",
         systemSymbol: "trash",
         action: showAlert,
         backgroundColor: .red500
       ),
       SwipeAction(
-        label: archived ? "Desarchivar" : "Archivar",
+        label: archived ? "Désarchiver" : "Archiver",
         systemSymbol: "archivebox",
         action: archive,
         backgroundColor: .orange400

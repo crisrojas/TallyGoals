@@ -12,14 +12,13 @@ struct PersistenceController {
   static let shared = PersistenceController()
   
   struct MockBehaviour {
+    let id = UUID()
     let emoji: String
     let name: String
     let archived: Bool
     let favorite: Bool
     let pinned: Bool
-    let color: Int
   }
-  
   
   static var preview: PersistenceController = {
     let result = PersistenceController(inMemory: true)
@@ -28,202 +27,151 @@ struct PersistenceController {
     let initBehaviours = [
       MockBehaviour(
         emoji: "💧",
-        name: "Desconectar iMac",
+        name: "Éteindre devices",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 1
+        pinned: false
       ),
       MockBehaviour(
         emoji: "💪",
-        name: "Resistir tentacion",
+        name: "Resister une tentation",
         archived: false,
         favorite: true,
-        pinned: true,
-        color: 0
+        pinned: true
       ),
       MockBehaviour(
         emoji: "🥗",
-        name: "Comer ceto" ,
+        name: "Manger keto" ,
         archived: true,
         favorite: false,
-        pinned: true,
-        color: 2
+        pinned: true
       ),
       MockBehaviour(
         emoji: "💪",
-        name: "Retrasar recompensa",
+        name: "Retarder récompense",
         archived: false,
         favorite: false,
-        pinned: true,
-        color: 3
+        pinned: true
       ),
       MockBehaviour(
         emoji: "👔",
-        name: "Aplanchar ropdd",
+        name: "Repasser vêtements",
         archived: false,
         favorite: false,
-        pinned: true,
-        color: 4
+        pinned: true
       ),
       MockBehaviour(
         emoji: "⏰",
-        name: "Acostarme a las 22:30",
+        name: "Se coucher à 22:30",
         archived: false,
         favorite: false,
-        pinned: true,
-        color: 5
+        pinned: true
       ),
       MockBehaviour(
         emoji: "💧",
-        name: "Planificar el día siguiente",
+        name: "Planifier le lendemain",
         archived: false,
         favorite: false,
-        pinned: true,
-        color: 6
+        pinned: true
       ),
       MockBehaviour(
         emoji: "🙏",
-        name: "Ayuno",
+        name: "Jeûne",
         archived: false,
         favorite: false,
-        pinned: true,
-        color: 7
+        pinned: true
       ),
       MockBehaviour(
         emoji: "💧",
-        name: "Apagar el wifi",
+        name: "Éteindre le wifi",
         archived: false,
         favorite: false,
-        pinned: true,
-        color: 8
+        pinned: true
       ),
       MockBehaviour(
         emoji: "⏰",
-        name: "Levantarme a las 7",
+        name: "Se lever à 7",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 9
-      ),
-      MockBehaviour(
-        emoji: "💪",
-        name: "Trabajar al llegar a casa",
-        archived: false,
-        favorite: false,
-        pinned: false,
-        color: 10
+        pinned: false
       ),
       MockBehaviour(
         emoji: "⏰",
-        name: "Levantarme sin postergar la alarma",
+        name: "Se lever dès que l'alarme sonne",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 11
-      ),
-      MockBehaviour(
-        emoji: "💧",
-        name: "Recoger antes de acostarme",
-        archived: false,
-        favorite: false,
-        pinned: false,
-        color: 12
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🧽",
-        name: "Lavar la losa justo después de comer",
+        name: "Faire la vaiselle just après manger",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 13
+        pinned: false
       ),
       MockBehaviour(
         emoji: "💧",
-        name: "Activité sin multitarea / práctica deliberada",
+        name: "Activité sans multitask / pratique déliberée",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 14
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🙏",
-        name: "Llamar a seres queridos",
+        name: "Appeler un proche",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 15
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🙏",
-        name: "Ayudar a alguien",
+        name: "Aider quelqu'un",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 16
-      ),
-      MockBehaviour(
-        emoji: "💰",
-        name: "Vídeos de youtube",
-        archived: false,
-        favorite: false,
-        pinned: false,
-        color: 17
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🥶",
-        name: "Duchas frías",
+        name: "Douches froides",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 18
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🏋️‍♀️",
-        name: "Flexiones",
+        name: "Pompes",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 19
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🏋️‍♀️",
-        name: "Dominadas",
+        name: "Tractions",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 20
-      ),
-      MockBehaviour(
-        emoji: "🏋️‍♀️",
-        name: "Abdominales",
-        archived: false,
-        favorite: false,
-        pinned: false,
-        color: 21
+        pinned: false
       ),
       MockBehaviour(
         emoji: "🙏",
-        name: "Respirar antes de actuar",
+        name: "Respirer avant d'agir",
         archived: false,
         favorite: false,
-        pinned: false,
-        color: 22
+        pinned: false
       ),
     ]
     
-//    initBehaviours.forEach { behaviour in
-//      let entity = BehaviourEntity(context: viewContext)
-//      entity.emoji = behaviour.emoji
-//      entity.name = behaviour.name
-//      entity.archived = behaviour.archived
-//      entity.favorite = behaviour.favorite
-//      entity.pinned = behaviour.pinned
-//      entity.color = Int16(behaviour.color)
-//      viewContext.perform {
-//        try! viewContext.save()
-//      }
-//    }
+    initBehaviours.forEach { behaviour in
+      let entity = BehaviourEntity(context: viewContext)
+      entity.id = behaviour.id
+      entity.emoji = behaviour.emoji
+      entity.name = behaviour.name
+      entity.archived = behaviour.archived
+      entity.favorite = behaviour.favorite
+      entity.pinned = behaviour.pinned
+      viewContext.perform {
+        try! viewContext.save()
+      }
+    }
     
     return result
   }()
