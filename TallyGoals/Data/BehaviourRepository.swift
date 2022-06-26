@@ -46,11 +46,35 @@ final class BehaviourRepository {
           } catch {
             promise(.failure(error))
           }
-//        }
       }
       
     }
     .eraseToEffect()
+  }
+  
+  private func mapBehaviorsEntities(_ entities: [BehaviourEntity]) throws -> [Behaviour] {
+    
+    let behaviours: [Behaviour] = try entities.map { entity in
+      guard
+        let emoji = entity.emoji,
+        let name = entity.name,
+        let id = entity.id
+      else {
+        throw CustomError.fetchError
+      }
+
+      return Behaviour(
+        id: id,
+        emoji: emoji,
+        name: name,
+        pinned: entity.pinned,
+        archived: entity.archived,
+        favorite: entity.favorite,
+        count: entity.entries?.count ?? 0
+      )
+    }
+    
+    return behaviours
   }
   
   func createBehaviour(id: UUID, emoji: String, name: String) -> Effect<Void, Error> {
@@ -82,9 +106,7 @@ final class BehaviourRepository {
       Future<Void, Error> { [context] promise in
         context.perform {
           do {
-//            let object = try context.existingObject(with: id)
             let idPredicate = NSPredicate(format: "id == %@", id as CVarArg)
-//            let behaviour = try context.existingObject(with: behaviourId) as? BehaviourEntity
             let behaviourRequest: NSFetchRequest<BehaviourEntity>
             
             behaviourRequest = BehaviourEntity.fetchRequest()
@@ -307,4 +329,10 @@ final class BehaviourRepository {
     }
     .eraseToEffect()
   }
+}
+
+
+enum CustomError: Error {
+  case fetchError
+  case unexistentSelf
 }

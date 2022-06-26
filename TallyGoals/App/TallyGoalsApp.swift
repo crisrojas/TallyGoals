@@ -33,7 +33,6 @@ struct TallyGoalsApp: App {
         OnboardingScreen()
       } else {
         Tabbar(store: container.store) .onAppear {
-//          showOnboarding = true
         }
       }
     }
@@ -134,27 +133,11 @@ struct OnboardingScreen: View {
       }
       .tag(3)
       .horizontal(.horizontal)
-      
-//      VStack {
-//        Text("Avant de lancer l'app on souhaiterais vous proposer une série de compteurs préselectionnés pour rendre le monde un endroit mieux")
-//        Text("Oui, c'est parti!")
-//          .onTap {
-//            showOnboarding = false
-//          }
-//        Text("Non merci")
-//          .onTap {
-//            showOnboarding = false
-//          }
-//
-//      }
-//      .tag(4)
-//      .horizontal(.horizontal)
     }
     
           .roundedFont(.body)
     .multilineTextAlignment(.center)
     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-    //      .onTap { showOnboarding = false }
   }
 }
 

@@ -15,8 +15,7 @@ import XCTest
  Tests for:
  
  - Behaviour Repository
- - Associated behaviour repository actions
- - Associated behaviour repository reducer action implementation
+ - Associated behaviour repository actions with reducer implementation
  */
 
 class BehaviourRepositoryTests: XCTestCase {
@@ -61,7 +60,7 @@ class BehaviourRepositoryTests: XCTestCase {
     
     let id = UUID()
     let emoji = "💧"
-    let name = "Testing 2"
+    let name = "Testing"
     
     let expectedBehaviours = [Behaviour(
       id: id,
@@ -72,24 +71,21 @@ class BehaviourRepositoryTests: XCTestCase {
     
     let expectedBehaviourState: BehaviourState = .success(expectedBehaviours)
     
-    store.assert(
-      .send(.createBehaviour(
-        id: id,
-        emoji: emoji,
-        name: name
-      )) {
-        $0.behaviourState = .idle
-      },
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(expectedBehaviourState)) {
-        $0.behaviourState = expectedBehaviourState
-      }
-    )
+    store.send(.createBehaviour(id: id, emoji: emoji, name: name))
+    
+    wait()
+    
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    
+    store.receive(.makeBehaviourState(expectedBehaviourState)) {
+      $0.behaviourState = expectedBehaviourState
+    }
+  }
+  
+  private func wait() {
+    _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
   }
   
   
@@ -106,7 +102,7 @@ class BehaviourRepositoryTests: XCTestCase {
   }
   
   func testUpdateBehaviourMetaData() {
-    let behaviour = Behaviour(
+    var behaviour = Behaviour(
       id: UUID(),
       emoji: "🙂",
       name: "Be happy",
@@ -122,50 +118,45 @@ class BehaviourRepositoryTests: XCTestCase {
     )
     
     // MARK: - Create the behaviour
-    store.assert(
-      .send(.createBehaviour(
-        id: behaviour.id,
-        emoji: behaviour.emoji,
-        name: behaviour.name
-      )) {
-        $0.behaviourState = .idle
-      },
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
+    store.send(.createBehaviour(
+      id: behaviour.id,
+      emoji: behaviour.emoji,
+      name: behaviour.name
+    ))
     
-    // MARK: - Update name
-    let updatedBehaviour = Behaviour(
+    wait()
+    
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
+    
+    
+    /// Updated behaviour
+    behaviour = Behaviour(
       id: behaviour.id,
       emoji: "🙂",
       name: "New name",
       count: behaviour.count
     )
     
-    expectedState = .success([updatedBehaviour])
+    expectedState = .success([behaviour])
     
-    store.assert(
-      .send(.updateBehaviour(
-        id: behaviour.id,
-        emoji: updatedBehaviour.emoji,
-        name: updatedBehaviour.name
-      )),
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) { $0.behaviourState = .loading },
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
     
+    store.send(.updateBehaviour(
+      id: behaviour.id,
+      emoji: behaviour.emoji,
+      name: behaviour.name
+    ))
+    
+    wait()
+    
+    store.receive(.readBehaviours) { $0.behaviourState = .loading }
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
   }
   
   func testDeleteBehaviour() {
@@ -184,38 +175,33 @@ class BehaviourRepositoryTests: XCTestCase {
       environment: environment
     )
     
-    store.assert(
-      .send(.createBehaviour(
-        id: behaviour.id,
-        emoji: behaviour.emoji,
-        name: behaviour.name
-      )) {
-        $0.behaviourState = .idle
-      },
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(expectedFirstState)) {
-        $0.behaviourState = expectedFirstState
-      }
-    )
+    store.send(.createBehaviour(
+      id: behaviour.id,
+      emoji: behaviour.emoji,
+      name: behaviour.name
+    ))
+    
+    wait()
+    
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    
+    store.receive(.makeBehaviourState(expectedFirstState)) {
+      $0.behaviourState = expectedFirstState
+    }
     
     
-    store.assert(
-      .send(.deleteBehaviour(id: behaviour.id)),
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(.empty)) {
-        $0.behaviourState = .empty
-      }
-    )
+    
+    store.send(.deleteBehaviour(id: behaviour.id))
+    
+    wait()
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    store.receive(.makeBehaviourState(.empty)) {
+      $0.behaviourState = .empty
+    }
   }
   
   func testAddEntry() {
@@ -234,38 +220,30 @@ class BehaviourRepositoryTests: XCTestCase {
       environment: environment
     )
     
-    store.assert(
-      .send(.createBehaviour(
-        id: behaviour.id,
-        emoji: behaviour.emoji,
-        name: behaviour.name
-      )) {
-        $0.behaviourState = .idle
-      },
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
+    store.send(.createBehaviour(
+      id: behaviour.id,
+      emoji: behaviour.emoji,
+      name: behaviour.name
+    ))
+    
+    wait()
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
     
     behaviour.count += 1
     expectedState = .success([behaviour])
     
-    store.assert(
-      .send(.addEntry(behaviour: behaviour.id)),
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) { $0.behaviourState = .loading},
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
+    store.send(.addEntry(behaviour: behaviour.id))
+    wait()
+    store.receive(.readBehaviours) { $0.behaviourState = .loading}
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
   }
   
   func testDeleteEntry() {
@@ -284,52 +262,38 @@ class BehaviourRepositoryTests: XCTestCase {
       environment: environment
     )
     
-    store.assert(
-      .send(.createBehaviour(
-        id: behaviour.id,
-        emoji: behaviour.emoji,
-        name: behaviour.name
-      )) {
-        $0.behaviourState = .idle
-      },
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
+    store.send(.createBehaviour(
+      id: behaviour.id,
+      emoji: behaviour.emoji,
+      name: behaviour.name
+    ))
+    wait()
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
     
     behaviour.count += 1
     expectedState = .success([behaviour])
     
-    store.assert(
-      .send(.addEntry(behaviour: behaviour.id)),
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) { $0.behaviourState = .loading},
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
+    store.send(.addEntry(behaviour: behaviour.id))
+    wait()
+    store.receive(.readBehaviours) { $0.behaviourState = .loading}
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
     
     behaviour.count -= 1
     expectedState = .success([behaviour])
     
-    store.assert(
-      .send(.deleteEntry(behaviour: behaviour.id)),
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) { $0.behaviourState = .loading },
-      .receive(.makeBehaviourState(expectedState)) {
-        $0.behaviourState = expectedState
-      }
-    )
+    store.send(.deleteEntry(behaviour: behaviour.id))
+    wait()
+    store.receive(.readBehaviours) { $0.behaviourState = .loading }
+    store.receive(.makeBehaviourState(expectedState)) {
+      $0.behaviourState = expectedState
+    }
   }
   
   private enum UpdateAction {
@@ -355,24 +319,18 @@ class BehaviourRepositoryTests: XCTestCase {
       environment: environment
     )
     
-    store.assert(
-      .send(.createBehaviour(
-        id: behaviour.id,
-        emoji: behaviour.emoji,
-        name: behaviour.name
-      )) {
-        $0.behaviourState = .idle
-      },
-      .do {
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-      },
-      .receive(.readBehaviours) {
-        $0.behaviourState = .loading
-      },
-      .receive(.makeBehaviourState(expectedFirstState)) {
-        $0.behaviourState = expectedFirstState
-      }
-    )
+    store.send(.createBehaviour(
+      id: behaviour.id,
+      emoji: behaviour.emoji,
+      name: behaviour.name
+    ))
+    wait()
+    store.receive(.readBehaviours) {
+      $0.behaviourState = .loading
+    }
+    store.receive(.makeBehaviourState(expectedFirstState)) {
+      $0.behaviourState = expectedFirstState
+    }
     
     
     switch action {
@@ -380,50 +338,38 @@ class BehaviourRepositoryTests: XCTestCase {
       behaviour.favorite = true
       let expectedSecondState = BehaviourState.success([behaviour])
       
-      store.assert(
-        .send(.updateFavorite(id: behaviour.id, favorite: true)),
-        .do {
-          _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-        },
-        .receive(.readBehaviours) {
-          $0.behaviourState = .loading
-        },
-        .receive(.makeBehaviourState(expectedSecondState)) {
-          $0.behaviourState = expectedSecondState
-        }
-      )
+      store.send(.updateFavorite(id: behaviour.id, favorite: true))
+      wait()
+      store.receive(.readBehaviours) {
+        $0.behaviourState = .loading
+      }
+      store.receive(.makeBehaviourState(expectedSecondState)) {
+        $0.behaviourState = expectedSecondState
+      }
     case .archive:
       behaviour.archived = true
       let expectedSecondState = BehaviourState.success([behaviour])
       
-      store.assert(
-        .send(.updateArchive(id: behaviour.id, archive: true)),
-        .do {
-          _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-        },
-        .receive(.readBehaviours) {
-          $0.behaviourState = .loading
-        },
-        .receive(.makeBehaviourState(expectedSecondState)) {
-          $0.behaviourState = expectedSecondState
-        }
-      )
+      store.send(.updateArchive(id: behaviour.id, archive: true))
+      wait()
+      store.receive(.readBehaviours) {
+        $0.behaviourState = .loading
+      }
+      store.receive(.makeBehaviourState(expectedSecondState)) {
+        $0.behaviourState = expectedSecondState
+      }
     case .pin:
       behaviour.pinned = true
       let expectedSecondState = BehaviourState.success([behaviour])
       
-      store.assert(
-        .send(.updatePinned(id: behaviour.id, pinned: true)),
-        .do {
-          _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 1)
-        },
-        .receive(.readBehaviours) {
-          $0.behaviourState = .loading
-        },
-        .receive(.makeBehaviourState(expectedSecondState)) {
-          $0.behaviourState = expectedSecondState
-        }
-      )
+      store.send(.updatePinned(id: behaviour.id, pinned: true))
+      wait()
+      store.receive(.readBehaviours) {
+        $0.behaviourState = .loading
+      }
+      store.receive(.makeBehaviourState(expectedSecondState)) {
+        $0.behaviourState = expectedSecondState
+      }
     }
   }
 }

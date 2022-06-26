@@ -107,14 +107,12 @@ extension View {
 extension View {
   func vibrate(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType = .success) {
     UIImpactFeedbackGenerator.shared.impactOccurred()
-//    NotificationFeedback.shared.notificationOccurred(feedbackType)
   }
 }
 
 extension ViewModifier {
   func vibrate(_ feedbackType: UINotificationFeedbackGenerator.FeedbackType = .success) {
     UIImpactFeedbackGenerator.shared.impactOccurred()
-//    NotificationFeedback.shared.notificationOccurred(feedbackType)
   }
 }
 

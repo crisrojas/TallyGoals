@@ -549,7 +549,6 @@
 				5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */,
 				5497D03128412FD8003E2B43 /* XCRemoteSwiftPackageReference "SwiftUItilities" */,
 				5448F965284937AE00A7116A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
-				54D29DDD28590C6500BFFFDE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 5497CFFA28412F66003E2B43 /* Products */;
 			projectDirPath = "";
@@ -923,8 +922,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.38.1;
 			};
 		};
 		5497D02E28412FC8003E2B43 /* XCRemoteSwiftPackageReference "SwiftWind" */ = {
@@ -941,14 +940,6 @@
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 0.1.9;
-			};
-		};
-		54D29DDD28590C6500BFFFDE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
