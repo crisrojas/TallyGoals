@@ -38,9 +38,17 @@ struct PagerIndexView: View {
   
   func foreground(isSelected: Bool) -> Color {
     if isSelected {
-      return WindColor.neutral.c500
+      if .isDarkMode {
+        return WindColor.neutral.c200
+      } else {
+        return WindColor.neutral.c500
+      }
     } else {
-      return WindColor.neutral.c200
+      if .isDarkMode {
+        return WindColor.neutral.c500
+      } else {
+        return WindColor.neutral.c200
+      }
     }
   }
 }

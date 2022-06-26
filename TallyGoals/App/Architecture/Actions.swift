@@ -38,5 +38,3 @@ enum AppAction: Equatable {
   
   case setOverlay(overlay: Overlay?)
 }
-
-// @todo: comments

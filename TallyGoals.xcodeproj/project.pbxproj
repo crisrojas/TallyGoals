@@ -68,6 +68,7 @@
 		54DBA18928687E9300DD50D9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18828687E9300DD50D9 /* ErrorView.swift */; };
 		54DBA18B286887E900DD50D9 /* Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18A286887E800DD50D9 /* Local.swift */; };
 		54DBA18E2868884D00DD50D9 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18D2868884D00DD50D9 /* OnboardingScreen.swift */; };
+		54DBA19028688E4900DD50D9 /* ListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18F28688E4900DD50D9 /* ListEmptyView.swift */; };
 		54ED28E9285F5F5900A14F71 /* BindingPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */; };
 		54ED28EB285F5F7700A14F71 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EA285F5F7700A14F71 /* Presets.swift */; };
 		54ED28ED285F5FB500A14F71 /* PresetCategoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */; };
@@ -145,6 +146,7 @@
 		54DBA18828687E9300DD50D9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		54DBA18A286887E800DD50D9 /* Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local.swift; sourceTree = "<group>"; };
 		54DBA18D2868884D00DD50D9 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
+		54DBA18F28688E4900DD50D9 /* ListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEmptyView.swift; sourceTree = "<group>"; };
 		54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingPressStyle.swift; sourceTree = "<group>"; };
 		54ED28EA285F5F7700A14F71 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCategoryDetailScreen.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				5448F99C284A2AFF00A7116A /* toDo */,
 				54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */,
 				54DBA18828687E9300DD50D9 /* ErrorView.swift */,
+				54DBA18F28688E4900DD50D9 /* ListEmptyView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				5497D06828414D44003E2B43 /* BehaviourRow.swift in Sources */,
 				5497D05428413A1F003E2B43 /* HomeScreen.swift in Sources */,
 				5448F9A1284A2C9E00A7116A /* LegacyBlinkinCard.swift in Sources */,
+				54DBA19028688E4900DD50D9 /* ListEmptyView.swift in Sources */,
 				5448F975284A1B0F00A7116A /* Alerts.swift in Sources */,
 				5448F9A3284A2D9900A7116A /* VerticalLinearGradient.swift in Sources */,
 				5419902C2843B1110066A5CE /* ArrayFilters.swift in Sources */,

@@ -8,7 +8,8 @@
 import SwiftUI
 import SwiftWind
 
-// @todo: Move to SwiftWind module
+/// Enum allows iteration for demo purposes (showing all colors)
+/// This will replace the WindColor struct on SwiftWind on a future release
 enum WindColors: Int, CaseIterable {
   case slate
   case gray

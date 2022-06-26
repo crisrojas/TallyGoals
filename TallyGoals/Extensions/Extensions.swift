@@ -179,28 +179,6 @@ extension Array {
   }
 }
 
-extension NotificationCenter {
-  // @todo: delete?
-  static func collapseRowList() {
-    NotificationCenter.default.post(
-      name: .didTapListParentScreen,
-      object: nil
-    )
-  }
-  
-  // @todo: delete?
-  static let collapseRowNotification = NotificationCenter.default
-    .publisher(for: .didTapListParentScreen)
-}
-
-extension Notification.Name {
-  static let didTapListParentScreen = Notification.Name(.didTapListParentScreen)
-}
-
-extension String {
-  static let didTapListParentScreen = "didTapListParentScreen"
-}
-
 extension UIBarButtonItem {
   static func hideBackButtonLabel() {
     Self.appearance(

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// @todo: Move to SwiftUItilities module
 struct VerticalLinearGradient: View {
   let colors: [Color]
   var body: some View {

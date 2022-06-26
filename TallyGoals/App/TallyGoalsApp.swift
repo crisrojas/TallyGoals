@@ -9,12 +9,6 @@ import ComposableArchitecture
 import SwiftUI
 
 
-/*
- 
- @todo: Translate presets to french
- @todo: Test light mode
- */
-
 @main
 struct TallyGoalsApp: App {
   

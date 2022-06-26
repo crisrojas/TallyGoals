@@ -57,6 +57,3 @@ struct Tabbar: View {
     }
   }
 }
-
-
-// @todo: change each string

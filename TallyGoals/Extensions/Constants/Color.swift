@@ -12,6 +12,5 @@ extension Color {
   static let behaviourRowBackground = Color(uiColor: .systemBackground)
   static let rowPressedColor: WindColor = .sky
   
-  // @todo: delete?
   static var defaultBackground = Color(UIColor.secondarySystemBackground)
 }

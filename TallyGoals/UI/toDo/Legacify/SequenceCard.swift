@@ -43,7 +43,7 @@ struct SequenceCard: View {
               .highPriorityGesture(
                 TapGesture()
                   .onEnded { _ in
-                    print("@todo")
+                    print("did tap")
                   }
               )
               .simultaneousGesture(

@@ -39,7 +39,7 @@ var presetsCategories: [PresetCategory] {
   ]
   
   
-  var cat4 = PresetCategory(emoji: "💧", name: "Claridad mental")
+  var cat4 = PresetCategory(emoji: "💧", name: "Clarté mentale")
  cat4.presets = [
   Preset(name: "Planifier le lendemain"),
   Preset(name: "Ranger bureau à la fin de la journée"),
@@ -50,13 +50,13 @@ var presetsCategories: [PresetCategory] {
   Preset(name: "Se déconnecter des résaux sociaux au retour du travail")
  ]
   
-  var cat5 = PresetCategory(emoji: "💰", name: "Finanzas personales")
+  var cat5 = PresetCategory(emoji: "💰", name: "Finances personnelles")
  cat5.presets = [
   Preset(name: "Lire un article sur les criptomonnais"),
   Preset(name: "Resister l'envie d'acheter quelque chose qu'on n'a pas planifié d'acheter")
 ]
   
-  var cat6 = PresetCategory(emoji: "🙂", name: "Bienetre")
+  var cat6 = PresetCategory(emoji: "🙂", name: "Bienêtre")
  cat6.presets = [
   Preset(name: "Faire une promenade"),
   Preset(name: "Dopamine detox"),
