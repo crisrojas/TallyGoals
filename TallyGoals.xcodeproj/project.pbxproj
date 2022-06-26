@@ -66,6 +66,8 @@
 		54D29DDC2858E34800BFFFDE /* SequenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D29DDB2858E34800BFFFDE /* SequenceCard.swift */; };
 		54DBA187286878CD00DD50D9 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA186286878CD00DD50D9 /* Error.swift */; };
 		54DBA18928687E9300DD50D9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18828687E9300DD50D9 /* ErrorView.swift */; };
+		54DBA18B286887E900DD50D9 /* Local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18A286887E800DD50D9 /* Local.swift */; };
+		54DBA18E2868884D00DD50D9 /* OnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DBA18D2868884D00DD50D9 /* OnboardingScreen.swift */; };
 		54ED28E9285F5F5900A14F71 /* BindingPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */; };
 		54ED28EB285F5F7700A14F71 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EA285F5F7700A14F71 /* Presets.swift */; };
 		54ED28ED285F5FB500A14F71 /* PresetCategoryDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */; };
@@ -141,6 +143,8 @@
 		54D29DDB2858E34800BFFFDE /* SequenceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceCard.swift; sourceTree = "<group>"; };
 		54DBA186286878CD00DD50D9 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		54DBA18828687E9300DD50D9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		54DBA18A286887E800DD50D9 /* Local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Local.swift; sourceTree = "<group>"; };
+		54DBA18D2868884D00DD50D9 /* OnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreen.swift; sourceTree = "<group>"; };
 		54ED28E8285F5F5900A14F71 /* BindingPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingPressStyle.swift; sourceTree = "<group>"; };
 		54ED28EA285F5F7700A14F71 /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		54ED28EC285F5FB500A14F71 /* PresetCategoryDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetCategoryDetailScreen.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 		5497D03E28413A17003E2B43 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				54DBA18C2868883E00DD50D9 /* Onboarding */,
 				5413EA032857918A0096E821 /* Explore */,
 				5448F9A8284A2EAF00A7116A /* Add */,
 				5448F9A6284A2E8600A7116A /* Archive */,
@@ -432,6 +437,7 @@
 			children = (
 				5497D00528412F68003E2B43 /* Persistence.swift */,
 				5497D038284139AC003E2B43 /* BehaviourRepository.swift */,
+				54DBA18A286887E800DD50D9 /* Local.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -476,6 +482,14 @@
 				5497D04728413A1E003E2B43 /* Tabbar.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		54DBA18C2868883E00DD50D9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				54DBA18D2868884D00DD50D9 /* OnboardingScreen.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -600,6 +614,7 @@
 				54ED28EF285F5FCA00A14F71 /* ExplorePresetCard.swift in Sources */,
 				5497D039284139AC003E2B43 /* BehaviourRepository.swift in Sources */,
 				5448F993284A27F300A7116A /* Manager.swift in Sources */,
+				54DBA18B286887E900DD50D9 /* Local.swift in Sources */,
 				5497D05228413A1F003E2B43 /* Tabbar.swift in Sources */,
 				54DBA18928687E9300DD50D9 /* ErrorView.swift in Sources */,
 				5448F96F284A19F000A7116A /* Environment.swift in Sources */,
@@ -640,6 +655,7 @@
 				5497D05028413A1F003E2B43 /* LegacyBehaviourCard.swift in Sources */,
 				5497D00928412F68003E2B43 /* TallyGoals.xcdatamodeld in Sources */,
 				541990232843AEB50066A5CE /* SwipeActionsView.swift in Sources */,
+				54DBA18E2868884D00DD50D9 /* OnboardingScreen.swift in Sources */,
 				5448F9A5284A2E0A00A7116A /* BehaviourCard.swift in Sources */,
 				5497D05128413A1F003E2B43 /* BehaviourEditScreen.swift in Sources */,
 				5497D04B28413A1F003E2B43 /* AddScreen.swift in Sources */,

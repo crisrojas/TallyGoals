@@ -16,22 +16,21 @@ struct PresetCategoryDetailScreen: View {
   var body: some View {
     VStack {
       Text(model.emoji)
-      .top(.s6)
-      .font(.largeTitle)
+        .top(.s6)
+        .font(.largeTitle)
       Text(model.name)
-      .roundedFont(.title2)
-      .fontWeight(.bold)
-      .multilineTextAlignment(.center)
-      .top(.s2)
+        .roundedFont(.title2)
+        .fontWeight(.bold)
+        .multilineTextAlignment(.center)
+        .top(.s2)
       
       DefaultVStack {
         ForEach(model.presets) { preset in
-          HStack {
-            Text(preset.name)
-              .roundedFont(.body)
-            Spacer()
-            PresetRow(emoji: model.emoji, model: preset, viewStore: viewStore)
-          }
+          PresetRow(
+            emoji: model.emoji,
+            model: preset,
+            viewStore: viewStore
+          )
           .padding(.s3)
         }
       }
@@ -45,13 +44,12 @@ struct PresetCategoryDetailScreen: View {
         .onTap {
           viewStore.send(.setOverlay(overlay: nil))
         }
-      .buttonStyle(.plain)
-       .padding(.s4)
+        .buttonStyle(.plain)
+        .padding(.s4)
       ,alignment: .topTrailing
     )
     .background(
-        Color.clear.background(.thinMaterial)
-//      VerticalLinearGradient(colors: [.red700, .red400])
+      Color.clear.background(.thinMaterial)
     )
   }
 }

@@ -17,7 +17,16 @@ struct PresetRow: View {
   let viewStore: AppViewStore
   
   var body: some View {
-    Text(added ? "Added".uppercased() : "Add".uppercased())
+    HStack {
+      Text(model.name)
+        .roundedFont(.body)
+      Spacer()
+      addButton
+    }
+  }
+  
+  var addButton: some View {
+    Text(added ? "Rajouté".uppercased() : "Rajouter".uppercased())
       .font(.caption)
       .fontWeight(.bold)
       .vertical(.s1h)

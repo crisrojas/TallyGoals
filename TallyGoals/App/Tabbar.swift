@@ -15,19 +15,19 @@ struct Tabbar: View {
         
         
         HomeScreen(store: store)
-          .navigationTitle("Tallies")
+          .navigationTitle("Compteurs")
           .navigationify()
           .tag(0)
           .tabItem {
-            Label("Home", systemImage: "house")
+            Label("Compteurs", systemImage: "house")
           }
         
         ExploreScreen(viewStore: viewStore)
-          .navigationTitle("Explore")
+          .navigationTitle("Découvrir")
           .navigationify()
           .tag(1)
           .tabItem {
-            Label("Explore", systemImage: "plus.rectangle.fill")
+            Label("Découvrir", systemImage: "plus.rectangle.fill")
           }
         
         ArchivedScreen(store: store)
@@ -35,7 +35,7 @@ struct Tabbar: View {
           .navigationify()
           .tag(2)
           .tabItem {
-            Label("Archived", systemImage: "archivebox")
+            Label("Archive", systemImage: "archivebox")
           }
       }
       .overlay(overlay(viewStore: viewStore))
