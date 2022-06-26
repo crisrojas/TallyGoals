@@ -1,7 +1,9 @@
 import ComposableArchitecture
 import CoreData
 
-let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
+/// Whenever  an action is send to the store,
+/// the app reducer handles it
+let appReducer = AppReducer { state, action, env in
   
   switch action {
    
@@ -9,14 +11,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     return env.behavioursRepository
       .createBehaviour(id: id, emoji: emoji, name: name)
       .catchToEffect()
-      .map { result in
-        switch result {
-        case .success:
-          return .readBehaviours
-        case .failure(let error):
-          return .setOverlay(overlay: .error(title: error.title, message: error.message))
-        }
-      }
+      .map { _ in AppAction.readBehaviours }
     
   case .readBehaviours:
     state.behaviourState = .loading
@@ -48,11 +43,13 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
       .catchToEffect()
       .map { _ in AppAction.readBehaviours }
     
+    
   case .updateArchive(let id, let archived):
     return env.behavioursRepository
       .updateArchived(id: id, archived: archived)
       .catchToEffect()
       .map { _ in AppAction.readBehaviours }
+    
     
   case .updatePinned(let id, let pinned):
     return env.behavioursRepository
@@ -60,11 +57,13 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
       .catchToEffect()
       .map { _ in AppAction.readBehaviours }
     
+    
   case .updateBehaviour(let id, let emoji, let name):
     return env.behavioursRepository
       .updateBehaviour(id: id, emoji: emoji, name: name)
       .catchToEffect()
       .map { _ in AppAction.readBehaviours }
+    
     
   case .deleteBehaviour(let id):
     return env.behavioursRepository
@@ -72,17 +71,20 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
       .catchToEffect()
       .map { _ in AppAction.readBehaviours }
     
+    
   case .deleteEntry(let id):
     return env.behavioursRepository
     .deleteLastEntry(for: id)
     .catchToEffect()
     .map { _ in AppAction.readBehaviours }
+  
     
   case .addEntry(let behaviourId):
     return env.behavioursRepository
     .createEntity(for: behaviourId)
     .catchToEffect()
     .map { _ in AppAction.readBehaviours }
+  
     
   case .setOverlay(let overlay):
     state.overlay = overlay

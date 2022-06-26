@@ -10,9 +10,9 @@ import SwiftUI
 extension Alert {
   static func deleteAlert(action: @escaping SimpleAction) -> Alert {
     Alert(
-      title: Text("Are you sure you want to delete the item?"),
-      message: Text("This action cannot be undone"),
-      primaryButton: .destructive(Text("Delete"), action: action),
+      title: Text("Êtes vous sûr de vouloir éliminer ce compteur?"),
+      message: Text("Cette action est définitive"),
+      primaryButton: .destructive(Text("Éliminer"), action: action),
       secondaryButton: .default(Text("Cancel"))
     )
   }

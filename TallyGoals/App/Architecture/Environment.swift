@@ -7,15 +7,15 @@
 
 import ComposableArchitecture
 
+/// The environment is the depenciens handler
+/// here we declare all the needed dependencies
 struct AppEnvironment {
-//  let mainQueue: AnySchedulerOf<DispatchQueue>
   let behavioursRepository: BehaviourRepository
 }
 
 extension AppEnvironment {
   static var instance: AppEnvironment {
     .init(
-//      mainQueue: .main,
       behavioursRepository: container.behaviourRepository
     )
   }

@@ -7,6 +7,8 @@
 import UIKit
 
 extension UINavigationBar {
+  
+  /// Setups default fonts for the navigation bar
   static func setupFonts() {
     var largeTitleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
     let largeTitleDescriptor = largeTitleFont.fontDescriptor.withDesign(.rounded)?

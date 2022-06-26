@@ -180,6 +180,8 @@ extension Array {
 }
 
 extension UIBarButtonItem {
+  
+  /// Hides navigation back button label
   static func hideBackButtonLabel() {
     Self.appearance(
       whenContainedInInstancesOf:
@@ -202,6 +204,7 @@ extension NotificationFeedback {
 
 
 extension Array where Element == BehaviourEntity {
+  
   func mapBehaviorsEntities() throws -> [Behaviour] {
     
     let behaviours: [Behaviour] = try self.map { entity in

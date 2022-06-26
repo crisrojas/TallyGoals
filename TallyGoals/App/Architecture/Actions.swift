@@ -8,6 +8,9 @@
 import ComposableArchitecture
 import CoreData
 
+/// The AppAction enum models the actions of the app
+/// This actions are send to the store by using the send method which take an action as argument
+/// Actions are handle by the reducer
 enum AppAction: Equatable {
 
   // MARK: - CRUD Behaviours

@@ -25,7 +25,6 @@ struct Preset: Identifiable, Equatable {
 }
 
 struct PresetCategory: Identifiable, Equatable {
-
   
   let id: UUID
   let emoji: String

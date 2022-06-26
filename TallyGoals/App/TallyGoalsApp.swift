@@ -9,11 +9,11 @@ import ComposableArchitecture
 import SwiftUI
 
 
+/// Entry point of the application
 @main
 struct TallyGoalsApp: App {
   
   @AppStorage("showOnboarding") var showOnboarding: Bool = true
-  let persistenceController = PersistenceController.shared
   
   init() {
     UIBarButtonItem.hideBackButtonLabel()
@@ -27,9 +27,6 @@ struct TallyGoalsApp: App {
         OnboardingScreen(store: container.store)
       } else {
         Tabbar(store: container.store)
-//          .onAppear {
-//            showOnboarding = true
-//          }
       }
     }
   }
