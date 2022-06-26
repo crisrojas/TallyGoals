@@ -13,7 +13,8 @@ final class Container {
   }
   
   var context: NSManagedObjectContext {
-    PersistenceController.preview.container.viewContext
+//    PersistenceController.preview.container.viewContext
+    PersistenceController.shared.container.viewContext
   }
   
   var behaviourRepository: BehaviourRepository {

@@ -17,6 +17,7 @@ struct Tabbar: View {
         HomeScreen(store: store)
           .navigationTitle("Compteurs")
           .navigationify()
+          .navigationViewStyle(.stack)
           .tag(0)
           .tabItem {
             Label("Compteurs", systemImage: "house")
@@ -25,6 +26,7 @@ struct Tabbar: View {
         ExploreScreen(viewStore: viewStore)
           .navigationTitle("Découvrir")
           .navigationify()
+          .navigationViewStyle(.stack)
           .tag(1)
           .tabItem {
             Label("Découvrir", systemImage: "plus.rectangle.fill")
@@ -33,6 +35,7 @@ struct Tabbar: View {
         ArchivedScreen(store: store)
           .navigationTitle("Archive")
           .navigationify()
+          .navigationViewStyle(.stack)
           .tag(2)
           .tabItem {
             Label("Archive", systemImage: "archivebox")
